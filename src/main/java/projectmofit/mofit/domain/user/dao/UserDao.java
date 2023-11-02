@@ -13,5 +13,7 @@ public interface UserDao {
 
     int nicknameCheck(String nickname);
 
+    int emailCheck(String email);
+
     // int updateImg(UserImg userImg);
 }

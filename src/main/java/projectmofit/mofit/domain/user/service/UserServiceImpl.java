@@ -28,18 +28,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int nickNameCheck(String nickname) {
+    public int nicknameCheck(String nickname) {
         return userDao.nicknameCheck(nickname);
     }
 
     @Override
-    public boolean login(String email, String password) {
+    public int emailCheck(String email) {
+        return userDao.emailCheck(email);
+    }
+
+    @Override
+    public User login(String email, String password) {
         User loginUser = userDao.findByEmail(email);
 
         if (loginUser != null && loginUser.getPassword().equals(password)) {
-            return true;
+            return loginUser;
         } else {
-            return false;
+            return null;
         }
     }
 }

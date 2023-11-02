@@ -10,7 +10,9 @@ public interface UserService {
 
     boolean signUp(User user);
 
-    int nickNameCheck(String nickname);
+    int nicknameCheck(String nickname);
 
-    boolean login(String email, String password);
+    int emailCheck(String email);
+
+    User login(String email, String password);
 }

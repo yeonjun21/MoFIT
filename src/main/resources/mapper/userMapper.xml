@@ -25,4 +25,9 @@
         WHERE nickname = #{nickname}
     </select>
 
+    <select id="emailCheck" parameterType="string">
+        SELECT COUNT(*) FROM user
+        WHERE email = #{email}
+    </select>
+
 </mapper>
