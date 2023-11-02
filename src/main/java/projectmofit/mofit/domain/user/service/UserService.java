@@ -9,4 +9,8 @@ public interface UserService {
     User findByEmail(String email);
 
     boolean signUp(User user);
+
+    int nickNameCheck(String nickname);
+
+    boolean login(String email, String password);
 }

@@ -27,10 +27,14 @@ public class UserController {
         return "user/signUpForm";
     }
 
-    // 회원가입
-    // TODO 이메일 인증, 닉네임 중복 확인
+    // TODO 이메일 인증
     @PostMapping("/signup")
     public String signUp(@Valid @ModelAttribute User user, BindingResult bindingResult) {
+        // 닉네임 중복 확인
+        if (userService.nickNameCheck(user.getNickname()) > 0) {
+            bindingResult.rejectValue("nickname", "duplication", null, "이미 사용 중인 닉네임입니다.");
+        }
+
         if (bindingResult.hasErrors()) {
             return "user/signUpForm";
         }
@@ -42,4 +46,17 @@ public class UserController {
     // TODO login, logout, 프로필 사진 수정
 
     // Do or Not? 회원 정보 수정, 비밀번호 찾기, 탈퇴하기
+
+    @GetMapping("/login")
+    public String loginForm() {
+        return "user/loginForm";
+    }
+
+    @PostMapping("/login")
+    public String login(String email, String password) {
+
+
+
+        return "user/loginForm";
+    }
 }

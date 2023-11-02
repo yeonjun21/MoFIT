@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="projectmofit.mofit.domain.user.dao.UserDao">
 
@@ -19,5 +19,10 @@
         INSERT INTO user (email, password, name, nickname)
         VALUES (#{email}, #{password}, #{name}, #{nickname})
     </insert>
+
+    <select id="nicknameCheck" parameterType="string">
+        SELECT COUNT(*) FROM user
+        WHERE nickname = #{nickname}
+    </select>
 
 </mapper>

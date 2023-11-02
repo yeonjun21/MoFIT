@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>로그인</h2>
+
+    <form action="/user/login" method="POST">
+
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email">
+
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password">
+
+        <button type="submit">로그인</button>
+
+    </form>
+</div>
+</body>
+</html>

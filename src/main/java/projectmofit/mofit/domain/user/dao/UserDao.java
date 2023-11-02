@@ -11,5 +11,7 @@ public interface UserDao {
 
     int insertUser(User user);
 
+    int nicknameCheck(String nickname);
+
     // int updateImg(UserImg userImg);
 }

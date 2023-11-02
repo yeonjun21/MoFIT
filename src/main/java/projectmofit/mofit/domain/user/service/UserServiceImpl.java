@@ -11,6 +11,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
 
+
     @Override
     public User findById(int id) {
         return userDao.findById(id);
@@ -24,5 +25,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean signUp(User user) {
         return userDao.insertUser(user) > 0;
+    }
+
+    @Override
+    public int nickNameCheck(String nickname) {
+        return userDao.nicknameCheck(nickname);
+    }
+
+    @Override
+    public boolean login(String email, String password) {
+        User loginUser = userDao.findByEmail(email);
+
+        if (loginUser != null && loginUser.getPassword().equals(password)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
