@@ -3,6 +3,7 @@ package projectmofit.mofit.domain.user.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -15,15 +16,11 @@ import projectmofit.mofit.domain.user.dto.User;
 import projectmofit.mofit.domain.user.service.UserService;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("/signup")
     public String signUpForm(@ModelAttribute User user) {
@@ -52,7 +49,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    // TODO login, logout, 프로필 사진 수정
+    // TODO 프로필 사진 수정
 
     // Do or Not? 회원 정보 수정, 비밀번호 찾기, 탈퇴하기
 
