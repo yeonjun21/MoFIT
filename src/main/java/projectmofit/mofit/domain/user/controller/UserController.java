@@ -22,13 +22,17 @@ public class UserController {
 
     private final UserService userService;
 
+    // TODO 회원가입에 이메일 인증 추가
+    // TODO 로그인, 로그아웃 후 원래 있던 페이지로 리다이렉트
+    // TODO 프로필 이미지 수정
+    // TODO 회원 정보 수정(닉네임, 비밀번호), 회원 탈퇴
+
     @GetMapping("/signup")
     public String signUpForm(@ModelAttribute User user) {
         return "user/signUpForm";
     }
 
     // 회원가입
-    // TODO 이메일 인증
     @PostMapping("/signup")
     public String signUp(@Valid @ModelAttribute User user, BindingResult bindingResult) {
         // 이메일 중복 확인
@@ -48,10 +52,6 @@ public class UserController {
         userService.signUp(user);
         return "redirect:/";
     }
-
-    // TODO 프로필 사진 수정
-
-    // Do or Not? 회원 정보 수정, 비밀번호 찾기, 탈퇴하기
 
     @GetMapping("/login")
     public String loginForm(@ModelAttribute LoginForm form) {
@@ -80,14 +80,9 @@ public class UserController {
     }
 
     // 로그아웃
-    @PostMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-
-        if (session != null) {
-            session.invalidate();
-        }
-
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/";
     }
 }
