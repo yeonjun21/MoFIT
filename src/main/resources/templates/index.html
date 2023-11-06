@@ -13,5 +13,16 @@
         <a th:href="@{/user/{id}(id = ${session.loginUser.id})}">마이페이지</a>
         <a th:href="@{/user/logout}">로그아웃</a>
     </div>
+
+    <h1>MoFIT</h1>
+
+    <a th:href="@{/}">우리동네 모임 찾기</a>
+    <a th:href="@{/}">내 모임 보기</a>
+
+    <div th:if="${list != null}">
+        <table>
+            <td th:each="group : ${list}" th:text="${group.groupName}"></td>
+        </table>
+    </div>
 </body>
 </html>
