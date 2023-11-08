@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .group-container {
+            border: 1px solid gray;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <div th:if="${session.loginUser == null}">
@@ -18,11 +25,16 @@
 
     <a th:href="@{/}">우리동네 모임 찾기</a>
     <a th:href="@{/}">내 모임 보기</a>
+    <a th:href="@{/group}">모임 만들기</a>
 
     <div th:if="${list != null}">
-        <table>
-            <td th:each="group : ${list}" th:text="${group.groupName}"></td>
-        </table>
+        <h2 th:text="|${region}에서 활동하는 모임입니다.|"></h2>
+        <div th:each="group : ${list}" class="group-container">
+            <h3 th:text="${group.groupName}">모임 이름</h3>
+            <p>활동 지역 :
+                <span th:each="region : ${group.regions}" th:text="|${region} |"></span>
+            </p>
+        </div>
     </div>
 </body>
 </html>

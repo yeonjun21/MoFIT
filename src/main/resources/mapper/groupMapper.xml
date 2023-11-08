@@ -6,16 +6,34 @@
 <mapper namespace="projectmofit.mofit.domain.group.dao.GroupDao">
 
     <insert id="insertGroup" parameterType="Group">
-        INSERT INTO group (group_name, type, info)
+        INSERT INTO `group` (group_name, type, info)
         VALUES (#{groupName}, #{type}, #{info})
     </insert>
 
+    <insert id="insertRegion" parameterType="string">
+        INSERT INTO group_region
+        VALUES ((SELECT group_id FROM `group` WHERE group_name = #{groupName}),
+                #{region})
+    </insert>
+
+    <select id="groupNameCheck" parameterType="string">
+        SELECT COUNT(*)
+        FROM `group`
+        WHERE group_name = #{groupName}
+    </select>
+
     <select id="findGroupByRegion" parameterType="string" resultType="Group">
-        SELECT DISTINCT group_name AS groupName, type, info
+        SELECT DISTINCT G.group_id AS groupId, group_name AS groupName, type, info
         FROM `group` G
         INNER JOIN group_region R
         ON G.group_id = R.group_id
         WHERE R.region = #{region}
+    </select>
+
+    <select id="findRegions" parameterType="int" resultType="string">
+        SELECT region
+        FROM group_region
+        WHERE group_id = #{groupId}
     </select>
 
 </mapper>
