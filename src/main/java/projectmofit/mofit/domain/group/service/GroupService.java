@@ -9,6 +9,8 @@ public interface GroupService {
 
     void addRegion(String groupName, String region);
 
+    int groupNameCheck(String groupName);
+
     List<Group> getGroupByRegion(String region);
 
     List<String> getRegions(int groupId);

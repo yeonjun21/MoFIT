@@ -23,6 +23,11 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public int groupNameCheck(String groupName) {
+        return groupDao.groupNameCheck(groupName);
+    }
+
+    @Override
     public List<Group> getGroupByRegion(String region) {
         return groupDao.findGroupByRegion(region);
     }

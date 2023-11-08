@@ -16,6 +16,12 @@
                 #{region})
     </insert>
 
+    <select id="groupNameCheck" parameterType="string">
+        SELECT COUNT(*)
+        FROM `group`
+        WHERE group_name = #{groupName}
+    </select>
+
     <select id="findGroupByRegion" parameterType="string" resultType="Group">
         SELECT DISTINCT G.group_id AS groupId, group_name AS groupName, type, info
         FROM `group` G

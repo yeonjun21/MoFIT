@@ -22,10 +22,12 @@
         <div>
             <label for="groupName">모임 이름</label>
             <input type="text" id="groupName" th:field="*{groupName}" th:errorclass="field-error">
+            <div class="field-error" th:errors="*{groupName}"/>
         </div>
 
         <div>
             <div>운동 종목</div>
+            <div class="field-error" th:errors="*{type}"/>
             <select th:field="*{type}">
                 <option value="">==운동 종목 선택==</option>
                 <option th:each="type : ${types}" th:value="${type}"
@@ -35,6 +37,7 @@
 
         <div>
             <div>활동 지역</div>
+            <div class="field-error" th:errors="*{regions}"/>
             <span th:each="region : ${regions}">
                 <input type="checkbox" th:field="*{regions}" th:value="${region}">
                 <label th:text="${region}">강남구</label>
@@ -44,6 +47,7 @@
         <div>
             <label for="info">모임 소개글</label>
             <input type="text" id="info" th:field="*{info}" th:errorclass="field-error">
+            <div class="field-error" th:errors="*{info}"/>
         </div>
 
         <button type="submit">모임 만들기</button>

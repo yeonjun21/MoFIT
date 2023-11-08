@@ -8,6 +8,8 @@ public interface GroupDao {
 
     int insertRegion(String groupName, String region);
 
+    int groupNameCheck(String groupName);
+
     List<Group> findGroupByRegion(String region);
 
     List<String> findRegions(int groupId);
