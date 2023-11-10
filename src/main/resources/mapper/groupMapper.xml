@@ -22,6 +22,12 @@
         WHERE group_name = #{groupName}
     </select>
 
+    <select id="findGroupById" resultType="Group">
+        SELECT group_id AS groupId, group_name AS groupName, type, info
+        FROM `group`
+        WHERE group_id = #{groupId}
+    </select>
+
     <select id="findGroupByRegion" parameterType="string" resultType="Group">
         SELECT DISTINCT G.group_id AS groupId, group_name AS groupName, type, info
         FROM `group` G

@@ -19,23 +19,6 @@ public class GroupController {
 
     private final GroupService groupService;
 
-    // 특정 동네의 모임 리스트 보기
-    @GetMapping("/{region}")
-    public String regionGroupList(@PathVariable String region, Model model) {
-        List<Group> list = groupService.getGroupByRegion(region);
-
-        // 리스트에 있는 모임에 해당 모임의 활동 지역 넣어주기
-        // 모임의 활동 지역을 저장하는 테이블이 따로 있으므로 넣어주는 작업 필요
-        for (Group group : list) {
-            List<String> regions = groupService.getRegions(group.getGroupId());
-            group.setRegions(regions);
-        }
-
-        model.addAttribute("list", list);
-        model.addAttribute("region", region);
-        return "index";
-    }
-
     @GetMapping
     public String addGroupForm(@ModelAttribute Group group, Model model) {
         return "group/addGroupForm";
@@ -59,6 +42,23 @@ public class GroupController {
             groupService.addRegion(group.getGroupName(), region);
         }
         return "redirect:/";
+    }
+
+    // 특정 동네의 모임 리스트 보기
+    @GetMapping("/list")
+    public String regionGroupList(@RequestParam String region, Model model) {
+        List<Group> list = groupService.getGroupByRegion(region);
+
+        // 리스트에 있는 모임에 해당 모임의 활동 지역 넣어주기
+        // 모임의 활동 지역을 저장하는 테이블이 따로 있으므로 넣어주는 작업 필요
+        for (Group group : list) {
+            List<String> regions = groupService.getRegions(group.getGroupId());
+            group.setRegions(regions);
+        }
+
+        model.addAttribute("list", list);
+        model.addAttribute("region", region);
+        return "index";
     }
 
     @ModelAttribute("regions")

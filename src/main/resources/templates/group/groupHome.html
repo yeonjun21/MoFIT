@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2 th:text="${group.groupName}">모임 이름</h2>
+    <hr>
+    <h3>운동 종목</h3>
+    <p th:text="${group.type}"></p>
+    <h3>활동 지역</h3>
+    <span th:each="region : ${group.regions}" th:text="|${region} |"></span>
+    <h3>모임 소개글</h3>
+    <p th:text="${group.info}"></p>
+</body>
+</html>

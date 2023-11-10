@@ -28,8 +28,21 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public Group getGroupById(int groupId) {
+        return groupDao.findGroupById(groupId);
+    }
+
+    @Override
     public List<Group> getGroupByRegion(String region) {
-        return groupDao.findGroupByRegion(region);
+        List<Group> list = groupDao.findGroupByRegion(region);
+
+        // 리스트에 있는 모임에 해당 모임의 활동 지역 넣어주기
+        // 모임의 활동 지역을 저장하는 테이블이 따로 있으므로 넣어주는 작업 필요
+        for (Group group : list) {
+            List<String> regions = groupDao.findRegions(group.getGroupId());
+            group.setRegions(regions);
+        }
+        return list;
     }
 
     @Override

@@ -10,6 +10,8 @@ public interface GroupDao {
 
     int groupNameCheck(String groupName);
 
+    Group findGroupById(int groupId);
+
     List<Group> findGroupByRegion(String region);
 
     List<String> findRegions(int groupId);

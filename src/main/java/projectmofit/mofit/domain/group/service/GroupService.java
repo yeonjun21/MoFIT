@@ -11,6 +11,8 @@ public interface GroupService {
 
     int groupNameCheck(String groupName);
 
+    Group getGroupById(int groupId);
+
     List<Group> getGroupByRegion(String region);
 
     List<String> getRegions(int groupId);
