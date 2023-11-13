@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface BoardDao {
     List<Board> selectAll(int groupId);
-    Board selectOne(int groupId, int index);
+    Board selectOne(int index);
     int insertBoard(Board board);
     void updateBoard(Board board);
 
-    int deleteBoard(int groupId, int index);
+    int deleteBoard(int index);
 }
