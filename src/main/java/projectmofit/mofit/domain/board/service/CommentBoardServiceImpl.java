@@ -27,7 +27,6 @@ public class CommentBoardServiceImpl implements CommentBoardService{
     public void editComment(CommentBoard commentBoard) {
         commentBoardDao.updateComment(commentBoard);
     }
-
     //유일한 댓글이 없음
     @Override
     public int removeComment(int index) {

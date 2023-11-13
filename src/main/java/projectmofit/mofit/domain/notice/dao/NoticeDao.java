@@ -7,9 +7,8 @@ import java.util.List;
 
 public interface NoticeDao {
     List<Notice> selectAll(int groupId);
-    Notice selectOne(int groupId, int index);
+    Notice selectOne(int index);
     int insertNotice(Notice notice);
     void updateNotice(Notice notice);
-
-    int deleteNotice(int groupId, int index);
+    int deleteNotice(int index);
 }

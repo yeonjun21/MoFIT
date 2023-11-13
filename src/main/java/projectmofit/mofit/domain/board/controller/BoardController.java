@@ -17,15 +17,20 @@ public class BoardController {
     private final BoardService boardService;
     //인터셉터가 접근을 막기 때문에 groupId만 받는다
     @GetMapping
-    public ResponseEntity<List<Board>> list(@RequestParam int groupId){
-        System.out.printf("yammy");
+    public ResponseEntity<?> list(@RequestParam int groupId){
         List<Board> list = boardService.getBoard(groupId);
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        if(list.size()==0){
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
     }
     //deltail form에서 index를 날려줌
     @GetMapping("/{index}")
-    public ResponseEntity<Board> detail(@PathVariable int index){
+    public ResponseEntity<?> detail(@PathVariable int index){
         Board board = boardService.getBoardByGroupId(index);
+        if(board==null){
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(board, HttpStatus.OK);
     }
 

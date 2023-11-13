@@ -1,6 +1,5 @@
 package projectmofit.mofit.domain.board.dao;
 
-import projectmofit.mofit.domain.board.dto.Board;
 import projectmofit.mofit.domain.board.dto.CommentBoard;
 
 import java.util.List;

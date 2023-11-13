@@ -19,8 +19,8 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
-    public Notice getNoticeByGroupId(int groupId, int index) {
-        Notice notice = noticeDao.selectOne(groupId, index);
+    public Notice getNoticeByGroupId(int index) {
+        Notice notice = noticeDao.selectOne(index);
         return notice;
     }
 
@@ -36,8 +36,8 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
-    public int removeNotice(int groupId, int index) {
-        int result = noticeDao.deleteNotice(groupId, index);
+    public int removeNotice(int index) {
+        int result = noticeDao.deleteNotice(index);
         return result;
     }
 }

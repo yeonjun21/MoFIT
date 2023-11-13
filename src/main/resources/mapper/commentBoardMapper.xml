@@ -18,7 +18,7 @@
     <update id="updateComment" parameterType="CommentBoard">
         UPDATE comment_board
         SET content=#{content}, date=now()
-        WHERE `index` = #{index} AND date = #{date}
+        WHERE `index` = #{index}
     </update>
 
     <delete id="deleteComment" parameterType="int">

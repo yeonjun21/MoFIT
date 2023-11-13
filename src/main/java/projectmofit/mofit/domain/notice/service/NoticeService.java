@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface NoticeService {
     List<Notice> getNotice(int groupId);
-    Notice getNoticeByGroupId(int groupId, int index);
+    Notice getNoticeByGroupId(int index);
     int addNotice(Notice notice);
     void editNotice(Notice notice);
-    int removeNotice(int groupId, int index);
+    int removeNotice(int index);
 }

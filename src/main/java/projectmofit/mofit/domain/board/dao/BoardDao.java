@@ -9,6 +9,5 @@ public interface BoardDao {
     Board selectOne(int index);
     int insertBoard(Board board);
     void updateBoard(Board board);
-
     int deleteBoard(int index);
 }

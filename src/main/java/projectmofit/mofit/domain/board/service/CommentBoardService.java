@@ -1,4 +1,5 @@
 package projectmofit.mofit.domain.board.service;
+
 import projectmofit.mofit.domain.board.dto.CommentBoard;
 
 import java.util.List;
