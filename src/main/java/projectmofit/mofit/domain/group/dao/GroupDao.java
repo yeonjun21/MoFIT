@@ -12,7 +12,11 @@ public interface GroupDao {
 
     Group findGroupById(int groupId);
 
+    Group findGroupByGroupName(String groupName);
+
     List<Group> findGroupByRegion(String region);
 
     List<String> findRegions(int groupId);
+
+    void insertGroupLeader(int userId, int groupId);
 }

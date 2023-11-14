@@ -1,5 +1,6 @@
 package projectmofit.mofit.domain.group.controller;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import projectmofit.mofit.domain.group.dto.Group;
 import projectmofit.mofit.domain.group.service.GroupService;
+import projectmofit.mofit.domain.user.dto.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class GroupController {
 
     // 모임 만들기
     @PostMapping
-    public String addGroup(@Valid @ModelAttribute Group group, BindingResult bindingResult) {
+    public String addGroup(@Valid @ModelAttribute Group group, BindingResult bindingResult, HttpSession session) {
         // 모임 이름 중복 확인
         if (groupService.groupNameCheck(group.getGroupName()) > 0) {
             bindingResult.rejectValue("groupName", "duplication", "이미 사용 중인 모임 이름입니다.");
@@ -36,11 +38,18 @@ public class GroupController {
             return "group/addGroupForm";
         }
 
+        // 새 모임 생성
         groupService.addGroup(group);
 
+        // 모임에 활동 지역 추가(테이블이 달라서 따로 넣어줘야 함)
         for (String region : group.getRegions()) {
             groupService.addRegion(group.getGroupName(), region);
         }
+
+        // 모임 운영자 정보 추가
+        User loginUser = (User) session.getAttribute("loginUser");
+        groupService.addGroupLeader(loginUser.getId(), group.getGroupName());
+
         return "redirect:/";
     }
 

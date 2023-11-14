@@ -28,6 +28,12 @@
         WHERE group_id = #{groupId}
     </select>
 
+    <select id="findGroupByGroupName" parameterType="string" resultType="Group">
+        SELECT group_id AS groupId, group_name AS groupName, type, info
+        FROM `group`
+        WHERE group_name = #{groupName}
+    </select>
+
     <select id="findGroupByRegion" parameterType="string" resultType="Group">
         SELECT DISTINCT G.group_id AS groupId, group_name AS groupName, type, info
         FROM `group` G
@@ -41,6 +47,11 @@
         FROM group_region
         WHERE group_id = #{groupId}
     </select>
+
+    <insert id="insertGroupLeader" parameterType="int">
+        INSERT INTO group_member
+        VALUES (#{userId}, #{groupId}, '운영진')
+    </insert>
 
 </mapper>
 

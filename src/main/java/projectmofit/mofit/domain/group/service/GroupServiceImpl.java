@@ -23,6 +23,16 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public void addGroupLeader(int userId, String groupName) {
+        int groupId = groupDao.findGroupByGroupName(groupName).getGroupId();
+
+        System.out.println(groupId);
+        System.out.println(userId);
+
+        groupDao.insertGroupLeader(userId, groupId);
+    }
+
+    @Override
     public int groupNameCheck(String groupName) {
         return groupDao.groupNameCheck(groupName);
     }
