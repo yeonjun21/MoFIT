@@ -31,6 +31,8 @@ public class MyPageController {
         List<Group> myGroup = myPageService.getMyGroups(id);
         model.addAttribute("myGroup", myGroup);
 
+        // TODO 모임 회원 등급도 같이 보이게!
+
         // TODO 내가 쓴 글 넣어주기
         // TODO 내가 찜한 영상 넣어주기
         // TODO 팔로워, 팔로잉 수 넣어주기

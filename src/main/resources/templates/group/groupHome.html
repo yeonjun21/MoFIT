@@ -12,11 +12,29 @@
             background-color: #f0ffff;
             border: 2px solid #6495ed;
         }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .menu-button {
+            border: 1px solid #f0ffff;
+        }
     </style>
 </head>
 <body>
     <h2 th:text="${group.groupName}">모임 이름</h2>
     <hr>
+    <div class="menu">
+        <a class="menu-button">HOME</a>
+        <a class="menu-button">공지사항</a>
+        <a class="menu-button">자유게시판</a>
+        <a class="menu-button">갤러리</a>
+        <a class="menu-button">관련 영상</a>
+    </div>
+
     <h3>운동 종목</h3>
     <p th:text="${group.type}"></p>
     <h3>활동 지역</h3>

@@ -36,6 +36,7 @@ public class GroupHomeController {
     }
 
     // 해당 모임 가입하기
+    // TODO 바로 가입될지, 아니면 가입 신청 메세지를 운영진에게 보낼지
     @PostMapping("/{groupId}")
     public String join(@PathVariable int groupId, HttpSession session, Model model) {
         User loginUser = (User) session.getAttribute("loginUser");
