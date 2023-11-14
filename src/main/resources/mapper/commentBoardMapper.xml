@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="projectmofit.mofit.domain.board.dao.CommentBoardDao">
+    <select id="selectAll" parameterType="int" resultType="CommentBoard">
+        SELECT *
+        FROM comment_board
+        WHERE `index` = #{index}
+    </select>
+
+    <insert id="insertComment" parameterType="CommentBoard">
+        INSERT INTO comment_board (`index`,group_id,content,writer)
+        VALUES (#{index},#{groupId},#{content}, #{writer})
+    </insert>
+
+    <update id="updateComment" parameterType="CommentBoard">
+        UPDATE comment_board
+        SET content=#{content}, date=now()
+        WHERE `index` = #{index}
+    </update>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comment_board
+        WHERE `index` = #{index}
+    </delete>
+</mapper>
