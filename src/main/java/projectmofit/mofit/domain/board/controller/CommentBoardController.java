@@ -17,8 +17,8 @@ public class CommentBoardController {
     private final CommentBoardService commentBoardService;
 
     @GetMapping
-    public ResponseEntity<List<CommentBoard>> list(@RequestParam int index){
-        List<CommentBoard> list = commentBoardService.getComment(index);
+    public ResponseEntity<List<CommentBoard>> list(@RequestParam int boardIdx){
+        List<CommentBoard> list = commentBoardService.getComment(boardIdx);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
@@ -40,8 +40,8 @@ public class CommentBoardController {
     }
 
     @DeleteMapping //수정 필요함 db에서 유일한 댓글을 찾을 수 없음 임시로 index
-    public ResponseEntity<Void> delete(@RequestParam int index){
-        int result = commentBoardService.removeComment(index);
+    public ResponseEntity<Void> delete(@RequestParam int commentIdx){
+        int result = commentBoardService.removeComment(commentIdx);
         if(result == 0){
             return new ResponseEntity<>(HttpStatus.INSUFFICIENT_STORAGE);
         }

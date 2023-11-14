@@ -14,8 +14,8 @@ public class CommentBoardServiceImpl implements CommentBoardService{
 
     private final CommentBoardDao commentBoardDao;
     @Override
-    public List<CommentBoard> getComment(int index) {
-        return commentBoardDao.selectAll(index);
+    public List<CommentBoard> getComment(int boardIdx) {
+        return commentBoardDao.selectAll(boardIdx);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class CommentBoardServiceImpl implements CommentBoardService{
     }
     //유일한 댓글이 없음
     @Override
-    public int removeComment(int index) {
-        return commentBoardDao.deleteComment(index);
+    public int removeComment(int commentIdx) {
+        return commentBoardDao.deleteComment(commentIdx);
     }
 }

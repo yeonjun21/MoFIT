@@ -5,13 +5,13 @@
 
 <mapper namespace="projectmofit.mofit.domain.notice.dao.NoticeDao">
     <select id="selectAll" parameterType="int" resultType="Notice">
-        SELECT *
+        SELECT `index`, group_id as groupId, title, content, writer, `date`
         FROM notice
         WHERE group_id = #{groupId}
     </select>
 
     <select id="selectOne" parameterType="int" resultType="Notice">
-        SELECT *
+        SELECT `index, group_id as groupId, title, content, writer, `date`
         FROM notice
         WHERE `index` = #{index}
     </select>
@@ -30,5 +30,10 @@
     <delete id="deleteNotice" parameterType="int">
         DELETE FROM notice
         WHERE `index` = #{index}
+    </delete>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comment_notice
+        WHERE `notice_idx` = #{index}
     </delete>
 </mapper>
