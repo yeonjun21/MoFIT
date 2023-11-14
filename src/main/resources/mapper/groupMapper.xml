@@ -53,5 +53,10 @@
         VALUES (#{userId}, #{groupId}, '운영진')
     </insert>
 
+    <insert id="joinGroup" parameterType="int">
+        INSERT INTO group_member
+        VALUES (#{userId}, #{groupId}, '일반회원')
+    </insert>
+
 </mapper>
 

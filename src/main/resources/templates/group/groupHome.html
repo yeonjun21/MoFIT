@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .result {
+            color: blue;
+        }
+
+        .join-button {
+            background-color: #f0ffff;
+            border: 2px solid #6495ed;
+        }
+    </style>
 </head>
 <body>
     <h2 th:text="${group.groupName}">모임 이름</h2>
@@ -13,5 +23,13 @@
     <span th:each="region : ${group.regions}" th:text="|${region} |"></span>
     <h3>모임 소개글</h3>
     <p th:text="${group.info}"></p>
+
+    <h3 th:if="${result} != null" th:text="${result}" class="result">가입 성공 여부</h3>
+
+    <form th:if="${result} == null" th:action="@{/group/{param}(param=${group.groupId})}"
+          th:method="POST">
+        <button class="join-button">모임 가입하기</button>
+    </form>
+
 </body>
 </html>

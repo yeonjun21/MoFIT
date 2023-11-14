@@ -19,4 +19,6 @@ public interface GroupDao {
     List<String> findRegions(int groupId);
 
     void insertGroupLeader(int userId, int groupId);
+
+    int joinGroup(int userId, int groupId);
 }

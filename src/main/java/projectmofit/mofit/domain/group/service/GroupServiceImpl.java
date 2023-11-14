@@ -33,6 +33,11 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public int join(int userId, int groupId) {
+        return groupDao.joinGroup(userId, groupId);
+    }
+
+    @Override
     public int groupNameCheck(String groupName) {
         return groupDao.groupNameCheck(groupName);
     }

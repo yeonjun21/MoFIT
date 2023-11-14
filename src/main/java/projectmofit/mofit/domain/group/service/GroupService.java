@@ -11,6 +11,8 @@ public interface GroupService {
 
     void addGroupLeader(int userId, String groupName);
 
+    int join(int userId, int groupId);
+
     int groupNameCheck(String groupName);
 
     Group getGroupById(int groupId);
