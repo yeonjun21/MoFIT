@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .profile-container {
+            display: flex;
+        }
+
+        .profile-image {
+            background-color: #BEEFFF;
+            border-radius: 30px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .profile-info {
+            margin: 30px;
+        }
+
+        .medium-container {
+            display: flex;
+        }
+
+        .small-container {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-image"></div>
+        <div class="profile-info">
+            <h2 th:text="${session.loginUser.nickname}"></h2>
+            <p th:text="${session.loginUser.email}"></p>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h3>내가 가입한 모임</h3>
+        <ul>
+            <li th:each="group : ${myGroup}" th:text="${group.groupName}"></li>
+        </ul>
+    </div>
+    <div class="medium-container">
+        <div class="small-container">
+            <h3>내가 쓴 글</h3>
+        </div>
+        <div class="small-container">
+            <h3>내가 찜한 영상</h3>
+        </div>
+    </div>
+</body>
+</html>

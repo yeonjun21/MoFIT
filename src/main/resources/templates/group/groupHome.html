@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .result {
+            color: blue;
+        }
+
+        .join-button {
+            background-color: #f0ffff;
+            border: 2px solid #6495ed;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .menu-button {
+            border: 1px solid #f0ffff;
+        }
+    </style>
+</head>
+<body>
+    <h2 th:text="${group.groupName}">모임 이름</h2>
+    <hr>
+    <div class="menu">
+        <a class="menu-button">HOME</a>
+        <a class="menu-button">공지사항</a>
+        <a class="menu-button">자유게시판</a>
+        <a class="menu-button">갤러리</a>
+        <a class="menu-button">관련 영상</a>
+    </div>
+
+    <h3>운동 종목</h3>
+    <p th:text="${group.type}"></p>
+    <h3>활동 지역</h3>
+    <span th:each="region : ${group.regions}" th:text="|${region} |"></span>
+    <h3>모임 소개글</h3>
+    <p th:text="${group.info}"></p>
+
+    <h3 th:if="${result} != null" th:text="${result}" class="result">가입 성공 여부</h3>
+
+    <form th:if="${result} == null" th:action="@{/group/{param}(param=${group.groupId})}"
+          th:method="POST">
+        <button class="join-button">모임 가입하기</button>
+    </form>
+
+</body>
+</html>
