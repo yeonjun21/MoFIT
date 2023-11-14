@@ -19,7 +19,7 @@ public class BoardController {
     @GetMapping
     public ResponseEntity<?> list(@RequestParam int groupId){
         List<Board> list = boardService.getBoard(groupId);
-        if(list.size()==0){
+        if(list.size() == 0){
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
@@ -28,7 +28,7 @@ public class BoardController {
     @GetMapping("/{index}")
     public ResponseEntity<?> detail(@PathVariable int index){
         Board board = boardService.getBoardByGroupId(index);
-        if(board==null){
+        if(board == null){
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(board, HttpStatus.OK);
@@ -38,7 +38,7 @@ public class BoardController {
     @PostMapping
     public ResponseEntity<?> write(Board board){
         int result = boardService.addBoard(board);
-        if(result==0){
+        if(result == 0){
             return new ResponseEntity<Void>(HttpStatus.INSUFFICIENT_STORAGE);
         }
         return new ResponseEntity<Void>(HttpStatus.CREATED);
