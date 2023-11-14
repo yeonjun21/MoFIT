@@ -13,8 +13,8 @@ public class CommentNoticeServiceImpl implements CommentNoticeService{
 
     private final CommentNoticeDao commentNoticeDao;
     @Override
-    public List<CommentNotice> getComment(int index) {
-        return commentNoticeDao.selectAll(index);
+    public List<CommentNotice> getComment(int noticeIdx) {
+        return commentNoticeDao.selectAll(noticeIdx);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class CommentNoticeServiceImpl implements CommentNoticeService{
     }
     //유일한 댓글이 없음
     @Override
-    public int removeComment(int index) {
-        return commentNoticeDao.deleteComment(index);
+    public int removeComment(int commentIdx) {
+        return commentNoticeDao.deleteComment(commentIdx);
     }
 }

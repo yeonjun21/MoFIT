@@ -5,8 +5,8 @@ import projectmofit.mofit.domain.notice.dto.CommentNotice;
 import java.util.List;
 
 public interface CommentNoticeDao {
-    List<CommentNotice> selectAll(int index);
+    List<CommentNotice> selectAll(int noticeIdx);
     int insertComment(CommentNotice commentNotice);
     void updateComment(CommentNotice commentNotice);
-    int deleteComment(int index);
+    int deleteComment(int commentIdx);
 }

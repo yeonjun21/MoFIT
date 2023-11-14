@@ -53,6 +53,7 @@ public class NoticeController {
 
     @DeleteMapping
     public ResponseEntity<Void> delete(@RequestParam int index){
+        noticeService.removeComment(index);
         int result = noticeService.removeNotice(index);
         if(result==0){
             return new ResponseEntity<>(HttpStatus.INSUFFICIENT_STORAGE);

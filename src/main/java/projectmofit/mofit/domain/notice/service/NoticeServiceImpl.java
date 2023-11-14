@@ -40,4 +40,9 @@ public class NoticeServiceImpl implements NoticeService{
         int result = noticeDao.deleteNotice(index);
         return result;
     }
+
+    @Override
+    public void removeComment(int index) {
+        noticeDao.deleteComment(index);
+    }
 }

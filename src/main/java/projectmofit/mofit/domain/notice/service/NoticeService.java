@@ -11,4 +11,6 @@ public interface NoticeService {
     int addNotice(Notice notice);
     void editNotice(Notice notice);
     int removeNotice(int index);
+    void removeComment(int index);
+
 }

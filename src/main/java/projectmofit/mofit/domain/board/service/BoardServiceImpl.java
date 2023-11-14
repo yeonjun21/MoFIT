@@ -41,4 +41,9 @@ public class BoardServiceImpl implements BoardService {
         int result = boardDao.deleteBoard(index);
         return result;
     }
+
+    @Override
+    public void removeComment(int index) {
+        boardDao.deleteComment(index);
+    }
 }

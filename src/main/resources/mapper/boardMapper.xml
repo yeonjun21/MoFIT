@@ -5,13 +5,13 @@
 
 <mapper namespace="projectmofit.mofit.domain.board.dao.BoardDao">
     <select id="selectAll" parameterType="int" resultType="Board">
-        SELECT *
+        SELECT `index`, group_id as groupId, content, writer, `date`
         FROM board
         WHERE group_id = #{groupId}
     </select>
 
     <select id="selectOne" parameterType="int" resultType="Board">
-        SELECT *
+        SELECT `index`, group_id as groupId, content, writer, `date`
         FROM board
         WHERE `index` = #{index}
     </select>
@@ -30,5 +30,10 @@
     <delete id="deleteBoard" parameterType="int">
         DELETE FROM board
         WHERE `index` = #{index}
+    </delete>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comment_board
+        WHERE `board_idx` = #{index}
     </delete>
 </mapper>
