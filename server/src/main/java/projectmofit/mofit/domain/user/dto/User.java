@@ -30,6 +30,9 @@ public class User {
 
     private String img;
 
+    public User() {
+    }
+
     public User(String email, String password, String name, String nickname) {
         this.email = email;
         this.password = password;
