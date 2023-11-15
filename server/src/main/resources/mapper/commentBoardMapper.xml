@@ -5,24 +5,24 @@
 
 <mapper namespace="projectmofit.mofit.domain.board.dao.CommentBoardDao">
     <select id="selectAll" parameterType="int" resultType="CommentBoard">
-        SELECT *
+        SELECT comment_idx as commentIdx, board_idx as boardIdx, content, writer, `date`
         FROM comment_board
-        WHERE `index` = #{index}
+        WHERE `board_idx` = #{boardIdx}
     </select>
 
     <insert id="insertComment" parameterType="CommentBoard">
-        INSERT INTO comment_board (`index`,group_id,content,writer)
-        VALUES (#{index},#{groupId},#{content}, #{writer})
+        INSERT INTO comment_board (board_idx,content,writer)
+        VALUES (#{boardIdx},#{content}, #{writer})
     </insert>
 
     <update id="updateComment" parameterType="CommentBoard">
         UPDATE comment_board
         SET content=#{content}, date=now()
-        WHERE `index` = #{index}
+        WHERE `comment_idx` = #{commentIdx}
     </update>
 
     <delete id="deleteComment" parameterType="int">
         DELETE FROM comment_board
-        WHERE `index` = #{index}
+        WHERE `comment_idx` = #{commentIdx}
     </delete>
 </mapper>

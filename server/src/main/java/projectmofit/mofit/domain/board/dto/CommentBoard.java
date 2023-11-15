@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class CommentBoard {
-    private int index;
-    private int groupId;
+    private int commentIdx;
+    private int boardIdx;
     private String content;
     private int writer;
     private String date;

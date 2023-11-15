@@ -53,6 +53,7 @@ public class BoardController {
 
     @DeleteMapping
     public ResponseEntity<Void> delete(@RequestParam int index){
+        boardService.removeComment(index);
         int result = boardService.removeBoard(index);
         if(result == 0){
             return new ResponseEntity<>(HttpStatus.INSUFFICIENT_STORAGE);
