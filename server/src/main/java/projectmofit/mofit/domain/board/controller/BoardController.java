@@ -36,7 +36,7 @@ public class BoardController {
 
     //글 등록시 프론트에서 전부 채워서 들어옴
     @PostMapping
-    public ResponseEntity<?> write(Board board){
+    public ResponseEntity<?> write(@RequestBody Board board){
         int result = boardService.addBoard(board);
         if(result == 0){
             return new ResponseEntity<Void>(HttpStatus.INSUFFICIENT_STORAGE);
@@ -46,7 +46,7 @@ public class BoardController {
 
     //detailform -> editform -> 새로운 board가 들어옴
     @PutMapping
-    public ResponseEntity<Void> edit(Board board){
+    public ResponseEntity<Void> edit(@RequestBody Board board){
         boardService.editBoard(board);
         return new ResponseEntity<>(HttpStatus.OK);
     }
