@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import projectmofit.mofit.domain.group.dao.GroupDao;
 import projectmofit.mofit.domain.group.dto.Group;
+import projectmofit.mofit.domain.group.dto.GroupHomeDto;
+
 import java.util.List;
 
 @Service
@@ -59,5 +61,10 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public List<String> getRegions(int groupId) {
         return groupDao.findRegions(groupId);
+    }
+
+    @Override
+    public GroupHomeDto getGroupDetail(int groupId) {
+        return groupDao.findGroupDetail(groupId);
     }
 }

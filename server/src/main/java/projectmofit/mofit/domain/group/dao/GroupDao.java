@@ -1,6 +1,8 @@
 package projectmofit.mofit.domain.group.dao;
 
 import projectmofit.mofit.domain.group.dto.Group;
+import projectmofit.mofit.domain.group.dto.GroupHomeDto;
+
 import java.util.List;
 
 public interface GroupDao {
@@ -21,4 +23,6 @@ public interface GroupDao {
     void insertGroupLeader(int userId, int groupId);
 
     int joinGroup(int userId, int groupId);
+
+    GroupHomeDto findGroupDetail(int groupId);
 }

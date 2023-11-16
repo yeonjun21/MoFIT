@@ -58,5 +58,18 @@
         VALUES (#{userId}, #{groupId}, '일반회원')
     </insert>
 
+    <select id="findGroupDetail" resultType="GroupHomeDto">
+        SELECT COUNT(DISTINCT M.user_id) AS `member`, COUNT(B.index) AS `board`,
+        (SELECT nickname FROM user
+        WHERE id = (SELECT user_id FROM `group_member`
+        WHERE group_id = #{groupId} AND grade = '운영진')
+        ) AS leaderNickname
+        FROM `group` G
+        INNER JOIN `group_member` M
+        INNER JOIN `board` B
+        ON G.group_id = M.group_id AND G.group_id = B.group_id
+        WHERE G.group_id = #{groupId};
+    </select>
+
 </mapper>
 

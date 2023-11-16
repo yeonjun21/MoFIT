@@ -51,5 +51,4 @@ const logout = function() {
 a.router-link-exact-active {
     color: #007bff;
 }
-
 </style>

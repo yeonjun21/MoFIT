@@ -7,7 +7,7 @@
                 <label for="groupName" class="form-label">모임 이름</label>
                 <input type="text" class="form-control" id="groupName" 
                     v-model="groupName" placeholder="모임 이름은 20자 이하여야 합니다.">
-                <p v-if="groupNameError" class="input-error">이미 사용 중이거나 20자가 넘는 모임 이름입니다.</p>
+                <p v-if="groupNameError" class="input-error">이미 사용 중이거나 잘못된 모임 이름입니다.</p>
             </div>
 
             <div class="mb-3">

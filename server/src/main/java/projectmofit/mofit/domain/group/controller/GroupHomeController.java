@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import projectmofit.mofit.domain.group.dto.Group;
+import projectmofit.mofit.domain.group.dto.GroupHomeDto;
 import projectmofit.mofit.domain.group.service.GroupService;
 import projectmofit.mofit.domain.user.dto.User;
 
@@ -29,6 +30,14 @@ public class GroupHomeController {
         // 모임에 가입하지 않은 경우에만 '모임 가입하기' 버튼 띄우기
 
         return group;
+    }
+
+    // 모임 멤버 수, 게시글 수, 리더 닉네임 가져오기
+    @GetMapping("/{groupId}/detail")
+    public GroupHomeDto groupHomeDetail(@PathVariable int groupId) {
+        System.out.println(groupService.getGroupDetail(groupId).toString());
+
+        return groupService.getGroupDetail(groupId);
     }
 
     // 해당 모임 가입하기

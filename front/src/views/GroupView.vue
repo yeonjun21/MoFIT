@@ -2,7 +2,7 @@
     <div class="container">
         <h2>{{ store.group.groupName }}</h2>
         <GroupMenuNav/>
-        <RouterView/>
+        <RouterView class="view"/>
     </div>
 </template>
 
@@ -27,9 +27,14 @@ onMounted(() => {
 .container {
     width: 1000px;
 }
+
 h2 {
     font-size: 40px;
     font-weight: 700;
-    margin: 50px;
+    margin: 50px 10px 50px 50px;
+}
+
+.view {
+    margin: 70px 40px;
 }
 </style>

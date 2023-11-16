@@ -1,6 +1,8 @@
 package projectmofit.mofit.domain.group.service;
 
 import projectmofit.mofit.domain.group.dto.Group;
+import projectmofit.mofit.domain.group.dto.GroupHomeDto;
+
 import java.util.List;
 
 public interface GroupService {
@@ -20,4 +22,6 @@ public interface GroupService {
     List<Group> getGroupByRegion(String region);
 
     List<String> getRegions(int groupId);
+
+    GroupHomeDto getGroupDetail(int groupId);
 }
