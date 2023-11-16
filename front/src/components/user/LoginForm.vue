@@ -38,7 +38,7 @@ const login = function() {
 
     store.login(user)
         .then(() => {
-            router.push({name: 'Main'});
+            router.push({name: 'GroupList'});
         })
         .catch(() => {
             loginError.value = true;

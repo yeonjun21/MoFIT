@@ -28,7 +28,6 @@ export const useGroupStore = defineStore('group', () => {
         axios.get(API_URL + 'types')
             .then((res) => {
                 typeList.value = res.data;
-                console.log(typeList.value);
             })
             .catch(() => {
                 console.log('getTypes 에러');
@@ -55,14 +54,45 @@ export const useGroupStore = defineStore('group', () => {
         axios.get(API_URL + groupId)
             .then((res) => {
                 group.value = res.data;
-                console.log(res.data);
             })
             .catch(() => {
                 console.log('getGroup 에러');
             })
     }
 
+    const addGroup = function(group) {
+        console.log(group);
+        
+        axios.post(API_URL, group)
+            .then((res) => {
+                console.log('addGroup 성공!');
+            })
+            .catch(() => {
+                console.log('addGroup 에러')
+            })
+
+    }
+
+    const groupNameDuplicationCheck = function(groupName) {
+        return new Promise((resolve, reject) => {
+            axios({
+                url: API_URL + 'groupNameCheck',
+                method: 'GET',
+                params: {
+                    groupName: groupName
+                }
+            })
+                .then(() => {
+                    resolve(true);
+                })
+                .catch(() => {
+                    reject(false);
+                })
+        })
+    }
+
 
     return { group, groupList, regionList, typeList,
-            getAllRegion, getTypes, getGroupList, getGroup }
+            getAllRegion, getTypes, getGroupList, getGroup,
+            addGroup, groupNameDuplicationCheck }
 })

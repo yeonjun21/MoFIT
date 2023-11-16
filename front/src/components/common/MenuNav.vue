@@ -2,16 +2,16 @@
     <div class="container">
         <ul class="nav nav-underline">
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupAdd' }" class="nav-link" :class="{active: selected === 1}" 
-                    @click="selected = 1">모임 만들기</RouterLink>
+                <RouterLink :to="{ name: 'GroupAdd' }" class="nav-link" 
+                    :class="{active: route.path === '/add'}">모임 만들기</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupList' }" class="nav-link" :class="{active: selected === 2}"
-                    @click="selected = 2">우리동네 모임 찾기</RouterLink>
+                <RouterLink :to="{ name: 'GroupList' }" class="nav-link" 
+                    :class="{active: route.path === '/'}">우리동네 모임 찾기</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'MyGroup' }" class="nav-link" :class="{active: selected === 3}"
-                    @click="selected = 3">내 모임 보기</RouterLink>
+                <RouterLink :to="{ name: 'MyGroup' }" class="nav-link" 
+                    :class="{active: route.path === '/myGroup'}">내 모임 보기</RouterLink>
             </li>
         </ul>
     </div>
@@ -19,8 +19,10 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-const selected = ref(2);
+const selected = ref(0);
+const route = useRoute();
 
 </script>
 
