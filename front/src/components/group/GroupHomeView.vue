@@ -101,7 +101,7 @@ onMounted(() => {
 }
 
 .badge {
-    font-size: 17px;
+    font-size: 18px;
 }
 
 span {
