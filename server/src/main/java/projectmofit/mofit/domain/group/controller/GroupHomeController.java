@@ -6,15 +6,12 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import projectmofit.mofit.domain.group.dto.Group;
 import projectmofit.mofit.domain.group.service.GroupService;
 import projectmofit.mofit.domain.user.dto.User;
 
-@Controller
+@RestController
 @RequestMapping("/group")
 @RequiredArgsConstructor
 public class GroupHomeController {
@@ -23,16 +20,15 @@ public class GroupHomeController {
 
     // 모임 Home
     @GetMapping("/{groupId}")
-    public String groupHome(@PathVariable int groupId, Model model) {
+    public Group groupHome(@PathVariable int groupId) {
         Group group = groupService.getGroupById(groupId);
         List<String> regions = groupService.getRegions(groupId);
         group.setRegions(regions);
-        model.addAttribute("group", group);
 
         // TODO 현재 회원이 모임에 가입했는지 여부 확인
         // 모임에 가입하지 않은 경우에만 '모임 가입하기' 버튼 띄우기
 
-        return "group/groupHome";
+        return group;
     }
 
     // 해당 모임 가입하기

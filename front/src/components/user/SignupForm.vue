@@ -15,14 +15,14 @@
                 <label for="password" class="form-label">비밀번호</label>
                 <input type="password" class="form-control" id="password" 
                     v-model="password" placeholder="영문, 숫자 조합하여 8-20자">
-            </div>
-            <p v-if="passwordError" class="input-error">비밀번호는 영문과 숫자를 조합하여 8자 이상, 20자 이하여야 합니다.</p>
+                    <p v-if="passwordError" class="input-error">비밀번호는 영문과 숫자를 조합하여 8자 이상, 20자 이하여야 합니다.</p>
+                </div>
             <div class="mb-3">
                 <label for="name" class="form-label">이름</label>
                 <input type="text" class="form-control" id="name" 
                     v-model="name" placeholder="2자 이상의 한글">
-            </div>
-            <p v-if="nameError" class="input-error">이름은 2자 이상, 10자 이하의 한글이어야 합니다.</p>
+                    <p v-if="nameError" class="input-error">이름은 2자 이상, 10자 이하의 한글이어야 합니다.</p>
+                </div>
             <div class="mb-3">
                 <label for="nickname" class="form-label">닉네임</label>
                 <div class="input-container">
@@ -32,8 +32,8 @@
                 </div>
                 <p v-if="nicknameError" class="input-error">닉네임은 2자 이상, 10자 이하의 한글이어야 합니다.</p>
             </div>
-            <button @click="signup" class="btn btn-primary">회원가입</button>
         </div>
+        <button @click="signup" class="btn btn-primary">회원가입</button>
     </div>
 </template>
 
@@ -169,7 +169,7 @@ const nicknameWatch = watch(nickname, (newValue, oldValue) => {
 }
 
 .form {
-    margin-top: 30px;
+    margin: 50px 0;
 }
 
 input {
@@ -192,4 +192,11 @@ input {
     font-size: 13px;
     color: red;
 }
+
+.btn {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
+
 </style>

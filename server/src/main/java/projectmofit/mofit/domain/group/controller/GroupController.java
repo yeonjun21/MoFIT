@@ -14,7 +14,7 @@ import projectmofit.mofit.domain.user.dto.User;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/group")
 @RequiredArgsConstructor
 public class GroupController {
@@ -55,7 +55,7 @@ public class GroupController {
 
     // 특정 동네의 모임 리스트 보기
     @GetMapping("/list")
-    public String regionGroupList(@RequestParam String region, Model model) {
+    public List<Group> regionGroupList(@RequestParam String region) {
         List<Group> list = groupService.getGroupByRegion(region);
 
         // 리스트에 있는 모임에 해당 모임의 활동 지역 넣어주기
@@ -64,13 +64,11 @@ public class GroupController {
             List<String> regions = groupService.getRegions(group.getGroupId());
             group.setRegions(regions);
         }
-
-        model.addAttribute("list", list);
-        model.addAttribute("region", region);
-        return "index";
+        return list;
     }
 
-    @ModelAttribute("regions")
+//    @ModelAttribute("regions")
+    @GetMapping("/regions")
     public List<String> regions() {
         List<String> regions = new ArrayList<>();
         regions.add("강남구"); regions.add("강동구"); regions.add("강북구");
@@ -85,7 +83,8 @@ public class GroupController {
         return regions;
     }
 
-    @ModelAttribute("types")
+//    @ModelAttribute("types")
+    @GetMapping("/types")
     public List<String> types() {
         List<String> types = new ArrayList<>();
         types.add("러닝"); types.add("등산"); types.add("축구");
