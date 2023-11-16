@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 
 export const useGroupStore = defineStore('group', () => {
-    const API_URL = 'http://localhost:8080/group/';
+    const API_URL = 'http://localhost:8080/group';
 
     const router = useRouter();
 
@@ -15,7 +15,7 @@ export const useGroupStore = defineStore('group', () => {
     const typeList = ref([]);
 
     const getAllRegion = function() {
-        axios.get(API_URL + 'regions')
+        axios.get(API_URL + '/regions')
             .then((res) => {
                 regionList.value = res.data;
             })
@@ -25,7 +25,7 @@ export const useGroupStore = defineStore('group', () => {
     }
 
     const getTypes = function() {
-        axios.get(API_URL + 'types')
+        axios.get(API_URL + '/types')
             .then((res) => {
                 typeList.value = res.data;
             })
@@ -36,7 +36,7 @@ export const useGroupStore = defineStore('group', () => {
 
     const getGroupList = function(region) {
         axios({
-            url: API_URL + 'list',
+            url: API_URL + '/list',
             method: 'GET',
             params: {
                 region: region,
@@ -51,7 +51,7 @@ export const useGroupStore = defineStore('group', () => {
     }
 
     const getGroup = function(groupId) {
-        axios.get(API_URL + groupId)
+        axios.get(API_URL + '/' + groupId)
             .then((res) => {
                 group.value = res.data;
             })
@@ -61,13 +61,13 @@ export const useGroupStore = defineStore('group', () => {
     }
 
     const addGroup = function(group) {
-        console.log(group);
-        
         axios.post(API_URL, group)
             .then((res) => {
                 console.log('addGroup 성공!');
+                alert('운동 모임이 성공적으로 만들어졌습니다!');
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log(err.data);
                 console.log('addGroup 에러')
             })
 
@@ -76,7 +76,7 @@ export const useGroupStore = defineStore('group', () => {
     const groupNameDuplicationCheck = function(groupName) {
         return new Promise((resolve, reject) => {
             axios({
-                url: API_URL + 'groupNameCheck',
+                url: API_URL + '/groupNameCheck',
                 method: 'GET',
                 params: {
                     groupName: groupName

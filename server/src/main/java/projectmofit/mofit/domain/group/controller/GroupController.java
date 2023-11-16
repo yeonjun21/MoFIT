@@ -31,9 +31,6 @@ public class GroupController {
     // 모임 만들기
     @PostMapping
     public ResponseEntity<Void> addGroup(@Valid @RequestBody Group group, BindingResult bindingResult) {
-
-        System.out.println("모임 만들기");
-        
         // 모임 이름 중복 확인
         if (groupService.groupNameCheck(group.getGroupName()) > 0) {
             bindingResult.rejectValue("groupName", "duplication", "이미 사용 중인 모임 이름입니다.");
@@ -61,6 +58,8 @@ public class GroupController {
     // 모임 이름 중복 확인
     @GetMapping("/groupNameCheck")
     public ResponseEntity<Void> groupNameCheck(@RequestParam String groupName) {
+        System.out.println("모임 이름 중복확인");
+
         if (groupService.groupNameCheck(groupName) > 0)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(HttpStatus.OK);

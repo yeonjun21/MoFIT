@@ -38,7 +38,7 @@
                 <label for="info" class="form-label">모임 소개글</label>
                 <textarea class="form-control" id="info" rows="3" 
                     v-model="info" placeholder="최대 300자 입력 가능"></textarea>
-                    <p v-if="infoError" class="input-error">모임 소개글은 최대 300자까지 입력 가능합니다.</p>
+                    <p v-if="infoError" class="input-error">모임 소개글은 반드시 입력해야 하며, 최대 300자까지 입력 가능합니다.</p>
             </div>
 
         </div>
@@ -64,47 +64,28 @@ const typeError = ref(false);
 const regionsError = ref(false);
 const infoError = ref(false);
 
-const addGroup = function() {
-    groupNameCheck();
-    typeCheck();
-    regionsCheck();
-    infoCheck();
-
-    if (groupNameError.value || typeError.value || regionsError.value || infoError.value) {
-        return;
-    }
-
-    console.log(regions.value);
-    console.log(regions.value[0]);
-
-    const group = {
-        groupName: groupName.value,
-        type: type.value,
-        regions: regions.value,
-        info: info.value,
-        leaderId: leaderId
-    }
-
-    console.log(group);
-
-    store.addGroup(group);
-}
-
 const groupNameCheck = function() {
-    if (groupName.value.length > 20) {
-        groupNameError.value = true;
-        return false;
-    }
-
-    store.groupNameDuplicationCheck(groupName.value)
-        .then(() => {
-            groupNameError.value = false;
-            return true;
-        })
-        .catch(() => {
-            groupNameError.value = true;
-            return false;
-        })
+    return new Promise((resolve, reject) => {
+        const check = new Promise((resolve, reject) => {
+            if (!groupName.value || groupName.value.length > 20) {
+                groupNameError.value = true;
+                reject();
+            } else {
+                resolve();
+            }
+        }).then(() => {
+                store.groupNameDuplicationCheck(groupName.value)
+                .then(() => {
+                    groupNameError.value = false;
+                    resolve();
+                })
+                .catch(() => {
+                    groupNameError.value = true;
+                    reject();
+                })
+            }).catch(() => {
+            })
+    })
 }
 
 const typeCheck = function() {
@@ -128,13 +109,29 @@ const regionsCheck = function() {
 }
 
 const infoCheck = function() {
-    if (info.value.length > 300) {
+    if (!info.value || info.value.length > 300) {
         infoError.value = true;
         return false;
     } else {
         infoError.value = false;
         return true;
     }
+}
+
+const addGroup = function() {
+    groupNameCheck().then(() => {
+        if (typeCheck() && regionsCheck() && infoCheck()) {
+            const group = {
+                groupName: groupName.value,
+                type: type.value,
+                regions: regions.value,
+                info: info.value,
+                leaderId: leaderId
+            }
+            store.addGroup(group);
+        }
+    }).catch(() => {
+    })
 }
 
 onMounted(() => {
