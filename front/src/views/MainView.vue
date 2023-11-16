@@ -1,10 +1,20 @@
 <template>
     <div>
-        <h3>모임 리스트</h3>
+        <MenuNav/>
+        <RouterView/>
     </div>
 </template>
 
 <script setup>
+import MenuNav from '../components/common/MenuNav.vue';
+import { onMounted } from 'vue';
+import { useGroupStore } from '@/stores/group.js'
+
+const store = useGroupStore();
+
+onMounted(() => {
+    store.groupList = null;
+})
 
 </script>
 

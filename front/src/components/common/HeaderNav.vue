@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="container">
         <div v-if="!store.loginUser">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <RouterLink :to="{ name: 'LoginForm' }" class="nav-link active" aria-current="page">로그인</RouterLink>
+                    <RouterLink :to="{ name: 'LoginForm' }" class="nav-link"  aria-current="page">로그인</RouterLink>
                 </li>
                 <li class="nav-item">
                     <RouterLink :to="{ name: 'SignupForm' }" class="nav-link" aria-current="page">회원가입</RouterLink>
@@ -16,7 +16,7 @@
                     <RouterLink :to="{ name: 'Main' }" class="nav-link" aria-current="page">마이페이지</RouterLink>
                 </li>
                 <li class="nav-item">
-                    <a href="#" @click="logout" class="nav-link active" aria-current="page">로그아웃</a>
+                    <a href="#" @click="logout" class="nav-link" aria-current="page">로그아웃</a>
                 </li>
             </ul>
         </div>
@@ -40,6 +40,16 @@ const logout = function() {
 </script>
 
 <style scoped>
+.container {
+    margin-top: 10px;
+}
 
+.nav-link {
+    color: black;
+}
+
+a.router-link-exact-active {
+    color: #007bff;
+}
 
 </style>

@@ -13,8 +13,8 @@
                     v-model="password">
             </div>
             <p v-if="loginError" class="login-error">이메일 또는 비밀번호가 정확하지 않습니다.</p>
-            <button @click="login" class="btn btn-primary">로그인</button>
         </div>
+        <button @click="login" class="btn btn-primary">로그인</button>
     </div>
 </template>
 
@@ -53,10 +53,14 @@ const login = function() {
 }
 
 .form {
-    margin-top: 30px;
+    margin: 50px 0;
 }
 
 .login-error {
     color: red;
+}
+
+.btn {
+    width: 100%;
 }
 </style>

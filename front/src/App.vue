@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="font-family: 'Noto Sans KR', 'sans-serif'">
     <HeaderNav/>
-    <div class="main">
+    <div @click="goMain" class="main">
       MoFIT
     </div>
     <Router-view/>
@@ -10,7 +10,13 @@
 
 <script setup>
 import HeaderNav from './components/common/HeaderNav.vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const goMain = function() {
+  router.push('/');
+}
 
 </script>
 
