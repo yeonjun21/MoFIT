@@ -12,12 +12,6 @@ import GroupBoardView from '@/components/group/GroupBoardView.vue'
 import GroupGalleryView from '@/components/group/GroupGalleryView.vue'
 import GroupVideoView from '@/components/group/GroupVideoView.vue'
 import GroupSpecialView from '@/components/group/GroupSpecialView.vue'
-import BoardDetailView from '@/views/BoardDetailView.vue'
-import BoardListView from '@/components/group/board/BoardListView.vue'
-import BoardEditView from '@/components/group/board/BoardEditView.vue'
-import BoardRegistView from '@/components/group/board/BoardRegistView.vue'
-import CommentListView from '@/components/group/board/CommentListView.vue'
-import CommentEditView from '@/components/group/board/CommentEditView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -94,36 +88,9 @@ const router = createRouter({
           name: 'GroupSpecial',
           component: GroupSpecialView
         },
+        
       ]
-    },
-    {
-      path: '/board/list',
-      name: 'board-list',
-      component: BoardListView
-    },
-    {
-     path: '/board/detail/:index',
-     name: 'board-detail',
-     component: BoardDetailView,
-     children: [
-      {
-        path: 'edit/:commentIdx',
-        name: 'board-cmt-edit',
-        component: CommentEditView
-      },
-      
-     ]
-   },
-   {
-     path: '/board/regist',
-     name: 'board-regist',
-     component: BoardRegistView
-   },
-   {
-     path: '/board/edit',
-     name: 'board-edit',
-     component: BoardEditView
-   },
+    }
   ]
 })
 
