@@ -26,4 +26,7 @@ public class Group {
 
     // private String profileImg;
     // private String coverImg;
+
+    @NotBlank
+    private int leaderId;
 }

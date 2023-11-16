@@ -3,6 +3,8 @@ package projectmofit.mofit.domain.group.controller;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,21 +23,24 @@ public class GroupController {
 
     private final GroupService groupService;
 
-    @GetMapping
-    public String addGroupForm(@ModelAttribute Group group, Model model) {
-        return "group/addGroupForm";
-    }
+//    @GetMapping
+//    public String addGroupForm(@ModelAttribute Group group, Model model) {
+//        return "group/addGroupForm";
+//    }
 
     // 모임 만들기
     @PostMapping
-    public String addGroup(@Valid @ModelAttribute Group group, BindingResult bindingResult, HttpSession session) {
+    public ResponseEntity<Void> addGroup(@Valid @RequestBody Group group, BindingResult bindingResult) {
+
+        System.out.println("모임 만들기");
+        
         // 모임 이름 중복 확인
         if (groupService.groupNameCheck(group.getGroupName()) > 0) {
             bindingResult.rejectValue("groupName", "duplication", "이미 사용 중인 모임 이름입니다.");
         }
 
         if (bindingResult.hasErrors()) {
-            return "group/addGroupForm";
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         // 새 모임 생성
@@ -47,10 +52,18 @@ public class GroupController {
         }
 
         // 모임 운영자 정보 추가
-        User loginUser = (User) session.getAttribute("loginUser");
-        groupService.addGroupLeader(loginUser.getId(), group.getGroupName());
+        int leaderId = group.getLeaderId();
+        groupService.addGroupLeader(leaderId, group.getGroupName());
 
-        return "redirect:/";
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // 모임 이름 중복 확인
+    @GetMapping("/groupNameCheck")
+    public ResponseEntity<Void> groupNameCheck(@RequestParam String groupName) {
+        if (groupService.groupNameCheck(groupName) > 0)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // 특정 동네의 모임 리스트 보기
