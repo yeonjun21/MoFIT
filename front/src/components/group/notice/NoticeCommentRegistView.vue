@@ -1,33 +1,32 @@
 <template>
-    <div>
-        <fieldset>        
-            <div>
-                <label for="content">💙 게시글 등록 💙</label>
+    <fieldset>
+        <div>
+                <label for="content">💙 댓글 등록 💙</label>
                 <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary me-md-2" @click="registBoard">등록</button>
+                <button class="btn btn-primary me-md-2" @click="registComment">등록</button>
             </div>
-        </fieldset>
-    </div>
+    </fieldset>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { useBoardStore } from '@/stores/board';
-import { useRoute, useRouter } from 'vue-router';
+import { useNoticeStore } from '@/stores/notice';
+import { useRoute,useRouter } from 'vue-router';
 
-const boardStore = useBoardStore()
+const noticeStore = useNoticeStore()
 const route = useRoute()
 const content = ref()
 
-const registBoard = function(){
-    const board = {
-        groupId : route.params.groupId, //group store에서 꺼내와야 할듯???
+const registComment = function(){
+    console.log(noticeStore.notice.index)
+    const commentNotice = {
+        noticeIdx : route.params.index,
         content : content.value,
         writer : sessionStorage.getItem("loginUser"), //user store에서 꺼내오기 or 로컬 스토리지
     }
-    boardStore.registBoard(board)
+    noticeStore.registComment(commentNotice)
 }
 
 </script>
@@ -38,7 +37,7 @@ div>label{
 }
 
 div>textarea{
-    height: 180px;
+    height: 100px;
     margin-bottom: 20px;
     resize: none;
 }

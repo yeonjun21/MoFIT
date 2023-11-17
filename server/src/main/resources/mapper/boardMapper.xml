@@ -5,14 +5,17 @@
 
 <mapper namespace="projectmofit.mofit.domain.board.dao.BoardDao">
     <select id="selectAll" parameterType="int" resultType="Board">
-        SELECT `index`, group_id as groupId, content, writer, `date`
+        SELECT `index`, group_id as groupId, content, writer, `date`, nickname
         FROM board
+        INNER JOIN user on board.writer = user.id
         WHERE group_id = #{groupId}
+        ORDER BY `date` DESC
     </select>
 
     <select id="selectOne" parameterType="int" resultType="Board">
-        SELECT `index`, group_id as groupId, content, writer, `date`
+        SELECT `index`, group_id as groupId, content, writer, `date`, nickname
         FROM board
+        INNER JOIN user on board.writer = user.id
         WHERE `index` = #{index}
     </select>
 

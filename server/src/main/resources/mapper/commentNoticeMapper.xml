@@ -5,9 +5,11 @@
 
 <mapper namespace="projectmofit.mofit.domain.notice.dao.CommentNoticeDao">
     <select id="selectAll" parameterType="int" resultType="CommentNotice">
-        SELECT comment_idx as commentIdx, notice_idx as noticeIdx, content, writer, `date`
+        SELECT comment_idx as commentIdx, notice_idx as noticeIdx, content, writer, `date`, nickname
         FROM comment_notice
+        INNER JOIN user on comment_notice.writer = user.id
         WHERE `notice_idx` = #{noticeIdx}
+        ORDER BY `date` DESC
     </select>
 
     <insert id="insertComment" parameterType="CommentNotice">

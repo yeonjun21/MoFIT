@@ -28,6 +28,7 @@ export const useUserStore = defineStore('user', () => {
       .then((res) => {
         loginUser.value = user;
         sessionStorage.setItem("loginUser", res.data.id);
+        sessionStorage.setItem("userNickname", res.data.nickname);
         alert("로그인 되었습니다.");
         resolve();
       })
@@ -41,6 +42,7 @@ export const useUserStore = defineStore('user', () => {
   const logout = function() {
     loginUser.value = null;
     sessionStorage.removeItem("loginUser");
+    sessionStorage.removeItem("userNickname");
     alert("로그아웃 되었습니다.");
     router.push({name: 'Main'});
   }

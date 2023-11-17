@@ -1,12 +1,11 @@
 <template>
     <fieldset>
-            <legend>등록</legend>        
-            <div>
-                <label for="content">내용</label>
-                <input type="text" id="content" v-model="content">
+        <div>
+                <label for="content">💙 댓글 등록 💙</label>
+                <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
             </div>
-            <div>
-                <button @click="registComment">등록</button>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" @click="registComment">등록</button>
             </div>
     </fieldset>
 </template>
@@ -17,20 +16,29 @@ import { useBoardStore } from '@/stores/board';
 import { useRoute,useRouter } from 'vue-router';
 
 const boardStore = useBoardStore()
+const route = useRoute()
 const content = ref()
 
 const registComment = function(){
     console.log(boardStore.board.index)
     const commentBoard = {
-        boardIdx : boardStore.board.index,
+        boardIdx : route.params.index,
         content : content.value,
-        writer : 1, //user store에서 꺼내오기 or 로컬 스토리지
+        writer : sessionStorage.getItem("loginUser"), //user store에서 꺼내오기 or 로컬 스토리지
     }
     boardStore.registComment(commentBoard)
 }
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+div>label{
+    margin: 15px 0px;
+}
 
+div>textarea{
+    height: 100px;
+    margin-bottom: 20px;
+    resize: none;
+}
 </style>

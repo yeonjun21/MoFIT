@@ -23,7 +23,7 @@ public class CommentNoticeController {
 
     //글 등록시 프론트에서 전부 채워서 들어옴
     @PostMapping
-    public ResponseEntity<?> write(CommentNotice commentNotice){
+    public ResponseEntity<?> write(@RequestBody CommentNotice commentNotice){
         int result = commentNoticeService.addComment(commentNotice);
         if(result==0){
             return new ResponseEntity<Void>(HttpStatus.INSUFFICIENT_STORAGE);
@@ -33,7 +33,7 @@ public class CommentNoticeController {
 
     //임시로 index 와 date로 엮어 놓음
     @PutMapping
-    public ResponseEntity<Void> edit(CommentNotice commentNotice){
+    public ResponseEntity<Void> edit(@RequestBody CommentNotice commentNotice){
         commentNoticeService.editComment(commentNotice);
         return new ResponseEntity<>(HttpStatus.OK);
     }
