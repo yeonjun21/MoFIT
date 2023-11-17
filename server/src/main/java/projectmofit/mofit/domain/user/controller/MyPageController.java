@@ -19,6 +19,7 @@ public class MyPageController {
 
     private final MyPageService myPageService;
     private final GroupService groupService;
+    private final UserService userService;
 
     // 마이페이지 조회
     // TODO 본인 페이지만 조회 가능해야
@@ -37,6 +38,11 @@ public class MyPageController {
 //        return "user/myPage";
 //    }
 
+    // 회원 정보 가져오기
+    @GetMapping("/{id}")
+    public User userInfo(@PathVariable int id) {
+        return userService.findById(id);
+    }
 
     // 내가 가입한 운동 모임 리스트
     @GetMapping("/{id}/group")
@@ -52,5 +58,4 @@ public class MyPageController {
 
         return list;
     }
-
 }

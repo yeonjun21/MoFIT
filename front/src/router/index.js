@@ -17,6 +17,7 @@ import BoardListView from '@/components/group/board/BoardListView.vue'
 import BoardEditView from '@/components/group/board/BoardEditView.vue'
 import BoardRegistView from '@/components/group/board/BoardRegistView.vue'
 import CommentEditView from '@/components/group/board/CommentEditView.vue'
+import MyPageView from '@/views/MyPageView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -123,6 +124,11 @@ const router = createRouter({
      name: 'board-edit',
      component: BoardEditView
    },
+   {
+    path: '/my-page/:id',
+    name: 'MyPage',
+    component: MyPageView
+   }
   ]
 })
 

@@ -33,7 +33,7 @@ onMounted(() => {
 }
 
 .group-container {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .group {

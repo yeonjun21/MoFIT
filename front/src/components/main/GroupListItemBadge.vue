@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <span v-if="group.leaderId == store.loginUser" class="leader-badge">
+        <span v-if="group.leaderId == userId" class="leader-badge">
             운영진
         </span>
         <span v-else class="basic-badge">
@@ -11,8 +11,11 @@
 
 <script setup>
 import { useUserStore } from '@/stores/user.js';
+import { ref } from 'vue';
 
 const store = useUserStore();
+
+const userId = ref(sessionStorage.getItem('loginUser'));
 
 defineProps({
     group: Object

@@ -13,7 +13,7 @@
         <div v-else>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <RouterLink :to="{ name: 'Main' }" class="nav-link" aria-current="page">마이페이지</RouterLink>
+                    <RouterLink :to="{ name: 'MyPage', params: {id: store.loginUser}}" class="nav-link" aria-current="page">마이페이지</RouterLink>
                 </li>
                 <li class="nav-item">
                     <a href="#" @click="logout" class="nav-link" aria-current="page">로그아웃</a>
