@@ -26,7 +26,7 @@ public class NoticeController {
     }
     //deltail form에서 index를 날려줌
     @GetMapping("/{index}")
-    public ResponseEntity<?> detail(@RequestParam int index){
+    public ResponseEntity<?> detail(@PathVariable int index){
         Notice notice = noticeService.getNoticeByGroupId(index);
         if(notice==null){
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
@@ -36,7 +36,7 @@ public class NoticeController {
 
     //글 등록시 프론트에서 전부 채워서 들어옴
     @PostMapping
-    public ResponseEntity<?> write(Notice notice){
+    public ResponseEntity<?> write(@RequestBody Notice notice){
         int result = noticeService.addNotice(notice);
         if(result==0){
             return new ResponseEntity<Void>(HttpStatus.INSUFFICIENT_STORAGE);
@@ -46,7 +46,7 @@ public class NoticeController {
 
     //detailform -> editform -> 새로운 board가 들어옴
     @PutMapping
-    public ResponseEntity<Void> edit(Notice notice){
+    public ResponseEntity<Void> edit(@RequestBody Notice notice){
         noticeService.editNotice(notice);
         return new ResponseEntity<>(HttpStatus.OK);
     }

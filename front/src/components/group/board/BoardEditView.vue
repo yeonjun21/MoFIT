@@ -1,17 +1,17 @@
 <template>
     <div>
         <fieldset>
-            <legend>수정</legend>        
-            <div>
-                <label for="writerName">작성자</label> 
-                <input type="text" id="writerName" :value="boardStore.board.writer" readonly>
+            <legend style="font-size: medium;">💙 게시글 수정 💙</legend>        
+            <div class="mb-3">
+                <label for="writerName" class="form-label">작성자</label> 
+                <input class="form-control" type="text" id="writerName" :value="boardStore.board.nickname" readonly>
             </div>
-            <div> 
+            <div class="mb-3"> 
                 <label for="content">내용</label>
-                <input type="text" id="content" v-model="content">
+                <textarea class="form-control" rows="3" id="content" v-model="content"></textarea>
             </div>
-            <div> 
-                <button @click="editBoard">수정</button>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end"> 
+                <button class="btn btn-primary me-md-1" @click="editBoard">수정</button>
             </div>
         </fieldset>
     </div>
@@ -20,7 +20,7 @@
 <script setup>
 import { useBoardStore } from '@/stores/board';
 import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+
 
 
 const boardStore = useBoardStore();

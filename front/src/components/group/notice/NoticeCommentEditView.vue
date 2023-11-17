@@ -19,21 +19,21 @@
 </template>
 
 <script setup>
-import { useBoardStore } from '@/stores/board';
+import { useNoticeStore } from '@/stores/notice';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-const boardStore = useBoardStore();
+const noticeStore = useNoticeStore();
 const content = ref();
 const route = useRoute();
 const nickname = ref(sessionStorage.getItem('userNickname'));
 
 const editComment = function(){
-    const commentBoard = { 
+    const commentNotice = { 
         content: content.value,
         commentIdx: route.params.commentIdx
     }
-    boardStore.editComment(commentBoard);
+    noticeStore.editComment(commentNotice);
 }
 
 </script>

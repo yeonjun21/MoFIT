@@ -2,11 +2,12 @@
     <div>
         <fieldset>        
             <div>
-                <label for="content">💙 게시글 등록 💙</label>
+                <label for="title">💙 공지사항 등록 💙</label>
+                <input type="text" id="title" v-model="title"> 
                 <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary me-md-2" @click="registBoard">등록</button>
+                <button class="btn btn-primary me-md-2" @click="registNotice">등록</button>
             </div>
         </fieldset>
     </div>
@@ -14,20 +15,22 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useBoardStore } from '@/stores/board';
+import { useNoticeStore } from '@/stores/notice';
 import { useRoute, useRouter } from 'vue-router';
 
-const boardStore = useBoardStore()
+const noticeStore = useNoticeStore()
 const route = useRoute()
+const title = ref()
 const content = ref()
 
-const registBoard = function(){
-    const board = {
-        groupId : route.params.groupId, //group store에서 꺼내와야 할듯???
+const registNotice = function(){
+    const notice = {
+        title : title.value,
+        groupId : route.params.groupId, 
         content : content.value,
-        writer : sessionStorage.getItem("loginUser"), //user store에서 꺼내오기 or 로컬 스토리지
+        writer : sessionStorage.getItem("loginUser"),
     }
-    boardStore.registBoard(board)
+    noticeStore.registNotice(notice)
 }
 
 </script>

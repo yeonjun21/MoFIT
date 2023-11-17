@@ -1,92 +1,92 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useRoute,useRouter } from 'vue-router';
 import axios from 'axios';
 
-export const useBoardStore = defineStore('board', () => {
+export const useNoticeStore = defineStore('notice', () => {
 
-   const API_URL_BOARD = 'http://localhost:8080/board';
-   const API_URL_COMMENT = 'http://localhost:8080/board/comment';
+   const API_URL_NOTICE = 'http://localhost:8080/notice';
+   const API_URL_COMMENT = 'http://localhost:8080/notice/comment';
 
-   const route = useRoute();
    const router = useRouter();
 
-   const boardList = ref([]);
-   const board = ref({});
+   const noticeList = ref([]);
+   const notice = ref({});
 
    const commentList = ref([]);
    const comment = ref({});
 
-   const getBoardList = function (groupId) {
+   const getNoticeList = function (groupId) {
        axios({
-           url: API_URL_BOARD,
+           url: API_URL_NOTICE,
            method: 'GET',
            params:{
             groupId: groupId,
            }
        })
        .then((res) => {
-            boardList.value = res.data;
-            console.log('getBoardList 성공')
+            noticeList.value = res.data;
+            console.log('getNoticeList 성공')
        })
        .catch(() => {
-           console.log('getBoardList 에러 발생')
+           console.log('getNoticeList 에러 발생')
        })
    };
 
-   const getBoard = function (index) {
+   const getNotice = function (index) {
        axios({
-           url: API_URL_BOARD + '/' + index,
+           url: API_URL_NOTICE + '/' + index,
            method: 'GET'
        })
        .then((res) => {
-            board.value = res.data;
-            console.log('getBoard 성공!')
+            notice.value = res.data;
+            console.log('getNotice 성공!')
        })
        .catch(() => {
-            console.log('getBoard error 발생')
+            console.log('getNotice error 발생')
        })
    };
 
-   const registBoard = function (board) {
+   const registNotice = function (notice) {
         axios({
-            url: API_URL_BOARD,
+            url: API_URL_NOTICE,
             method: 'POST',
             data: {
-                groupId : board.groupId,
-                content : board.content,
-                writer : board.writer,
+                title : notice.title,
+                groupId : notice.groupId,
+                content : notice.content,
+                writer : notice.writer,
             }
         })
         .then((res)=>{
             alert("게시글 등록완료!")
-            console.log('registBoard 성공!')
-            router.push({name: 'BoardList'})
+            console.log('registNotice 성공!')
+            router.push({name: 'NoticeList'})
         })
         .catch((err)=>{
-            console.log('registBoard error 발생')
+            console.log('registNotice error 발생')
         })
    };
 
-   const editBoard = function (board) {
+   const editNotice = function (notice) {
         axios({
-            url: API_URL_BOARD,
+            url: API_URL_NOTICE,
             method: 'PUT',
-            data: board
+            data: notice
         })
         .then((res)=>{
             alert('게시글 수정완료!')
             console.log('edit 성공!')
-            router.push({name:'CommentList', params:{index: board.index}})
+            router.push({name:'NoticeCommentList', params:{index: notice.index}})
         })
         .catch((err)=>{
             console.log('edit error 발생')
         })
     };
 
-   const deleteBoard = function (index) {
+   const deleteNotice = function (index) {
         axios({
-            url: API_URL_BOARD,
+            url: API_URL_NOTICE,
             method: 'DELETE',
             params:{
                 index : index,
@@ -94,21 +94,21 @@ export const useBoardStore = defineStore('board', () => {
         })
         .then((res)=>{
             alert('게시글 삭제완료!')  
-            console.log('deleteBoard 성공!')
-            router.push({name: 'BoardList'})
+            console.log('deleteNotice 성공!')
+            router.push({name: 'NoticeList'})
         })
         .catch((err)=>{
-            console.log('deleteBoard error 발생')
+            console.log('deleteNotice error 발생')
         })
    }
 
-   const getCommentList = function (boardIdx) {
-        console.log(boardIdx) 
+   const getCommentList = function (noticeIdx) {
+        console.log(noticeIdx) 
         axios({
             url: API_URL_COMMENT,
             method: 'GET',
             params:{
-            boardIdx: boardIdx,
+            noticeIdx: noticeIdx,
             }
         })
         .then((res) => {
@@ -121,36 +121,36 @@ export const useBoardStore = defineStore('board', () => {
         })
     }
 
-    const registComment = function (commentBoard) {
+    const registComment = function (commentNotice) {
         axios({
             url: API_URL_COMMENT,
             method: 'POST',
             data: {
-                boardIdx : commentBoard.boardIdx,
-                content : commentBoard.content,
-                writer : commentBoard.writer,
+                noticeIdx : commentNotice.noticeIdx,
+                content : commentNotice.content,
+                writer : commentNotice.writer,
             }
         })
         .then((res)=>{
             alert("댓글 등록완료!")
             console.log('regist-cmt 성공!')
-            router.push({name:'CommentList'})
+            router.push({name:'NoticeCommentList'})
         })
         .catch((err)=>{
             console.log('regist-cmt error 발생')
         })
    }
 
-    const editComment = function (commentBoard) {
+    const editComment = function (commentNotice) {
         axios({
             url: API_URL_COMMENT,
             method: 'PUT',
-            data: commentBoard
+            data: commentNotice
         })
         .then((res)=>{
             alert('댓글 수정완료!')
             console.log('edit-cmt 성공!')
-            router.push({name: 'CommentList'})
+            router.push({name: 'NoticeCommentList'})
         })
         .catch((err)=>{
             console.log('edit-cmt error 발생')
@@ -177,7 +177,7 @@ export const useBoardStore = defineStore('board', () => {
    }
 
  
-   return {boardList, board, commentList, comment, 
-    getBoardList, getBoard, registBoard, editBoard, deleteBoard, 
+   return {noticeList, notice, commentList, comment, 
+    getNoticeList, getNotice, registNotice, editNotice, deleteNotice, 
     getCommentList, registComment, editComment, deleteComment}
 })

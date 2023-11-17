@@ -9,4 +9,5 @@ public class CommentBoard {
     private String content;
     private int writer;
     private String date;
+    private String nickname;
 }

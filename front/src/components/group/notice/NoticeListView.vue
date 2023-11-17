@@ -1,16 +1,17 @@
 <template>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <RouterLink :to="{name:'BoardRegist'}" class="btn btn-primary" style="color: aliceblue;"> 등록 </RouterLink>
+        <RouterLink :to="{name:'NoticeRegist'}" class="btn btn-primary" style="color: aliceblue;"> 등록 </RouterLink>
     </div>
     <div>   
-        <div v-for="board in boardStore.boardList" :key = "board.index">
-            <RouterLink :to="{name:'CommentList', params:{index: board.index}}">
+        <div v-for="notice in noticeStore.noticeList" :key = "notice.index">
+            <RouterLink :to="{name:'NoticeCommentList', params:{index: notice.index}}">
                 <div class="first-container">
-                    <p>{{ board.content }}</p>
+                    <p>{{ notice.title }}</p>
+                    <p>{{ notice.content }}</p>
                     <div class="second-container">
-                        <p>{{ board.nickname }}</p>
+                        <p>{{ notice.nickname }}</p>
                         <p class="blank"> | </p>
-                        <p>{{ board.date }}</p>
+                        <p>{{ notice.date }}</p>
                     </div>
                 </div>
             </RouterLink>
@@ -20,16 +21,16 @@
 </template>
 
 <script setup>
-import {useBoardStore} from '@/stores/board.js';
+import {useNoticeStore} from '@/stores/notice.js';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';   
 
-const boardStore = useBoardStore();
+const noticeStore = useNoticeStore();
 const route = useRoute();
 
 onMounted(()=>{
     console.log(route.params.groupId)
-    boardStore.getBoardList(route.params.groupId); 
+    noticeStore.getNoticeList(route.params.groupId); 
 })
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="comment in boardStore.commentList" :key=comment.commentIdx >
+        <div v-for="comment in noticeStore.commentList" :key=comment.commentIdx >
             <div>
                 <div class="first-container">
                         <p>{{ comment.content }}</p>
@@ -22,26 +22,26 @@
 </template>
 
 <script setup>
-import {useBoardStore} from '@/stores/board.js';
-import { onMounted, ref, watch } from 'vue';  
+import {useNoticeStore} from '@/stores/notice.js';
+import { onMounted, ref } from 'vue';  
 import { useRoute, useRouter } from 'vue-router';
 
-const boardStore = useBoardStore();
+const noticeStore = useNoticeStore();
 const route = useRoute();
 const router = useRouter();
 
 const userId = ref(sessionStorage.getItem('loginUser'));
 
 const editComment = function(commentIdx){
-    router.push({name:'CommentEdit', params:{commentIdx: commentIdx}});
+    router.push({name:'NoticeCommentEdit', params:{commentIdx: commentIdx}});
 }
 const deleteComment = function(commentIdx){
-    boardStore.deleteComment(commentIdx);
+    noticeStore.deleteComment(commentIdx);
 }
 
 
 onMounted(() => {
-    boardStore.getCommentList(route.params.index);
+    noticeStore.getCommentList(route.params.index);
 })
 </script>
 

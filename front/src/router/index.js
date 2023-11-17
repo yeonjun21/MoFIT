@@ -12,11 +12,22 @@ import GroupBoardView from '@/components/group/GroupBoardView.vue'
 import GroupGalleryView from '@/components/group/GroupGalleryView.vue'
 import GroupVideoView from '@/components/group/GroupVideoView.vue'
 import GroupSpecialView from '@/components/group/GroupSpecialView.vue'
-import BoardDetailView from '@/views/BoardDetailView.vue'
+import BoardDetailView from '@/components/group/board/BoardDetailView.vue'
 import BoardListView from '@/components/group/board/BoardListView.vue'
 import BoardEditView from '@/components/group/board/BoardEditView.vue'
 import BoardRegistView from '@/components/group/board/BoardRegistView.vue'
+import CommentListView from '@/components/group/board/CommentListView.vue'
+import CommentRegistView from '@/components/group/board/CommentRegistView.vue'
 import CommentEditView from '@/components/group/board/CommentEditView.vue'
+
+import NoticeDetailView from '@/components/group/notice/NoticeDetailView.vue'
+import NoticeListView from '@/components/group/notice/NoticeListView.vue'
+import NoticeEditView from '@/components/group/notice/NoticeEditView.vue'
+import NoticeRegistView from '@/components/group/notice/NoticeRegistView.vue'
+import NoticeCommentListView from '@/components/group/notice/NoticeCommentListView.vue'
+import NoticeCommentRegistView from '@/components/group/notice/NoticeCommentRegistView.vue'
+import NoticeCommentEditView from '@/components/group/notice/NoticeCommentEditView.vue'
+
 import MyPageView from '@/views/MyPageView.vue'
 
 const router = createRouter({
@@ -72,12 +83,90 @@ const router = createRouter({
         {
           path: 'notice',
           name: 'GroupNotice',
-          component: GroupNoticeView
+          component: GroupNoticeView,
+          children: [
+            {
+              path: '',
+              name: 'NoticeList',
+              component: NoticeListView,
+            },
+            {
+              path: 'detail/:index',
+              name: 'NoticeDetail',
+              component: NoticeDetailView,
+              children: [
+                {
+                  path: '',
+                  name: 'NoticeCommentList',
+                  component: NoticeCommentListView,
+                },
+                {
+                  path: 'cmtRegist',
+                  name: 'NoticeCommentRegist',
+                  component: NoticeCommentRegistView,
+                },
+                {
+                  path: 'cmtEdit/:commentIdx',
+                  name: 'NoticeCommentEdit',
+                  component: NoticeCommentEditView,
+                },
+              ]
+            },
+            {
+              path: 'edit',
+              name: 'NoticeEdit',
+              component: NoticeEditView,
+            },
+            {
+              path: 'regist',
+              name: 'NoticeRegist',
+              component: NoticeRegistView,
+            }
+          ]
         },
         {
           path: 'board',
           name: 'GroupBoard',
-          component: GroupBoardView
+          component: GroupBoardView,
+          children: [
+            {
+              path: '',
+              name: 'BoardList',
+              component: BoardListView,
+            },
+            {
+              path: 'detail/:index',
+              name: 'BoardDetail',
+              component: BoardDetailView,
+              children: [
+                {
+                  path: '',
+                  name: 'CommentList',
+                  component: CommentListView,
+                },
+                {
+                  path: 'cmtRegist',
+                  name: 'CommentRegist',
+                  component: CommentRegistView,
+                },
+                {
+                  path: 'cmtEdit/:commentIdx',
+                  name: 'CommentEdit',
+                  component: CommentEditView,
+                },
+              ]
+            },
+            {
+              path: 'edit',
+              name: 'BoardEdit',
+              component: BoardEditView,
+            },
+            {
+              path: 'regist',
+              name: 'BoardRegist',
+              component: BoardRegistView,
+            }
+          ]
         },
         {
           path: 'gallery',
@@ -97,38 +186,10 @@ const router = createRouter({
       ]
     },
     {
-      path: '/board/list',
-      name: 'board-list',
-      component: BoardListView
-    },
-    {
-     path: '/board/detail/:index',
-     name: 'board-detail',
-     component: BoardDetailView,
-     children: [
-      {
-        path: 'edit/:commentIdx',
-        name: 'board-cmt-edit',
-        component: CommentEditView
-      },
-      
-     ]
-   },
-   {
-     path: '/board/regist',
-     name: 'board-regist',
-     component: BoardRegistView
-   },
-   {
-     path: '/board/edit',
-     name: 'board-edit',
-     component: BoardEditView
-   },
-   {
-    path: '/my-page/:id',
-    name: 'MyPage',
-    component: MyPageView
-   }
+      path: '/my-page/:id',
+      name: 'MyPage',
+      component: MyPageView
+    }
   ]
 })
 

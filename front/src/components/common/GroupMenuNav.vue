@@ -6,11 +6,11 @@
                     :class="{active: route.path === path}">Home</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupNotice' }" @click="selected = 2" class="nav-link" 
+                <RouterLink :to="{ name: 'NoticeList' }" @click="selected = 2" class="nav-link" 
                     :class="{active: route.path === path + '/notice'}">공지사항</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupBoard' }" @click="selected = 3" class="nav-link" 
+                <RouterLink :to="{ name: 'BoardList' }" @click="selected = 3" class="nav-link" 
                     :class="{active: route.path === path + '/board'}">자유게시판</RouterLink>
             </li>
             <li class="nav-item">
