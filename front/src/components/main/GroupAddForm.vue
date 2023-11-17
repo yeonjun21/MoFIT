@@ -1,57 +1,63 @@
 <template>
-    <div class="container">
-        <h3>운동 모임을 만들어보세요 😃</h3>
+    <div>
+        <NeedLoginView v-if="!userStore.loginUser"/>
+        <div v-else class="container">
+            <h3>운동 모임을 만들어보세요 😃</h3>
 
-        <div class="form">
-            <div class="mb-3">
-                <label for="groupName" class="form-label">모임 이름</label>
-                <input type="text" class="form-control" id="groupName" 
-                    v-model="groupName" placeholder="모임 이름은 20자 이하여야 합니다.">
-                <p v-if="groupNameError" class="input-error">이미 사용 중이거나 잘못된 모임 이름입니다.</p>
-            </div>
-
-            <div class="mb-3">
-                <label for="type" class="form-label">운동 종목</label>
-                <select class="form-select" aria-label="Default select example" id="type" 
-                    v-model="type">
-                    <option selected>모임의 운동 종목을 선택해주세요.</option>
-                    <option v-for="t in store.typeList" :value="t">{{ t }}</option>
-                </select>
-                <p v-if="typeError" class="input-error">모임의 운동 종목을 선택해주세요.</p>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">활동 지역</label>
-                <div class="check-container">
-                    <div class="form-check" v-for="(region, index) in store.regionList">
-                        <input class="form-check-input" type="checkbox" :id="`checkbox${index}`" 
-                            v-model="regions" :value="region">
-                        <label class="form-check-label" :for="`checkbox${index}`">
-                            {{ region }}
-                        </label>
-                    </div>
+            <div class="form">
+                <div class="mb-3">
+                    <label for="groupName" class="form-label">모임 이름</label>
+                    <input type="text" class="form-control" id="groupName" 
+                        v-model="groupName" placeholder="모임 이름은 20자 이하여야 합니다.">
+                    <p v-if="groupNameError" class="input-error">이미 사용 중이거나 잘못된 모임 이름입니다.</p>
                 </div>
-                <p v-if="regionsError" class="input-error">활동 지역을 1개 이상 선택해주세요.</p>
-            </div>
 
-            <div class="mb-3">
-                <label for="info" class="form-label">모임 소개글</label>
-                <textarea class="form-control" id="info" rows="3" 
-                    v-model="info" placeholder="최대 300자 입력 가능"></textarea>
-                    <p v-if="infoError" class="input-error">모임 소개글은 반드시 입력해야 하며, 최대 300자까지 입력 가능합니다.</p>
+                <div class="mb-3">
+                    <label for="type" class="form-label">운동 종목</label>
+                    <select class="form-select" aria-label="Default select example" id="type" 
+                        v-model="type">
+                        <option selected>모임의 운동 종목을 선택해주세요.</option>
+                        <option v-for="t in store.typeList" :value="t">{{ t }}</option>
+                    </select>
+                    <p v-if="typeError" class="input-error">모임의 운동 종목을 선택해주세요.</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">활동 지역</label>
+                    <div class="check-container">
+                        <div class="form-check" v-for="(region, index) in store.regionList">
+                            <input class="form-check-input" type="checkbox" :id="`checkbox${index}`" 
+                                v-model="regions" :value="region">
+                            <label class="form-check-label" :for="`checkbox${index}`">
+                                {{ region }}
+                            </label>
+                        </div>
+                    </div>
+                    <p v-if="regionsError" class="input-error">활동 지역을 1개 이상 선택해주세요.</p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="info" class="form-label">모임 소개글</label>
+                    <textarea class="form-control" id="info" rows="3" 
+                        v-model="info" placeholder="최대 300자 입력 가능"></textarea>
+                        <p v-if="infoError" class="input-error">모임 소개글은 반드시 입력해야 하며, 최대 300자까지 입력 가능합니다.</p>
+                </div>
+
             </div>
+            <button @click="addGroup" class="btn btn-primary">모임 만들기</button>
 
         </div>
-        <button @click="addGroup" class="btn btn-primary">모임 만들기</button>
-
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useGroupStore } from '@/stores/group';
+import { useUserStore } from '@/stores/user'
+import NeedLoginView from '@/components/common/NeedLoginView.vue';
 
 const store = useGroupStore();
+const userStore = useUserStore();
 
 const groupName = ref('');
 const type = ref('');

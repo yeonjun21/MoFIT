@@ -1,9 +1,12 @@
 <template>
-    <div class="container">
-        <h3>내가 가입한 모임입니다 😊</h3>
-        <div class="group-container">
-            <GroupListItemView class="group"
-                v-for="group in groupStore.groupList" :group="group"/>
+    <div>
+        <NeedLoginView v-if="!userStore.loginUser"/>
+        <div v-else class="container">
+            <h3>내가 가입한 모임입니다 😊</h3>
+            <div class="group-container">
+                <GroupListItemView class="group"
+                    v-for="group in groupStore.groupList" :group="group"/>
+            </div>
         </div>
     </div>
 </template>
@@ -14,6 +17,7 @@ import { useUserStore } from '@/stores/user.js'
 import { onMounted } from 'vue';
 import GroupListItemView from '@/components/main/GroupListItemView.vue'
 import { useRouter } from 'vue-router';
+import NeedLoginView from '@/components/common/NeedLoginView.vue';;
 
 const groupStore = useGroupStore();
 const userStore = useUserStore();
