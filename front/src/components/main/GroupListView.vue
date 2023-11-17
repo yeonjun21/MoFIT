@@ -26,6 +26,7 @@ const selectRegion = function(region) {
 
 onMounted(() => {
     store.getAllRegion();
+    store.clearGroupList();
 })
 
 </script>
@@ -46,10 +47,6 @@ onMounted(() => {
 }
 .btn {
     margin: 3px;
-}
-
-.group-container {
-    margin: 30px 0 20px;
 }
 
 .group {

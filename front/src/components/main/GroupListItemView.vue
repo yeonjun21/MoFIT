@@ -1,6 +1,9 @@
 <template>
     <div @click="goGroup(group.groupId)">
         <div class="first-container">
+            <div v-if="route.path === '/my-group'" class="badge-container">
+                <GroupListItemBadge :group="group"/>
+            </div>
             <div class="group-profile-img">프로필 이미지</div>
             <div class="second-container">
                 <p class="group-name">{{ group.groupName }}</p>
@@ -17,9 +20,11 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+import GroupListItemBadge from './GroupListItemBadge.vue';
 
 const router = useRouter();
+const route = useRoute();
 
 defineProps({
     group: Object
@@ -32,6 +37,7 @@ const goGroup = function(groupId) {
 
 <style scoped>
 .first-container {
+    position: relative;
     width: 100%;
     display: flex;
     border-radius: 10px;
@@ -63,5 +69,12 @@ p {
     font-size: 19px;
     font-weight: 600;
     margin-bottom: 10px;
+}
+
+.badge-container {
+    position: absolute;
+    right: -30px;
+    top: -10px;
+    z-index: 1;
 }
 </style>

@@ -50,6 +50,19 @@ export const useGroupStore = defineStore('group', () => {
             })
     }
 
+    const getMyGroupList = function(id) {
+        axios({
+            url: 'http://localhost:8080/user/' + id + '/group',
+            method: 'GET',
+        })
+            .then((res) => {
+                groupList.value = res.data;
+            })
+            .catch(() => {
+                console.log('getMyGroupList 에러');
+            })
+    }
+
     const getGroup = function(groupId) {
         axios.get(API_URL + '/' + groupId)
             .then((res) => {
@@ -91,8 +104,12 @@ export const useGroupStore = defineStore('group', () => {
         })
     }
 
+    const clearGroupList = function() {
+        this.groupList = null;
+    }
+
 
     return { group, groupList, regionList, typeList,
-            getAllRegion, getTypes, getGroupList, getGroup,
-            addGroup, groupNameDuplicationCheck }
+            getAllRegion, getTypes, getGroupList, getMyGroupList, getGroup,
+            addGroup, groupNameDuplicationCheck, clearGroupList }
 })

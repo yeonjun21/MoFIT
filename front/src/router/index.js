@@ -37,7 +37,7 @@ const router = createRouter({
           component: GroupAddForm
         },
         {
-          path: 'myGroup',
+          path: 'my-group',
           name: 'MyGroup',
           component: MyGroupListView
         },

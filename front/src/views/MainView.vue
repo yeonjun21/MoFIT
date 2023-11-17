@@ -13,11 +13,11 @@ import { useGroupStore } from '@/stores/group.js'
 const store = useGroupStore();
 
 onMounted(() => {
-    store.groupList = null;
+    store.clearGroupList();
 })
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

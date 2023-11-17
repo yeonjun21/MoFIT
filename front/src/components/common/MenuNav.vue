@@ -11,7 +11,7 @@
             </li>
             <li class="nav-item">
                 <RouterLink :to="{ name: 'MyGroup' }" class="nav-link" 
-                    :class="{active: route.path === '/myGroup'}">내 모임 보기</RouterLink>
+                    :class="{active: route.path === '/my-group'}">내 모임 보기</RouterLink>
             </li>
         </ul>
     </div>

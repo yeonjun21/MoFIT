@@ -26,8 +26,11 @@
         </div>
         <div class="sub-container">
             <h3>갤러리</h3>
+            <div class="content">
+                
+            </div>
         </div>
-        
+        <GroupJoinButton/>
     </div>
 </template>
 
@@ -36,6 +39,7 @@ import { useGroupStore } from '@/stores/group.js';
 import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import GroupJoinButton from '@/components/group/home/GroupJoinButton.vue';
 
 const store = useGroupStore();
 const route = useRoute();
