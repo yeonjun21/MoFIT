@@ -18,7 +18,7 @@
                     :class="{active: route.path === path + '/gallery'}">갤러리</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupVideo' }" @click="selected = 5" class="nav-link" 
+                <RouterLink :to="{ name: 'VideoList' }" @click="selected = 5" class="nav-link" 
                     :class="{active: route.path === path + '/video'}">관련 영상</RouterLink>
             </li>
             <li class="nav-item">

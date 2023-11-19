@@ -58,8 +58,6 @@ public class GroupController {
     // 모임 이름 중복 확인
     @GetMapping("/groupNameCheck")
     public ResponseEntity<Void> groupNameCheck(@RequestParam String groupName) {
-        System.out.println("모임 이름 중복확인");
-
         if (groupService.groupNameCheck(groupName) > 0)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(HttpStatus.OK);

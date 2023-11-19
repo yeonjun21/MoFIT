@@ -73,6 +73,7 @@ onMounted(() => {
     height: 300px;
     background-color: rgb(196, 231, 255);
     border-radius: 30px;
+    flex-shrink: 0;
 }
 
 .profile-container {

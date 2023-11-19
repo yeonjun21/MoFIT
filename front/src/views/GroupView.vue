@@ -15,7 +15,6 @@ import GroupMenuNav from '@/components/common/GroupMenuNav.vue'
 const store = useGroupStore();
 const route = useRoute();
 
-
 onMounted(() => {
     store.getGroup(route.params.groupId);
 })
