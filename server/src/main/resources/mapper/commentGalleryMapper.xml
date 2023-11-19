@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="projectmofit.mofit.domain.gallery.dao.CommentGalleryDao">
+    <select id="selectAll" parameterType="int" resultType="CommentGallery">
+        SELECT comment_idx as commentIdx, gallery_idx as galleryIdx, content, writer, `date`, nickname
+        FROM comment_gallery
+        INNER JOIN user on comment_gallery.writer = user.id
+        WHERE `gallery_idx` = #{galleryIdx}
+        ORDER BY `date` DESC
+
+    </select>
+
+    <insert id="insertComment" parameterType="CommentGallery">
+        INSERT INTO comment_gallery (gallery_idx,content,writer)
+        VALUES (#{galleryIdx},#{content}, #{writer})
+    </insert>
+
+    <update id="updateComment" parameterType="CommentGallery">
+        UPDATE comment_gallery
+        SET content=#{content}, date=now()
+        WHERE `comment_idx` = #{commentIdx}
+    </update>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comment_gallery
+        WHERE `comment_idx` = #{commentIdx}
+    </delete>
+</mapper>
