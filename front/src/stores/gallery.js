@@ -3,90 +3,96 @@ import { defineStore } from 'pinia'
 import { useRoute,useRouter } from 'vue-router';
 import axios from 'axios';
 
-export const useBoardStore = defineStore('board', () => {
+export const useGalleryStore = defineStore('gallery', () => {
 
-   const API_URL_BOARD = 'http://localhost:8080/board';
-   const API_URL_COMMENT = 'http://localhost:8080/board/comment';
+   const API_URL_GALLERY = 'http://localhost:8080/gallery';
+   const API_URL_COMMENT = 'http://localhost:8080/gallery/comment';
 
-   const route = useRoute();
    const router = useRouter();
 
-   const boardList = ref([]);
-   const board = ref({});
+   const galleryList = ref([]);
+   const gallery = ref({});
 
    const commentList = ref([]);
    const comment = ref({});
 
-   const getBoardList = function (groupId) {
+   const getGalleryList = function (groupId) {
        axios({
-           url: API_URL_BOARD,
+           url: API_URL_GALLERY,
            method: 'GET',
            params:{
             groupId: groupId,
            }
        })
        .then((res) => {
-            boardList.value = res.data;
-            console.log('getBoardList 성공')
+        galleryList.value = res.data;
+            console.log('getGalleryList 성공')
        })
        .catch(() => {
-           console.log('getBoardList 에러 발생')
+           console.log('getGalleryList 에러 발생')
        })
    };
 
-   const getBoard = function (index) {
+   const getGallery = function (index) {
        axios({
-           url: API_URL_BOARD + '/' + index,
+           url: API_URL_GALLERY + '/' + index,
            method: 'GET'
        })
        .then((res) => {
-            board.value = res.data;
-            console.log('getBoard 성공!')
+            gallery.value = res.data;
+            console.log(gallery.value.groupId);
+            console.log('getGallery 성공!')
        })
        .catch(() => {
-            console.log('getBoard error 발생')
+            console.log(gallery.value.groupId);
+            console.log('getGallery error 발생')
        })
    };
 
-   const registBoard = function (board) {
+   const registGallery = function (gallery) {
         axios({
-            url: API_URL_BOARD,
+            url: API_URL_GALLERY,
             method: 'POST',
             data: {
-                groupId : board.groupId,
-                content : board.content,
-                writer : board.writer,
+                groupId : gallery.groupId,
+                content : gallery.content,
+                writer : gallery.writer,
+                img : gallery.base64Data
             }
         })
         .then((res)=>{
             alert("게시글 등록완료!")
-            console.log('registBoard 성공!')
-            router.push({name: 'BoardList'})
+            console.log('registGallery 성공!')
+            router.push({name: 'GalleryList'})
         })
         .catch((err)=>{
-            console.log('registBoard error 발생')
+            console.log('registGallery error 발생')
         })
    };
 
-   const editBoard = function (board) {
+   const editGallery = function (gallery) {
         axios({
-            url: API_URL_BOARD,
+            url: API_URL_GALLERY,
             method: 'PUT',
-            data: board
+            data: {
+                content : gallery.content,
+                index : gallery.index,
+                img : gallery.base64Data
+            }
         })
         .then((res)=>{
             alert('게시글 수정완료!')
             console.log('edit 성공!')
-            router.push({name:'CommentList', params:{index: board.index}})
+            router.push({name:'GalleryList', params:{index: gallery.index}})
         })
         .catch((err)=>{
             console.log('edit error 발생')
         })
     };
 
-   const deleteBoard = function (index) {
+   const deleteGallery = function (index) {
         axios({
-            url: API_URL_BOARD,
+            url: API_URL_GALLERY,
             method: 'DELETE',
             params:{
                 index : index,
@@ -94,63 +100,62 @@ export const useBoardStore = defineStore('board', () => {
         })
         .then((res)=>{
             alert('게시글 삭제완료!')  
-            console.log('deleteBoard 성공!')
-            router.push({name: 'BoardList'})
+            console.log('deleteGallery 성공!')
+            router.push({name: 'GalleryList'})
         })
         .catch((err)=>{
-            console.log('deleteBoard error 발생')
+            console.log('deleteGallery error 발생')
         })
    }
 
-   const getCommentList = function (boardIdx) {
-        console.log(boardIdx) 
+   const getCommentList = function (galleryIdx) {
+        console.log(galleryIdx) 
         axios({
             url: API_URL_COMMENT,
             method: 'GET',
             params:{
-            boardIdx: boardIdx,
+            galleryIdx: galleryIdx,
             }
         })
         .then((res) => {
             commentList.value = res.data;
             console.log('getCommentList 성공')
-            console.log(commentList.value)
         })
         .catch(() => {
             console.log('getCommentList 에러 발생')
         })
     }
 
-    const registComment = function (commentBoard) {
+    const registComment = function (commentGallery) {
         axios({
             url: API_URL_COMMENT,
             method: 'POST',
             data: {
-                boardIdx : commentBoard.boardIdx,
-                content : commentBoard.content,
-                writer : commentBoard.writer,
+                galleryIdx : commentGallery.galleryIdx,
+                content : commentGallery.content,
+                writer : commentGallery.writer,
             }
         })
         .then((res)=>{
             alert("댓글 등록완료!")
             console.log('regist-cmt 성공!')
-            router.push({name:'CommentList'})
+            router.push({name:'GalleryCommentList'})
         })
         .catch((err)=>{
             console.log('regist-cmt error 발생')
         })
    }
 
-    const editComment = function (commentBoard) {
+    const editComment = function (commentGallery) {
         axios({
             url: API_URL_COMMENT,
             method: 'PUT',
-            data: commentBoard
+            data: commentGallery
         })
         .then((res)=>{
             alert('댓글 수정완료!')
             console.log('edit-cmt 성공!')
-            router.push({name: 'CommentList'})
+            router.push({name: 'GalleryCommentList'})
         })
         .catch((err)=>{
             console.log('edit-cmt error 발생')
@@ -177,7 +182,7 @@ export const useBoardStore = defineStore('board', () => {
    }
 
  
-   return {boardList, board, commentList, comment, 
-    getBoardList, getBoard, registBoard, editBoard, deleteBoard, 
+   return {galleryList, gallery, commentList, comment, 
+    getGalleryList, getGallery, registGallery, editGallery, deleteGallery, 
     getCommentList, registComment, editComment, deleteComment}
-})
+}) 

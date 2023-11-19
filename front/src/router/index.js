@@ -28,6 +28,14 @@ import NoticeCommentListView from '@/components/group/notice/NoticeCommentListVi
 import NoticeCommentRegistView from '@/components/group/notice/NoticeCommentRegistView.vue'
 import NoticeCommentEditView from '@/components/group/notice/NoticeCommentEditView.vue'
 
+import GalleryDetailView from '@/components/group/gallery/GalleryDetailView.vue'
+import GalleryListView from '@/components/group/gallery/GalleryListView.vue'
+import GalleryEditView from '@/components/group/gallery/GalleryEditView.vue'
+import GalleryRegistView from '@/components/group/gallery/GalleryRegistView.vue'
+import GalleryCommentListView from '@/components/group/gallery/GalleryCommentListView.vue'
+import GalleryCommentRegistView from '@/components/group/gallery/GalleryCommentRegistView.vue'
+import GalleryCommentEditView from '@/components/group/gallery/GalleryCommentEditView.vue'
+
 import MyPageView from '@/views/MyPageView.vue'
 
 const router = createRouter({
@@ -171,7 +179,46 @@ const router = createRouter({
         {
           path: 'gallery',
           name: 'GroupGallery',
-          component: GroupGalleryView
+          component: GroupGalleryView,
+          children: [
+            {
+              path: '',
+              name: 'GalleryList',
+              component: GalleryListView,
+            },
+            {
+              path: 'detail/:index',
+              name: 'GalleryDetail',
+              component: GalleryDetailView,
+              children: [
+                {
+                  path: '',
+                  name: 'GalleryCommentList',
+                  component: GalleryCommentListView,
+                },
+                {
+                  path: 'cmtRegist',
+                  name: 'GalleryCommentRegist',
+                  component: GalleryCommentRegistView,
+                },
+                {
+                  path: 'cmtEdit/:commentIdx',
+                  name: 'GalleryCommentEdit',
+                  component: GalleryCommentEditView,
+                },
+              ]
+            },
+            {
+              path: 'edit',
+              name: 'GalleryEdit',
+              component: GalleryEditView,
+            },
+            {
+              path: 'regist',
+              name: 'GalleryRegist',
+              component: GalleryRegistView,
+            }
+          ]
         },
         {
           path: 'video',
