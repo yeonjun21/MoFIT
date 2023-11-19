@@ -2,9 +2,15 @@
     <div>
         <fieldset>        
             <div>
-                <label for="title">💙 공지사항 등록 💙</label>
-                <input type="text" id="title" v-model="title"> 
-                <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
+                <p>공지사항을 등록해보세요 😊</p>
+                <div class="mb-3">
+                    <label for="title" class="form-label">작성자</label> 
+                    <input class="form-control" type="text" id="title" v-model="title">
+                </div>
+                <div class="mb-3">
+                    <label for="cotent">내용</label>
+                    <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
+                </div>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-primary me-md-2" @click="registNotice">등록</button>
@@ -36,13 +42,8 @@ const registNotice = function(){
 </script>
 
 <style scoped>
-div>label{
-    margin: 15px 0px;
+p {
+    margin: 10px 0 30px;
 }
 
-div>textarea{
-    height: 180px;
-    margin-bottom: 20px;
-    resize: none;
-}
 </style>

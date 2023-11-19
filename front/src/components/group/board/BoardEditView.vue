@@ -1,7 +1,7 @@
 <template>
     <div>
         <fieldset>
-            <legend style="font-size: medium;">💙 게시글 수정 💙</legend>        
+            <legend style="font-size: medium;">게시글을 수정해보세요 😊</legend>        
             <div class="mb-3">
                 <label for="writerName" class="form-label">작성자</label> 
                 <input class="form-control" type="text" id="writerName" :value="boardStore.board.nickname" readonly>
@@ -36,5 +36,7 @@ const editBoard = function(){
 </script>
 
 <style scoped>
-
+legend {
+    margin: 10px 0 30px;
+}
 </style>

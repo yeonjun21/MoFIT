@@ -1,7 +1,7 @@
 <template>
     <div>
         <fieldset>
-            <legend style="font-size: medium;">💙 댓글 수정 💙</legend>   
+            <!-- <legend style="font-size: medium;">💙 댓글 수정 💙</legend>    -->
             <br>     
             <div class="mb-3">
                 <label for="writerName">작성자</label> 

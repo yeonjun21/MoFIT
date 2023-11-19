@@ -1,23 +1,24 @@
 <template>
     <div>
+        <h5>댓글</h5>
+        <hr>
         <div v-for="comment in noticeStore.commentList" :key=comment.commentIdx >
-            <div>
-                <div class="first-container">
+            <div class="first-container">
+                <div>
                         <p>{{ comment.content }}</p>
                     <div class="second-container">
                         <p>{{ comment.nickname }}</p>
                         <p class="blank"> | </p>
                         <p>{{ comment.date }}</p>
                     </div>
-                    <div v-if="comment.writer == userId" class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button @click="editComment(comment.commentIdx)" class="btn btn-primary me-md-2">수정</button>
-                        <button @click="deleteComment(comment.commentIdx)" class="btn btn-primary me-md-2 btn-danger">삭제</button>
-                    </div>
+                </div>
+                <div v-if="comment.writer == userId">
+                        <button @click="editComment(comment.commentIdx)" class="btn btn-primary">수정</button>
+                        <button @click="deleteComment(comment.commentIdx)" class="btn btn-danger">삭제</button>
                 </div>
             </div>
-        </div>
-        <hr>
-        
+            <hr>
+        </div>        
     </div>
 </template>
 
@@ -46,28 +47,40 @@ onMounted(() => {
 </script>
 
 <style scoped>
+h5 {
+    margin: 30px 0;
+}
 .first-container {
     width: 100%;
-    border-radius: 10px;
-    padding: 13px;
-    box-shadow: 0px 0px 5px rgb(170, 170, 170);
-    margin: 20px 0px;
-}
-
-.first-container>p{
-    margin-top : 10px;
-    margin-left: 20px;
+    margin: 20px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .second-container{
     display: flex;
-    margin-left: 20px;
-    padding-bottom: 0;
 }
 
 .second-container>p.blank{
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.btn-primary {
+    background-color: white;
+    border: none;
+    color: #007bff;
+}
+
+.btn {
+    padding: 10px;
+}
+
+.btn-danger {
+    background-color: white;
+    border: none;
+    color: #dc3545;
 }
 
 </style>

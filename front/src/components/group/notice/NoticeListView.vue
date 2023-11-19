@@ -2,11 +2,12 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <RouterLink :to="{name:'NoticeRegist'}" class="btn btn-primary" style="color: aliceblue;"> 등록 </RouterLink>
     </div>
-    <div>   
-        <div v-for="notice in noticeStore.noticeList" :key = "notice.index">
-            <RouterLink :to="{name:'NoticeCommentList', params:{index: notice.index}}">
+    <div class="notice-list">   
+        <div v-for="notice in noticeStore.noticeList" :key = "notice.index" class="content">
+            <RouterLink :to="{name:'NoticeCommentList', params:{index: notice.index}}"
+                class="notice-detail">
                 <div class="first-container">
-                    <p>{{ notice.title }}</p>
+                    <p class="title">{{ notice.title }}</p>
                     <p>{{ notice.content }}</p>
                     <div class="second-container">
                         <p>{{ notice.nickname }}</p>
@@ -16,7 +17,6 @@
                 </div>
             </RouterLink>
         </div>
-       <hr>
     </div>
 </template>
 
@@ -40,7 +40,7 @@ onMounted(()=>{
     width: 100%;
     border-radius: 10px;
     padding: 13px;
-    box-shadow: 0px 0px 5px rgb(170, 170, 170);
+    box-shadow: 0px 0px 3px rgb(170, 170, 170);
     margin: 20px 0px;
 }
 
@@ -51,6 +51,7 @@ onMounted(()=>{
 
 .second-container{
     display: flex;
+    margin-top: 20px;
     margin-left: 20px;
     padding-bottom: 0;
 }
@@ -64,4 +65,18 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.title {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.content {
+    margin-bottom: 30px;
+}
+
+.notice-list {
+    margin: 30px 0;
+}
+
 </style>

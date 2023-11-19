@@ -1,14 +1,14 @@
 <template>
     <div>
         <fieldset>
-            <legend style="font-size: medium;">💙 댓글 수정 💙</legend>   
+            <!-- <legend style="font-size: medium;">💙 댓글 수정 💙</legend>    -->
             <br>     
             <div class="mb-3">
                 <label for="writerName">작성자</label> 
                 <input type="text" class="form-control" id="writerName" :value="nickname" readonly>
             </div>
             <div class="mb-3"> 
-                <label for="content">내용</label>
+                <label for="content">댓글 내용</label>
                 <textarea class="form-control" id="content" rows="3" v-model="content"></textarea>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end"> 

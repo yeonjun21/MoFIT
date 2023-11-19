@@ -10,10 +10,10 @@
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div v-if="boardStore.board.writer == userId">
-                <button class="btn btn-primary me-md-2" @click="editBoard">수정</button>
-                <button class="btn btn-primary me-md-1" @click="deleteBoard">삭제</button>
+                <button class="btn btn-outline-primary me-md-2" @click="editBoard">수정</button>
+                <button class="btn btn-outline-danger" @click="deleteBoard">삭제</button>
             </div>
-            <button class="btn btn-primary me-md-2" @click="toBoardList">목록</button>
+            <button class="btn btn-outline-secondary" @click="toBoardList">목록</button>
             <RouterLink class="btn btn-primary" :to="{name:'CommentRegist'}">댓글 쓰기</RouterLink>
         </div>
     </div>
@@ -56,7 +56,7 @@ onMounted(()=>{
     width: 100%;
     border-radius: 10px;
     padding: 13px;
-    box-shadow: 0px 0px 5px rgb(170, 170, 170);
+    box-shadow: 0px 0px 3px rgb(180, 180, 180);
     margin: 20px 0px;
 }
 .first-container>p{

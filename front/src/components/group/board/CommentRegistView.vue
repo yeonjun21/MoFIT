@@ -1,7 +1,7 @@
 <template>
     <fieldset>
         <div>
-                <label for="content">💙 댓글 등록 💙</label>
+                <label for="content">댓글을 남겨보세요 😊</label>
                 <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">

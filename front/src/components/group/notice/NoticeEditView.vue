@@ -1,12 +1,12 @@
 <template>
     <div>
         <fieldset>
-            <legend style="font-size: medium;">💙 공지사항 수정 💙</legend>        
+            <legend style="font-size: medium;">공지사항을 수정해보세요 😊</legend>        
             <div class="mb-3">
                 <label for="writerName" class="form-label">작성자</label> 
                 <input class="form-control" type="text" id="writerName" :value="noticeStore.notice.nickname" readonly>
             </div>
-            <div>
+            <div class="mb-3">
                 <label for="title" class="form-label">제목</label> 
                 <input class="form-control" type="text" id="title" v-model="title">
             </div>
@@ -42,5 +42,7 @@ const editNotice = function(){
 </script>
 
 <style scoped>
-
+legend {
+    margin: 10px 0 30px;
+}
 </style>

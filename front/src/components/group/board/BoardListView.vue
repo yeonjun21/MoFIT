@@ -1,10 +1,12 @@
 <template>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <RouterLink :to="{name:'BoardRegist'}" class="btn btn-primary" style="color: aliceblue;"> 등록 </RouterLink>
     </div>
-    <div>   
-        <div v-for="board in boardStore.boardList" :key = "board.index">
-            <RouterLink :to="{name:'CommentList', params:{index: board.index}}">
+    <div class="board-list">   
+        <div v-for="board in boardStore.boardList" :key = "board.index" class="content">
+            <RouterLink :to="{name:'CommentList', params:{index: board.index}}"
+                class="board-detail">
                 <div class="first-container">
                     <p>{{ board.content }}</p>
                     <div class="second-container">
@@ -15,7 +17,7 @@
                 </div>
             </RouterLink>
         </div>
-       <hr>
+    </div>
     </div>
 </template>
 
@@ -39,17 +41,18 @@ onMounted(()=>{
     width: 100%;
     border-radius: 10px;
     padding: 13px;
-    box-shadow: 0px 0px 5px rgb(170, 170, 170);
+    box-shadow: 0px 0px 3px rgb(170, 170, 170);
     margin: 20px 0px;
 }
 
-.first-container>p{
+.first-container > p {
     margin-top : 10px;
     margin-left: 20px;
 }
 
-.second-container{
+.second-container {
     display: flex;
+    margin-top: 20px;
     margin-left: 20px;
     padding-bottom: 0;
 }
@@ -62,5 +65,13 @@ onMounted(()=>{
 a {
     text-decoration: none;
     color: black;
+}
+
+.board-list {
+    margin: 30px 0;
+}
+
+.content {
+    margin-bottom: 30px;
 }
 </style>
