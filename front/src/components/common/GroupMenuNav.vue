@@ -2,28 +2,32 @@
     <div class="container">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupHome' }" @click="selected = 1" class="nav-link" 
+                <RouterLink :to="{ name: 'GroupHome' }" class="nav-link" 
                     :class="{active: route.path === path}">Home</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'NoticeList' }" @click="selected = 2" class="nav-link" 
+                <RouterLink :to="{ name: 'NoticeList' }" class="nav-link" 
                     :class="{active: route.path === path + '/notice'}">공지사항</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'BoardList' }" @click="selected = 3" class="nav-link" 
+                <RouterLink :to="{ name: 'BoardList' }" class="nav-link" 
                     :class="{active: route.path === path + '/board'}">자유게시판</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupGallery' }" @click="selected = 4" class="nav-link" 
+                <RouterLink :to="{ name: 'GroupGallery' }" class="nav-link" 
                     :class="{active: route.path === path + '/gallery'}">갤러리</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'VideoList' }" @click="selected = 5" class="nav-link" 
+                <RouterLink :to="{ name: 'VideoList' }" class="nav-link" 
                     :class="{active: route.path === path + '/video'}">관련 영상</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupSpecial' }" @click="selected = 6" class="nav-link" 
-                    :class="{active: route.path === path + '/notice'}">특별한 기능💙</RouterLink>
+                <RouterLink :to="{ name: 'GroupSpecial' }" class="nav-link" 
+                    :class="{active: route.path === path + '/special'}">💙특별한 기능💙</RouterLink>
+            </li>
+            <li class="nav-item">
+                <RouterLink :to="{ name: 'GroupMember' }" class="nav-link" 
+                    :class="{active: route.path === path + '/member'}">👨모임 멤버 보기👩</RouterLink>
             </li>
         </ul>
     </div>

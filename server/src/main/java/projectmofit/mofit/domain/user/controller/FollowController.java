@@ -1,46 +1,52 @@
 package projectmofit.mofit.domain.user.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import projectmofit.mofit.domain.user.dto.User;
 import projectmofit.mofit.domain.user.service.FollowService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class FollowController {
 
     private final FollowService followService;
 
-    // TODO 팔로우, 언팔로우
+    // 팔로우
+    @PostMapping("/follow")
+    public ResponseEntity<Void> follow(@RequestParam int followerId, @RequestParam int followingId) {
+        if (followService.follow(followerId, followingId)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    // 언팔로우
+    @PostMapping("/unfollow")
+    public ResponseEntity<Void> unfollow(@RequestParam int followerId, @RequestParam int followingId) {
+        if (followService.unfollow(followerId, followingId)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
     // 내 팔로워 목록
     @GetMapping("/{id}/follower")
-    public String followerList(@PathVariable int id, Model model) {
-        List<User> followers = followService.getFollowers(id);
-
-        if (followers != null && followers.size() > 0) {
-            model.addAttribute("followers", followers);
-        }
-
-        return "";
+    public List<User> followerList(@PathVariable int id) {
+        return followService.getFollowers(id);
     }
 
     // 내 팔로잉 목록
     @GetMapping("/{id}/following")
-    public String followingList(@PathVariable int id, Model model) {
-        List<User> followings = followService.getFollowings(id);
-
-        if (followings != null && followings.size() > 0) {
-            model.addAttribute("followings", followings);
-        }
-
-        return "";
+    public List<User> followingList(@PathVariable int id) {
+        return followService.getFollowings(id);
     }
 }

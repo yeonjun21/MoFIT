@@ -46,7 +46,7 @@ const getGroupDetail = function(groupId) {
 }
 
 onMounted(()=>{
-    console.log(route.params.groupId)
+    noticeStore.clear();
     noticeStore.getNoticeList(route.params.groupId);
     getGroupDetail(route.params.groupId);
 })

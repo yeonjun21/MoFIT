@@ -30,7 +30,7 @@
                 
             </div>
         </div>
-        <GroupJoinButton/>
+        <GroupJoinButton @click="join"/>
     </div>
 </template>
 
@@ -56,6 +56,14 @@ const getGroupDetail = function(groupId) {
         })
         .catch(() => {
         })
+}
+
+const join = function() {
+    const result = confirm('모임에 가입하시겠어요?');
+    
+    if(result) {
+        store.join(store.group.groupId, sessionStorage.getItem('loginUser'));
+    }
 }
 
 onMounted(() => {

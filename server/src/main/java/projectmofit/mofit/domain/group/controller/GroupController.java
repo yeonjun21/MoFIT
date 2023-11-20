@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import projectmofit.mofit.domain.group.dto.Group;
+import projectmofit.mofit.domain.group.dto.GroupMember;
 import projectmofit.mofit.domain.group.service.GroupService;
 import projectmofit.mofit.domain.user.dto.User;
 
@@ -75,6 +76,25 @@ public class GroupController {
             group.setRegions(regions);
         }
         return list;
+    }
+
+    // 특정 모임의 멤버 리스트
+    @GetMapping("/{groupId}/member")
+    public List<GroupMember> member(@PathVariable int groupId) {
+        return groupService.getGroupMember(groupId);
+    }
+
+    // 모임 가입하기
+    @PostMapping("/{groupId}/member")
+    public ResponseEntity<Void> join(@PathVariable int groupId, @RequestParam int userId) {
+        System.out.println(groupId);
+        System.out.println(userId);
+
+        if (groupService.join(userId, groupId) > 0) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 //    @ModelAttribute("regions")

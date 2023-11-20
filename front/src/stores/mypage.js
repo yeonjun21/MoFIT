@@ -73,7 +73,40 @@ export const useMypageStore = defineStore('mypage', () => {
             })
     }
 
+    const getFollowingList = function(userId) {
+        axios({
+            url: API_URL + 'user/' + userId + '/following',
+            method: 'GET',
+            params: {
+                id: userId
+            }
+        })
+            .then((res) => {
+                followingList.value = res.data;
+            })
+            .catch(() => {
+                console.log('getFollowingList 에러');
+            })
+    }
 
-    return { user, bookmarkList, boardList,
-            getUser, bookmark, getBookmark, getBoardList }
+    const getFollowerList = function(userId) {
+        axios({
+            url: API_URL + 'user/' + userId + '/follower',
+            method: 'GET',
+            params: {
+                id: userId
+            }
+        })
+            .then((res) => {
+                followerList.value = res.data;
+            })
+            .catch(() => {
+                console.log('getFollowerList 에러');
+            })
+    }
+
+
+    return { user, bookmarkList, boardList, followingList, followerList,
+            getUser, bookmark, getBookmark, getBoardList,
+            getFollowingList, getFollowerList }
 })

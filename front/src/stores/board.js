@@ -176,8 +176,13 @@ export const useBoardStore = defineStore('board', () => {
         })
    }
 
+   const clear = function() {
+    boardList.value = null;
+    board.value = null;
+   }
+
  
    return {boardList, board, commentList, comment, 
     getBoardList, getBoard, registBoard, editBoard, deleteBoard, 
-    getCommentList, registComment, editComment, deleteComment}
+    getCommentList, registComment, editComment, deleteComment, clear}
 })

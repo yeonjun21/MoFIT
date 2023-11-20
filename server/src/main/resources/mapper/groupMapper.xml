@@ -76,5 +76,13 @@
         WHERE M.group_id = #{groupId}
     </select>
 
+    <select id="findGroupMember" resultType="GroupMember">
+        SELECT G.group_id AS groupId, G.user_id AS userId, U.nickname, G.grade
+        FROM group_member G
+        INNER JOIN user U
+        ON G.user_id = U.id
+        WHERE G.group_id = #{groupId};
+    </select>
+
 </mapper>
 

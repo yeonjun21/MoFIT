@@ -28,7 +28,7 @@ onMounted(() => {
     box-shadow: 0px 0px 3px rgb(180, 180, 180);
     border-radius: 10px;
     margin-bottom: 15px;
-    padding: 6px 10px;
+    padding: 10px;
 }
 .content {
     margin-bottom: 10px;

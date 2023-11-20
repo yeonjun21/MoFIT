@@ -14,6 +14,8 @@ export const useGroupStore = defineStore('group', () => {
     const regionList = ref([]);
     const typeList = ref([]);
 
+    const memberList = ref([]);
+
     const getAllRegion = function() {
         axios.get(API_URL + '/regions')
             .then((res) => {
@@ -108,8 +110,40 @@ export const useGroupStore = defineStore('group', () => {
         this.groupList = null;
     }
 
+    const getMemberList = function(groupId) {
+        axios({
+            url: API_URL + '/' + groupId +'/member',
+            method: 'GET',
+            params: {
+                groupId: groupId
+            }
+        })
+            .then((res) => {
+                memberList.value = res.data;
+            })
+            .catch(() => {
+                console.log('getMemberList 에러');
+            })
+    }
 
-    return { group, groupList, regionList, typeList,
+    const join = function(groupId, userId) {
+        axios({
+            url: API_URL + '/' + groupId + '/member',
+            method: 'POST',
+            params: {
+                userId: userId
+            }
+        })
+            .then(() => {
+                alert('모임에 가입되었습니다.');
+            })
+            .catch(() => {
+                console.log('join 에러');
+            })
+    }
+
+
+    return { group, groupList, regionList, typeList, memberList,
             getAllRegion, getTypes, getGroupList, getMyGroupList, getGroup,
-            addGroup, groupNameDuplicationCheck, clearGroupList }
+            addGroup, groupNameDuplicationCheck, clearGroupList, getMemberList, join }
 })

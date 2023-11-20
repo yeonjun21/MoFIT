@@ -8,8 +8,12 @@
         </h2>
         <div class="row-container center">
             <img src="https://i.pinimg.com/originals/36/31/cc/3631ccead0d5c40b256c2d743c638ba1.png">
-            <UserInfoView :user="mypageStore.user" class="content"/>
+            <div class="col-container">
+                <UserInfoView :user="mypageStore.user" class="content"/>
+                <FollowView @click="followList = !followList"/>
+            </div>
         </div>
+        <FollowListView v-if="followList"/>
         <div class="col-container">
             <h3>내가 가입한 모임</h3>
             <div class="my-group-list" @click="goMyGroupList">
@@ -35,18 +39,22 @@
 import { useMypageStore } from '@/stores/mypage.js';
 import { useUserStore } from '@/stores/user.js';
 import { useGroupStore } from '@/stores/group.js'
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import UserInfoView from '@/components/mypage/UserInfoView.vue'
 import NeedLoginView from '../components/common/NeedLoginView.vue';
 import BookmarkView from '../components/mypage/BookmarkView.vue';
 import MyGroupView from '../components/mypage/MyGroupView.vue';
 import MyBoardView from '../components/mypage/MyBoardView.vue';
+import FollowView from '../components/mypage/FollowView.vue';
+import FollowListView from '../components/mypage/FollowListView.vue';
 
 const mypageStore = useMypageStore();
 const userStore = useUserStore();
 const groupStore = useGroupStore();
 const router = useRouter();
+
+const followList = ref(false);
 
 const goMyGroupList = function() {
     router.push({name: 'MyGroup'});

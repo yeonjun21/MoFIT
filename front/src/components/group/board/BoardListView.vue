@@ -30,7 +30,7 @@ const boardStore = useBoardStore();
 const route = useRoute();
 
 onMounted(()=>{
-    console.log(route.params.groupId)
+    boardStore.clear();
     boardStore.getBoardList(route.params.groupId); 
 })
 </script>
