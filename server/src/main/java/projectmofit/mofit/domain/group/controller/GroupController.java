@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import projectmofit.mofit.domain.gallery.dto.Gallery;
 import projectmofit.mofit.domain.group.dto.Group;
 import projectmofit.mofit.domain.group.service.GroupService;
 import projectmofit.mofit.domain.user.dto.User;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -40,6 +42,19 @@ public class GroupController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
+        // 모임 프로필 등록
+        byte[] imgArr = null;
+        final String BASE_64_PREFIX = "data:image/png;base64,";
+        try {
+            String base64url = group.getImg();
+            if(base64url.startsWith(BASE_64_PREFIX)){
+                imgArr = Base64.getDecoder().decode(base64url.substring(BASE_64_PREFIX.length()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        group.setByteImg(imgArr);
+
         // 새 모임 생성
         groupService.addGroup(group);
 
@@ -51,6 +66,7 @@ public class GroupController {
         // 모임 운영자 정보 추가
         int leaderId = group.getLeaderId();
         groupService.addGroupLeader(leaderId, group.getGroupName());
+
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -73,6 +89,16 @@ public class GroupController {
         for (Group group : list) {
             List<String> regions = groupService.getRegions(group.getGroupId());
             group.setRegions(regions);
+        }
+
+        // 모든 리스트의 byteImg를 base64로 변환후 img 필드에 담아준다.
+        for(Group group : list){
+            byte[] arr = group.getByteImg();
+            if(arr.length > 0 && arr != null){
+                String base64Encode = byteToBase64(arr);
+                base64Encode = "data:image/png;base64," + base64Encode;
+                group.setImg(base64Encode);
+            }
         }
         return list;
     }
@@ -102,5 +128,16 @@ public class GroupController {
         types.add("농구"); types.add("자전거"); types.add("테니스");
         types.add("배드민턴"); types.add("클라이밍"); types.add("기타");
         return types;
+    }
+
+    // byte[] -> base64
+    private static String byteToBase64(byte[] arr){
+        String result = "";
+        try {
+            result = Base64.getEncoder().encodeToString(arr);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

@@ -4,7 +4,9 @@
             <div v-if="route.path === '/my-group'" class="badge-container">
                 <GroupListItemBadge :group="group"/>
             </div>
-            <div class="group-profile-img">프로필 이미지</div>
+            <div class="group-profile-img">
+                <img class="profile" :src="group.img" alt="img">
+            </div>
             <div class="second-container">
                 <p class="group-name">{{ group.groupName }}</p>
                 <p>운동 종목 : 
@@ -76,5 +78,11 @@ p {
     right: -30px;
     top: -10px;
     z-index: 1;
+}
+
+.profile {
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 </style>

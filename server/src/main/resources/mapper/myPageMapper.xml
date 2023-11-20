@@ -6,7 +6,7 @@
 <mapper namespace="projectmofit.mofit.domain.user.dao.MyPageDao">
 
     <select id="findMyGroup" resultType="Group">
-        SELECT G.group_id AS groupId, G.group_name AS groupName, G.type, G.info
+        SELECT G.group_id AS groupId, G.group_name AS groupName, G.type, G.info, G.img as byteImg
         FROM group_member M
         INNER JOIN `group` G
         ON M.group_id = G.group_id
