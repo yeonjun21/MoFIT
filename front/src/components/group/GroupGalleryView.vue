@@ -1,4 +1,5 @@
 <template>
+
     <div class="gallery">
         <h3>Gallery</h3>
         <div>

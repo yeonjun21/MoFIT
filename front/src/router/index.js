@@ -28,6 +28,10 @@ import NoticeCommentListView from '@/components/group/notice/NoticeCommentListVi
 import NoticeCommentRegistView from '@/components/group/notice/NoticeCommentRegistView.vue'
 import NoticeCommentEditView from '@/components/group/notice/NoticeCommentEditView.vue'
 
+
+import VideoListView from '@/components/group/video/VideoListView.vue';
+import VideoDetailView from '@/components/group/video/VideoDetailView.vue';
+
 import GalleryDetailView from '@/components/group/gallery/GalleryDetailView.vue'
 import GalleryListView from '@/components/group/gallery/GalleryListView.vue'
 import GalleryEditView from '@/components/group/gallery/GalleryEditView.vue'
@@ -223,7 +227,19 @@ const router = createRouter({
         {
           path: 'video',
           name: 'GroupVideo',
-          component: GroupVideoView
+          component: GroupVideoView,
+          children: [
+            {
+              path: '',
+              name: 'VideoList',
+              component: VideoListView
+            },
+            {
+              path: 'detail',
+              name: 'VideoDetail',
+              component: VideoDetailView
+            }
+          ]
         },
         {
           path: 'special',

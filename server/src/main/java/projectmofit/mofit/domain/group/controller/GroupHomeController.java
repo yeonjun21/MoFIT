@@ -35,8 +35,6 @@ public class GroupHomeController {
     // 모임 멤버 수, 게시글 수, 리더 닉네임 가져오기
     @GetMapping("/{groupId}/detail")
     public GroupHomeDto groupHomeDetail(@PathVariable int groupId) {
-        System.out.println(groupService.getGroupDetail(groupId).toString());
-
         return groupService.getGroupDetail(groupId);
     }
 
