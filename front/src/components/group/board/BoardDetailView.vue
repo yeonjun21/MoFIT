@@ -17,8 +17,7 @@
             <RouterLink class="btn btn-primary" :to="{name:'CommentRegist'}">댓글 쓰기</RouterLink>
         </div>
     </div>
-
-    <!--여기에 커멘트 라우터뷰-->
+    <!-- 커멘트 라우터 -->
     <RouterView/>
 </template>
 
