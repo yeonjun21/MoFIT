@@ -79,6 +79,7 @@ public class MyPageController {
     public List<Board> myBoard(@PathVariable int userId) {
         System.out.println(userId);
         return boardService.getBoardByUserId(userId);
+    }
 
     // byte[] -> base64
     private static String byteToBase64(byte[] arr){
