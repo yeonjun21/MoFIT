@@ -2,6 +2,8 @@ package projectmofit.mofit.domain.group.dao;
 
 import projectmofit.mofit.domain.group.dto.Group;
 import projectmofit.mofit.domain.group.dto.GroupHomeDto;
+import projectmofit.mofit.domain.group.dto.GroupMember;
+import projectmofit.mofit.domain.user.dto.User;
 
 import java.util.List;
 
@@ -25,4 +27,6 @@ public interface GroupDao {
     int joinGroup(int userId, int groupId);
 
     GroupHomeDto findGroupDetail(int groupId);
+
+    List<GroupMember> findGroupMember(int groupId);
 }

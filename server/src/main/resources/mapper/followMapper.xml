@@ -17,13 +17,19 @@
     </delete>
 
     <select id="getFollowers" parameterType="int" resultType="User">
-        SELECT * FROM follow
-        WHERE following = #{id}
+        SELECT F.follower AS id, U.nickname
+        FROM `follow` F
+        INNER JOIN `user` U
+        ON F.follower = U.id
+        WHERE F.following = #{followingId};
     </select>
 
     <select id="getFollowings" parameterType="int" resultType="User">
-        SELECT * FROM follow
-        WHERE follower = #{id}
+        SELECT F.following AS id, U.nickname
+        FROM `follow` F
+        INNER JOIN `user` U
+        ON F.following = U.id
+        WHERE F.follower = #{followerId};
     </select>
 
 </mapper>

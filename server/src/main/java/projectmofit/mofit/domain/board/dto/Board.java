@@ -10,4 +10,6 @@ public class Board {
     private int writer;
     private String date;
     private String nickname;
+
+    private String groupName;
 }

@@ -17,57 +17,20 @@ const videoStore = useVideoStore();
 const route = useRoute();
 
 onMounted(() => {
-  // function getType() {
-  //   return new Promise((resolve, reject) => {
-  //     groupStore.getGroup(route.params.groupId);
-
-  //     if (groupStore.group.type) {
-  //       resolve(groupStore.group.type);
-  //     } else {
-  //       reject();
-  //     }
-  //   })
-  // }
-
-  // function getVideoList(type) {
-  //   return new Promise((resolve, reject) => {
-  //     videoStore.videoList = videoStore.getVideoList(type);
-  //   })
-  // }
-
-  // getType()
-  //   .then((type) => {
-  //     getVideoList(type);
-  //   })
-  //   .then(() => {
-
-  //   })
-  //   .catch(() => {
-
-  //   })
-
-  function promise() {
-    return new Promise((resolve, reject) => {
-      groupStore.getGroup(route.params.groupId);
+  const promise = new Promise((resolve, reject) => {
+    groupStore.getGroup(route.params.groupId);
 
       if (groupStore.group.type) {
         resolve(groupStore.group.type);
       } else {
         reject();
       }
-    })
-  }
-
-  promise()
+  })
     .then((type) => {
       videoStore.videoList = videoStore.getVideoList(type);
     })
     .catch(() => {
-      console.log('여기서 캐치');
-      promise();
-    })
-    .finally(() => {
-      videoStore.videoList = videoStore.getVideoList(groupStore.group.type);
+      console.log('promise catch');
     })
 })
 </script>

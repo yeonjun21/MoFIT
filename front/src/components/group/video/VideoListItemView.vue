@@ -21,6 +21,7 @@ const props = defineProps({
 
 const clickVideo = function () {
   store.getVideo(props.video);
+  store.getThumbnails(props.video.snippet.thumbnails.medium.url);
   router.push({name: 'VideoDetail'});
 }
 

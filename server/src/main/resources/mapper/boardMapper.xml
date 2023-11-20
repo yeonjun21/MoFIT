@@ -12,6 +12,14 @@
         ORDER BY `date` DESC
     </select>
 
+    <select id="selectByUserId" resultType="Board">
+        SELECT `index`, B.group_id as groupId, content, writer, `date`, group_name AS groupName
+        FROM `board` B
+        INNER JOIN `group` G
+        ON B.group_id = G.group_id
+        WHERE writer = #{userId}
+    </select>
+
     <select id="selectOne" parameterType="int" resultType="Board">
         SELECT `index`, group_id as groupId, content, writer, `date`, nickname
         FROM board

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="projectmofit.mofit.domain.user.dao.BookmarkDao">
+
+    <insert id="bookmark" parameterType="Bookmark">
+        INSERT INTO `bookmark`
+        VALUES (#{userId}, #{videoId}, #{thumbnails})
+    </insert>
+
+    <select id="findBookmark" resultType="Bookmark">
+        SELECT user_id AS userId, video_id AS videoId, thumbnails
+        FROM `bookmark`
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>

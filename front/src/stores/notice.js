@@ -176,8 +176,13 @@ export const useNoticeStore = defineStore('notice', () => {
         })
    }
 
+   const clear = function() {
+    notice.value = null;
+    noticeList.value = null;
+   }
+
  
    return {noticeList, notice, commentList, comment, 
     getNoticeList, getNotice, registNotice, editNotice, deleteNotice, 
-    getCommentList, registComment, editComment, deleteComment}
+    getCommentList, registComment, editComment, deleteComment, clear}
 })

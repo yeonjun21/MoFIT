@@ -7,6 +7,9 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import projectmofit.mofit.domain.board.controller.BoardController;
+import projectmofit.mofit.domain.board.dto.Board;
+import projectmofit.mofit.domain.board.service.BoardService;
 import projectmofit.mofit.domain.group.dao.GroupDao;
 import projectmofit.mofit.domain.group.dto.Group;
 import projectmofit.mofit.domain.group.service.GroupService;
@@ -22,6 +25,7 @@ public class MyPageController {
     private final MyPageService myPageService;
     private final GroupService groupService;
     private final UserService userService;
+    private final BoardService boardService;
 
     // 마이페이지 조회
     // TODO 본인 페이지만 조회 가능해야
@@ -69,6 +73,12 @@ public class MyPageController {
 
         return list;
     }
+
+    // 내가 쓴 글 리스트
+    @GetMapping("/{userId}/board")
+    public List<Board> myBoard(@PathVariable int userId) {
+        System.out.println(userId);
+        return boardService.getBoardByUserId(userId);
 
     // byte[] -> base64
     private static String byteToBase64(byte[] arr){

@@ -83,6 +83,41 @@ export const useUserStore = defineStore('user', () => {
     })
   }
 
+  const follow = function(followerId, followingId) {
+    axios({
+      url: API_URL + 'follow',
+      method: 'POST',
+      params: {
+        followerId: followerId,
+        followingId: followingId,
+      }
+    })
+      .then(() => {
+        alert('팔로우되었습니다.');
+      })
+      .catch(() => {
+        console.log('follow 에러');
+      })
+  }
+
+  const unfollow = function(followerId, followingId) {
+    axios({
+      url: API_URL + 'unfollow',
+      method: 'POST',
+      params: {
+        followerId: followerId,
+        followingId: followingId,
+      }
+    })
+      .then(() => {
+        alert('언팔로우되었습니다.');
+      })
+      .catch(() => {
+        console.log('unfollow 에러');
+      })
+  }
+
   return { user, loginUser, signup, login, logout, 
-    emailDuplicationCheck, nicknameDuplicationCheck }
+    emailDuplicationCheck, nicknameDuplicationCheck,
+    follow, unfollow }
 })

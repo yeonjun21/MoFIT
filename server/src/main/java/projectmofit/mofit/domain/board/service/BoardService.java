@@ -15,5 +15,6 @@ public interface BoardService {
     void editBoard(Board board);
     int removeBoard(int index);
     void removeComment(int index);
+    List<Board> getBoardByUserId(int userId);
 
 }

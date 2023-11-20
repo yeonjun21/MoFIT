@@ -2,6 +2,7 @@ package projectmofit.mofit.domain.group.service;
 
 import projectmofit.mofit.domain.group.dto.Group;
 import projectmofit.mofit.domain.group.dto.GroupHomeDto;
+import projectmofit.mofit.domain.group.dto.GroupMember;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface GroupService {
     List<String> getRegions(int groupId);
 
     GroupHomeDto getGroupDetail(int groupId);
+
+    List<GroupMember> getGroupMember(int groupId);
 }
