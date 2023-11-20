@@ -30,7 +30,7 @@ public class GalleryController {
             byte[] arr = gallery.getByteImg();
             if(arr != null && arr.length > 0){
                 String base64Encode = byteToBase64(arr);
-                base64Encode = "data:image/png;base64," + base64Encode;
+                base64Encode = "data:image/jpeg;base64," + base64Encode;
                 gallery.setImg(base64Encode);
             }
         }
@@ -43,9 +43,9 @@ public class GalleryController {
 
         byte[] arr = gallery.getByteImg();
 
-        if(arr.length > 0 && arr != null){
+        if(arr != null && arr.length > 0){
             String base64Encode = byteToBase64(arr);
-            base64Encode = "data:image/png;base64," + base64Encode;
+            base64Encode = "data:image/jpeg;base64," + base64Encode;
             gallery.setImg(base64Encode);
 
             return new ResponseEntity<>(gallery, HttpStatus.OK);
@@ -58,7 +58,7 @@ public class GalleryController {
     @PostMapping
     public ResponseEntity<Void> write(@RequestBody Gallery gallery){
         byte[] imgArr = null;
-        final String BASE_64_PREFIX = "data:image/png;base64,";
+        final String BASE_64_PREFIX = "data:image/jpeg;base64,";
         try {
             String base64url = gallery.getImg();
             if(base64url.startsWith(BASE_64_PREFIX)){
@@ -79,7 +79,7 @@ public class GalleryController {
     @PutMapping
     public ResponseEntity<Void> edit(@RequestBody Gallery gallery){
         byte[] imgArr = null;
-        final String BASE_64_PREFIX = "data:image/png;base64,";
+        final String BASE_64_PREFIX = "data:image/jpeg;base64,";
         try {
             String base64url = gallery.getImg();
             if(base64url.startsWith(BASE_64_PREFIX)){

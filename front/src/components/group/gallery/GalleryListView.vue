@@ -33,7 +33,7 @@ const galleryStore = useGalleryStore();
 const route = useRoute();
 
 onMounted(() => {
-    console.log(route.params.groupId)
+    galleryStore.clear();
     galleryStore.getGalleryList(route.params.groupId);
 })
 </script>

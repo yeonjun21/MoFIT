@@ -66,7 +66,7 @@ public class MyPageController {
             byte[] arr = group.getByteImg();
             if(arr != null && arr.length > 0){
                 String base64Encode = byteToBase64(arr);
-                base64Encode = "data:image/png;base64," + base64Encode;
+                base64Encode = "data:image/jpeg;base64," + base64Encode;
                 group.setImg(base64Encode);
             }
         }

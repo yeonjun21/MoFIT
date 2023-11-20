@@ -181,8 +181,12 @@ export const useGalleryStore = defineStore('gallery', () => {
         })
    }
 
+   const clear = function () {
+    galleryList.value = null;
+   }
+
  
    return {galleryList, gallery, commentList, comment, 
     getGalleryList, getGallery, registGallery, editGallery, deleteGallery, 
-    getCommentList, registComment, editComment, deleteComment}
+    getCommentList, registComment, editComment, deleteComment, clear}
 }) 
