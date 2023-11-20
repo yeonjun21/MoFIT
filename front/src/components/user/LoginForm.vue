@@ -14,16 +14,21 @@
             </div>
             <p v-if="loginError" class="login-error">이메일 또는 비밀번호가 정확하지 않습니다.</p>
         </div>
-        <button @click="login" class="btn btn-primary">로그인</button>
+        <div class="button-container">
+            <button @click="login" class="btn btn-primary">로그인</button>
+            <img src="@/assets/kakao_login.png" class="kakao"/>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { useUserStore } from '@/stores/user';
+import { useGroupStore } from '@/stores/group';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const store = useUserStore();
+const groupStore = useGroupStore();
 const router = useRouter();
 
 const email = ref('');
@@ -60,7 +65,15 @@ const login = function() {
     color: red;
 }
 
-.btn {
+.button-container {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.btn {
+    width: 48%;
+}
+.kakao {
+    width: 48%;
 }
 </style>

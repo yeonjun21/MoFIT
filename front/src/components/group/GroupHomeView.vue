@@ -32,7 +32,7 @@
                 
             </div>
         </div>
-        <GroupJoinButton @click="join"/>
+        <GroupJoinButton v-if="!isMember" @click="$emit('join')"/>
     </div>
 </template>
 
@@ -42,6 +42,10 @@ import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import GroupJoinButton from '@/components/group/home/GroupJoinButton.vue';
+
+defineProps({
+    isMember: Boolean
+})
 
 const store = useGroupStore();
 const route = useRoute();
@@ -58,14 +62,6 @@ const getGroupDetail = function(groupId) {
         })
         .catch(() => {
         })
-}
-
-const join = function() {
-    const result = confirm('모임에 가입하시겠어요?');
-    
-    if(result) {
-        store.join(store.group.groupId, sessionStorage.getItem('loginUser'));
-    }
 }
 
 onMounted(() => {

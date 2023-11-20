@@ -1,5 +1,8 @@
 <template>
-    <div class="gallery">
+    <div v-if="!isMember">
+        <NeedJoinView/>
+    </div>
+    <div v-else class="gallery">
       <h3>우리 모임의 <span>갤러리</span>입니다.</h3>
         <div>
             <RouterView/>
@@ -8,13 +11,14 @@
 </template>
 
 <script setup>
+import NeedJoinView from '@/components/common/NeedJoinView.vue';
+
+defineProps({
+    isMember: Boolean
+})
 </script>
 
 <style scoped>
-/* body {
-  margin: 0;
-} */
-
 h3 {
     margin-bottom: 50px;
 }

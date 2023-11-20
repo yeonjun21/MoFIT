@@ -2,11 +2,14 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import { useGroupStore } from './group';
 
 export const useUserStore = defineStore('user', () => {
   const API_URL = 'http://localhost:8080/user/';
 
   const router = useRouter();
+
+  const groupStore = useGroupStore();
 
   const user = ref({});
   const loginUser = ref(sessionStorage.getItem("loginUser"));

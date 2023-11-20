@@ -2,18 +2,41 @@
     <div class="container">
         <h2>{{ store.group.groupName }}</h2>
         <GroupMenuNav/>
-        <RouterView class="view"/>
+        <RouterView class="view" :isMember="isMember" @join="join"/>
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useGroupStore } from '@/stores/group.js';
 import { useRoute } from 'vue-router';
 import GroupMenuNav from '@/components/common/GroupMenuNav.vue'
 
 const store = useGroupStore();
 const route = useRoute();
+
+const isMember = ref(false);
+
+const memberCheck = new Promise((resolve, reject) => {
+    store.getMyGroupList(sessionStorage.getItem('loginUser'));
+    resolve();
+})
+    .then(() => {
+        for (let group of store.groupList) {
+            if (group.groupId == route.params.groupId) {
+                isMember.value = true;
+            }
+        }
+    })
+
+const join = function() {
+    const result = confirm('모임에 가입하시겠어요?');
+    
+    if (result) {
+        store.join(store.group.groupId, sessionStorage.getItem('loginUser'));
+        isMember.value = true;
+    }
+}
 
 onMounted(() => {
     store.getGroup(route.params.groupId);
