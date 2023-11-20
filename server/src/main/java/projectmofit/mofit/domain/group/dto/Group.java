@@ -31,4 +31,8 @@ public class Group {
     // DB에서 모임 조회할 때는 들어오지 않음
     // 단, 내가 가입한 모임 조회할 때는 운영진 여부를 구분하기 위해 넣어줌)
     private int leaderId;
+
+    private String img;
+
+    private byte[] byteImg;
 }

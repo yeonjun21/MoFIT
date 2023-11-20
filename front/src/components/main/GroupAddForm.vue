@@ -43,6 +43,10 @@
                         <p v-if="infoError" class="input-error">모임 소개글은 반드시 입력해야 하며, 최대 300자까지 입력 가능합니다.</p>
                 </div>
 
+                <input type="file" @change="handleFileChange" />
+                <div v-if="base64Data">
+                    <img :src="base64Data" alt="Uploaded Image" />
+                </div>
             </div>
             <button @click="addGroup" class="btn btn-primary">모임 만들기</button>
 
@@ -69,6 +73,18 @@ const groupNameError = ref(false);
 const typeError = ref(false);
 const regionsError = ref(false);
 const infoError = ref(false);
+
+const selectedFile = ref(null);
+const base64Data = ref(null);
+
+const handleFileChange = (event) => {
+  selectedFile.value = event.target.files[0];
+  const reader = new FileReader();
+    reader.onload = () => {
+    base64Data.value = reader.result;
+  };
+  reader.readAsDataURL(selectedFile.value);
+};
 
 const groupNameCheck = function() {
     return new Promise((resolve, reject) => {
@@ -132,7 +148,8 @@ const addGroup = function() {
                 type: type.value,
                 regions: regions.value,
                 info: info.value,
-                leaderId: leaderId
+                leaderId: leaderId,
+                img: base64Data.value
             }
             store.addGroup(group);
         }
@@ -188,5 +205,12 @@ onMounted(() => {
     display: block;
     width: 100%;
     margin: 0 auto;
+}
+
+img {
+    width: 300px;
+    height: 150px;
+    object-fit: scale-down;
+    object-position: left;
 }
 </style>

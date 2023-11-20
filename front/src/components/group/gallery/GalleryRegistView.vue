@@ -58,4 +58,11 @@ div>textarea{
     margin-bottom: 20px;
     resize: none;
 }
+
+img {
+    width: 300px;
+    height: 150px;
+    object-fit: scale-down;
+    object-position: left;
+}
 </style>

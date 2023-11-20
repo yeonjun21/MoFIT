@@ -6,8 +6,8 @@
 <mapper namespace="projectmofit.mofit.domain.group.dao.GroupDao">
 
     <insert id="insertGroup" parameterType="Group">
-        INSERT INTO `group` (group_name, type, info)
-        VALUES (#{groupName}, #{type}, #{info})
+        INSERT INTO `group` (group_name, type, info, img)
+        VALUES (#{groupName}, #{type}, #{info}, #{byteImg})
     </insert>
 
     <insert id="insertRegion" parameterType="string">
@@ -23,7 +23,7 @@
     </select>
 
     <select id="findGroupById" resultType="Group">
-        SELECT group_id AS groupId, group_name AS groupName, type, info
+        SELECT group_id AS groupId, group_name AS groupName, type, info, img as byteImg
         FROM `group`
         WHERE group_id = #{groupId}
     </select>
@@ -35,7 +35,7 @@
     </select>
 
     <select id="findGroupByRegion" parameterType="string" resultType="Group">
-        SELECT DISTINCT G.group_id AS groupId, group_name AS groupName, type, info
+        SELECT DISTINCT G.group_id AS groupId, group_name AS groupName, type, info, img as byteImg
         FROM `group` G
         INNER JOIN group_region R
         ON G.group_id = R.group_id

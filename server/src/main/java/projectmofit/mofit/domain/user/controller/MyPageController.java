@@ -1,6 +1,8 @@
 package projectmofit.mofit.domain.user.controller;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.Base64;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,6 +58,26 @@ public class MyPageController {
             group.setRegions(regions);
         }
 
+        for(Group group : list){
+            byte[] arr = group.getByteImg();
+            if(arr.length > 0 && arr != null){
+                String base64Encode = byteToBase64(arr);
+                base64Encode = "data:image/png;base64," + base64Encode;
+                group.setImg(base64Encode);
+            }
+        }
+
         return list;
+    }
+
+    // byte[] -> base64
+    private static String byteToBase64(byte[] arr){
+        String result = "";
+        try {
+            result = Base64.getEncoder().encodeToString(arr);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }
