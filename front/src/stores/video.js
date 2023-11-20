@@ -5,12 +5,13 @@ import axios from 'axios';
 
 export const useVideoStore = defineStore('video', () => {
   const API_URL = 'https://www.googleapis.com/youtube/v3/search';
-  const API_KEY = 'AIzaSyDVY3BxSGL9YcJLpH5FP-e_Q4fPYJplsvo';
+  const API_KEY = 'AIzaSyAXyzdf91y0ELR8iWB27kXY-N2-Py2Z3xY';
 
   const router = useRouter();
 
   const video = ref({});
   const videoList = ref([]);
+  const thumbnails = ref();
 
   const getVideoList = function(type) {
     axios({
@@ -28,7 +29,6 @@ export const useVideoStore = defineStore('video', () => {
       }
     })
     .then((res) => {
-      console.log(type);
       videoList.value = res.data.items;
     })
     .catch(() => {
@@ -36,9 +36,13 @@ export const useVideoStore = defineStore('video', () => {
     })
   }
 
-  const getVideo = function(video) {
-    video.value = video;
+  const getVideo = function(v) {
+    video.value = v;
+  }
+
+  const getThumbnails = function(url) {
+    thumbnails.value = url;
   }
   
-  return { video, videoList, getVideoList, getVideo }
+  return { video, videoList, thumbnails, getVideoList, getVideo, getThumbnails }
 })
