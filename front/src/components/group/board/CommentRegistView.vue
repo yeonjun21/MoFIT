@@ -1,12 +1,12 @@
 <template>
     <fieldset>
         <div>
-                <label for="content">댓글을 남겨보세요 😊</label>
-                <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
-            </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary me-md-2" @click="registComment">등록</button>
-            </div>
+            <label for="content">댓글을 남겨보세요 😊</label>
+            <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" @click="registComment">등록</button>
+        </div>
     </fieldset>
 </template>
 

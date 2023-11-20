@@ -1,21 +1,23 @@
 <template>
     <div>
         <div class="first-container">
+            <div class="image">
+                <img :src="galleryStore.gallery.img" alt="Gallery Image" />
+            </div>
             <p>{{ galleryStore.gallery.content }}</p>
             <div class="second-container">
                 <p>{{ galleryStore.gallery.writer }}</p>
                 <p class="blank"> | </p>
                 <p>{{ galleryStore.gallery.date }}</p>
             </div>
-            <img :src="galleryStore.gallery.img" alt="Gallery Image" />
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div v-if="galleryStore.gallery.writer == userId">
-                <button class="btn btn-primary me-md-2" @click="editGallery">수정</button>
-                <button class="btn btn-primary me-md-1" @click="deleteGallery">삭제</button>
+                <button class="btn btn-outline-primary me-md-2" @click="editGallery">수정</button>
+                <button class="btn btn-outline-danger" @click="deleteGallery">삭제</button>
             </div>
-            <button class="btn btn-primary me-md-2" @click="toGalleryList">목록</button>
+            <button class="btn btn-outline-secondary" @click="toGalleryList">목록</button>
             <RouterLink class="btn btn-primary" :to="{ name: 'GalleryCommentRegist' }">댓글 쓰기</RouterLink>
         </div>
     </div>
@@ -57,7 +59,7 @@ onMounted(() => {
     width: 100%;
     border-radius: 10px;
     padding: 13px;
-    box-shadow: 0px 0px 5px rgb(170, 170, 170);
+    box-shadow: 0px 0px 3px rgb(180, 180, 180);
     margin: 20px 0px;
 }
 
@@ -78,9 +80,14 @@ onMounted(() => {
 }
 
 img {
-    width: 300px;
-    height: 150px;
+    width: 500px;
     object-fit: scale-down;
-    object-position: left;
+    object-position: center;
+    margin: 20px 0 30px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
 }
 </style>

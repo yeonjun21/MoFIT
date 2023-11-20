@@ -1,23 +1,23 @@
 <template>
     <div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <RouterLink :to="{name:'BoardRegist'}" class="btn btn-primary" style="color: aliceblue;"> 등록 </RouterLink>
-    </div>
-    <div class="board-list">   
-        <div v-for="board in boardStore.boardList" :key = "board.index" class="content">
-            <RouterLink :to="{name:'CommentList', params:{index: board.index}}"
-                class="board-detail">
-                <div class="first-container">
-                    <p>{{ board.content }}</p>
-                    <div class="second-container">
-                        <p>{{ board.nickname }}</p>
-                        <p class="blank"> | </p>
-                        <p>{{ board.date }}</p>
-                    </div>
-                </div>
-            </RouterLink>
+            <RouterLink :to="{name:'BoardRegist'}" class="btn btn-primary" style="color: aliceblue;"> 등록 </RouterLink>
         </div>
-    </div>
+        <div class="board-list">   
+            <div v-for="board in boardStore.boardList" :key = "board.index" class="content">
+                <RouterLink :to="{name:'CommentList', params:{index: board.index}}"
+                    class="board-detail">
+                    <div class="first-container">
+                        <p>{{ board.content }}</p>
+                        <div class="second-container">
+                            <p>{{ board.nickname }}</p>
+                            <p class="blank"> | </p>
+                            <p>{{ board.date }}</p>
+                        </div>
+                    </div>
+                </RouterLink>
+            </div>
+        </div>
     </div>
 </template>
 

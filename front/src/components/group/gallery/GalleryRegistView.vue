@@ -2,16 +2,18 @@
     <div>
         <fieldset>        
             <div>
-                <label for="content">💙 갤러리 등록 💙</label>
+                <label for="content">갤러리에 사진을 등록해보세요 😊</label>
                 <textarea class="form-control" id="content" cols='50' v-model="content"></textarea>
             </div>
-            
-            <input type="file" @change="handleFileChange" />
-            <button class="btn btn-primary me-md-2" @click="registGallery">등록</button>
+            <div class="mb-3">
+                <input type="file" @change="handleFileChange" class="form-control"/>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" @click="registGallery">등록</button>
+            </div>
             <div v-if="base64Data">
                 <img :src="base64Data" alt="Uploaded Image" />
             </div>
-            
         </fieldset>
     </div>
 </template> 
@@ -61,8 +63,7 @@ div>textarea{
 
 img {
     width: 300px;
-    height: 150px;
     object-fit: scale-down;
-    object-position: left;
+    object-position: center;
 }
 </style>

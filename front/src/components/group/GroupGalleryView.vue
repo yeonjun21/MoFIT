@@ -1,7 +1,6 @@
 <template>
-
     <div class="gallery">
-        <h3>Gallery</h3>
+      <h3>우리 모임의 <span>갤러리</span>입니다.</h3>
         <div>
             <RouterView/>
         </div>
@@ -12,8 +11,17 @@
 </script>
 
 <style scoped>
-body {
+/* body {
   margin: 0;
+} */
+
+h3 {
+    margin-bottom: 50px;
+}
+
+span {
+    font-weight: 700;
+    color: #007bff
 }
 
 #app {

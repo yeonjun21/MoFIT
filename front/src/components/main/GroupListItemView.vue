@@ -57,10 +57,7 @@ const goGroup = function(groupId) {
 .group-profile-img {
     width: 100px;
     height: 100px;
-    border: 2px dashed orange;
     border-radius: 10px;
-    color: gray;
-    text-align: center;
 }
 
 p {
@@ -81,8 +78,9 @@ p {
 }
 
 .profile {
-    width:100%;
-    height:100%;
-    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 </style>

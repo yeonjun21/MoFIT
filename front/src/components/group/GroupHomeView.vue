@@ -81,8 +81,6 @@ onMounted(() => {
 .group-image {
     width: 300px;
     height: 300px;
-    background-color: rgb(196, 231, 255);
-    border-radius: 30px;
     flex-shrink: 0;
 }
 
@@ -124,8 +122,9 @@ span {
 }
 
 .profile {
-    width:100%;
-    height:100%;
-    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 </style>

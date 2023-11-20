@@ -1,7 +1,7 @@
 <template>
     <div>
         <fieldset>
-            <legend style="font-size: medium;">💙 댓글 수정 💙</legend>   
+            <!-- <legend style="font-size: medium;">댓글을 수정해보세요 😊</legend>    -->
             <br>     
             <div class="mb-3">
                 <label for="writerName">작성자</label> 
@@ -39,5 +39,7 @@ const editComment = function(){
 </script>
 
 <style scoped>
-
+legend {
+    margin: 20px 0;
+}
 </style>

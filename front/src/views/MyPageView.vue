@@ -24,7 +24,7 @@
         <div class="row-container">
             <div class="col-container">
                 <h3>내가 쓴 글</h3>
-                <MyBoardView/>
+                <MyBoardView class="sub-container"/>
             </div>
             <div class="col-container">
                 <h3>찜한 영상</h3>
