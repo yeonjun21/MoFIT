@@ -3,19 +3,41 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="projectmofit.mofit.domain.notice.dao.NoticeDao"> <!-- 수정 + 설정변경 -->
+<mapper namespace="projectmofit.mofit.domain.gallery.dao.GalleryDao">
 
-    <select id="selectImage" resultType="map">
-            <![CDATA[
-                select *
-                from gallery
-                where `index` = #{index}
-            ]]>
+    <select id="selectAll" parameterType="int" resultType="Gallery">
+        SELECT `index`, group_id as groupId, content, writer, `date`, gallery.img as byteImg, nickname
+        FROM gallery
+        INNER JOIN user on gallery.writer = user.id
+        WHERE group_id = #{groupId}
+        ORDER BY `date` DESC
     </select>
 
-    <insert id="insertImage">
-        <![CDATA[
-        insert into
-        ]]>
+    <select id="selectOne" parameterType="int" resultType="Gallery">
+        SELECT `index`, group_id as groupId, content, writer, `date`, gallery.img as byteImg, nickname
+        FROM gallery
+        INNER JOIN user on gallery.writer = user.id
+        where `index` = #{index}
+    </select>
+
+    <insert id="insertImg" parameterType="Gallery">
+        INSERT INTO gallery (group_id, content, writer, `img`)
+        VALUES (#{groupId}, #{content}, #{writer}, #{byteImg})
     </insert>
+
+    <update id="updateGallery" parameterType="Gallery">
+        UPDATE gallery
+        SET content=#{content}, date=now(), `img`=#{byteImg}
+        WHERE `index` = #{index}
+    </update>
+
+    <delete id="deleteGallery" parameterType="int">
+        DELETE FROM gallery
+        WHERE `index` = #{index}
+    </delete>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comment_gallery
+        WHERE `gallery_idx` = #{index}
+    </delete>
 </mapper>

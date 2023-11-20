@@ -3,7 +3,12 @@ package projectmofit.mofit.domain.group.controller;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Base64;
 import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +33,14 @@ public class GroupHomeController {
 
         // TODO 현재 회원이 모임에 가입했는지 여부 확인
         // 모임에 가입하지 않은 경우에만 '모임 가입하기' 버튼 띄우기
+
+        // byte[] -> base64
+        byte[] arr = group.getByteImg();
+        if(arr.length > 0 && arr != null){
+            String base64Encode = byteToBase64(arr);
+            base64Encode = "data:image/png;base64," + base64Encode;
+            group.setImg(base64Encode);
+        }
 
         return group;
     }
@@ -54,5 +67,16 @@ public class GroupHomeController {
         model.addAttribute("group", group);
 
         return "group/groupHome";
+    }
+
+    // byte[] -> base64
+    private static String byteToBase64(byte[] arr){
+        String result = "";
+        try {
+            result = Base64.getEncoder().encodeToString(arr);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

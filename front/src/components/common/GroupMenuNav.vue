@@ -14,7 +14,7 @@
                     :class="{active: route.path === path + '/board'}">자유게시판</RouterLink>
             </li>
             <li class="nav-item">
-                <RouterLink :to="{ name: 'GroupGallery' }" class="nav-link" 
+                <RouterLink :to="{ name: 'GalleryList' }" class="nav-link"
                     :class="{active: route.path === path + '/gallery'}">갤러리</RouterLink>
             </li>
             <li class="nav-item">

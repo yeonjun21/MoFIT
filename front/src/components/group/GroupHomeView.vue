@@ -1,7 +1,9 @@
 <template>
     <div class="container">
         <div class="sub-container profile-container">
-            <div class="group-image"></div>
+            <div class="group-image">
+                <img class="profile" :src="store.group.img" alt="img">
+            </div>
             <div class="profile-sub-container">
                 <div class="profile-core">
                     <span v-for="region in store.group.regions" 
@@ -121,4 +123,9 @@ span {
     font-weight: 600;
 }
 
+.profile {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
 </style>
