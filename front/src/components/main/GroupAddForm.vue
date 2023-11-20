@@ -43,10 +43,14 @@
                         <p v-if="infoError" class="input-error">모임 소개글은 반드시 입력해야 하며, 최대 300자까지 입력 가능합니다.</p>
                 </div>
 
-                <input type="file" @change="handleFileChange" />
-                <div v-if="base64Data">
-                    <img :src="base64Data" alt="Uploaded Image" />
+                <div class="mb-3">
+                    <label for="img" class="form-label">모임 대표 사진</label>
+                    <input type="file" @change="handleFileChange" id="img" class="form-control"/>
+                    <div v-if="base64Data" style="margin-top: 10px;">
+                        <img :src="base64Data" alt="Uploaded Image" />
+                    </div>
                 </div>
+
             </div>
             <button @click="addGroup" class="btn btn-primary">모임 만들기</button>
 

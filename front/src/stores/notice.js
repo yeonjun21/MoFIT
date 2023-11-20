@@ -177,7 +177,6 @@ export const useNoticeStore = defineStore('notice', () => {
    }
 
    const clear = function() {
-    notice.value = null;
     noticeList.value = null;
    }
 

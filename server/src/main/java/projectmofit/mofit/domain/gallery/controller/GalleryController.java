@@ -28,7 +28,7 @@ public class GalleryController {
         }
         for(Gallery gallery : list){
             byte[] arr = gallery.getByteImg();
-            if(arr.length > 0 && arr != null){
+            if(arr != null && arr.length > 0){
                 String base64Encode = byteToBase64(arr);
                 base64Encode = "data:image/png;base64," + base64Encode;
                 gallery.setImg(base64Encode);

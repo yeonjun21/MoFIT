@@ -35,7 +35,7 @@
     </select>
 
     <select id="findGroupByRegion" parameterType="string" resultType="Group">
-        SELECT DISTINCT G.group_id AS groupId, group_name AS groupName, type, info, img as byteImg
+        SELECT DISTINCT G.group_id AS groupId, group_name AS groupName, type, info, img AS byteImg
         FROM `group` G
         INNER JOIN group_region R
         ON G.group_id = R.group_id

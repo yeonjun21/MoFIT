@@ -64,7 +64,7 @@ public class MyPageController {
 
         for(Group group : list){
             byte[] arr = group.getByteImg();
-            if(arr.length > 0 && arr != null){
+            if(arr != null && arr.length > 0){
                 String base64Encode = byteToBase64(arr);
                 base64Encode = "data:image/png;base64," + base64Encode;
                 group.setImg(base64Encode);

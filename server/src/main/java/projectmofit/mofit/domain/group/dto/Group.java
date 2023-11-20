@@ -24,9 +24,6 @@ public class Group {
     @Size(min = 1, message = "활동 지역을 1개 이상 선택하세요.")
     private List<String> regions;
 
-    // private String profileImg;
-    // private String coverImg;
-
     // 모임 생성할 때만 들어오는 필드
     // DB에서 모임 조회할 때는 들어오지 않음
     // 단, 내가 가입한 모임 조회할 때는 운영진 여부를 구분하기 위해 넣어줌)

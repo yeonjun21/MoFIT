@@ -45,10 +45,11 @@ public class GroupController {
 
         // 모임 프로필 등록
         byte[] imgArr = null;
-        final String BASE_64_PREFIX = "data:image/png;base64,";
+        // TODO jpeg 말고 다른 확장자도 가능하게 하기
+        final String BASE_64_PREFIX = "data:image/jpeg;base64,";
         try {
             String base64url = group.getImg();
-            if(base64url.startsWith(BASE_64_PREFIX)){
+            if (base64url.startsWith(BASE_64_PREFIX)) {
                 imgArr = Base64.getDecoder().decode(base64url.substring(BASE_64_PREFIX.length()));
             }
         } catch (Exception e) {
@@ -95,7 +96,7 @@ public class GroupController {
         // 모든 리스트의 byteImg를 base64로 변환후 img 필드에 담아준다.
         for(Group group : list){
             byte[] arr = group.getByteImg();
-            if(arr.length > 0 && arr != null){
+            if(arr != null && arr.length > 0){
                 String base64Encode = byteToBase64(arr);
                 base64Encode = "data:image/png;base64," + base64Encode;
                 group.setImg(base64Encode);
