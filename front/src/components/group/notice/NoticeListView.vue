@@ -1,6 +1,7 @@
 <template>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <RouterLink :to="{name:'NoticeRegist'}" class="btn btn-primary" style="color: aliceblue;"> 등록 </RouterLink>
+        <RouterLink :to="{name:'NoticeRegist'}" class="btn btn-primary" style="color: aliceblue;"
+            v-if="leaderId == groupDetail.leaderId"> 등록 </RouterLink>
     </div>
     <div class="notice-list">   
         <div v-for="notice in noticeStore.noticeList" :key = "notice.index" class="content">
@@ -22,15 +23,32 @@
 
 <script setup>
 import {useNoticeStore} from '@/stores/notice.js';
-import { onMounted } from 'vue';
-import { useRoute } from 'vue-router';   
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import axios from 'axios';  
 
 const noticeStore = useNoticeStore();
 const route = useRoute();
 
+const leaderId = ref(sessionStorage.getItem('loginUser'));
+const groupDetail = ref({});
+
+const getGroupDetail = function(groupId) {
+    axios({
+        url: 'http://localhost:8080/group/' + groupId +'/detail',
+        method: 'GET',
+    })
+        .then((res) => {
+            groupDetail.value = res.data;
+        })
+        .catch(() => {
+        })
+}
+
 onMounted(()=>{
     console.log(route.params.groupId)
-    noticeStore.getNoticeList(route.params.groupId); 
+    noticeStore.getNoticeList(route.params.groupId);
+    getGroupDetail(route.params.groupId);
 })
 </script>
 

@@ -7,6 +7,7 @@ import java.util.*;
 @Data
 public class GroupHomeDto {
     private String leaderNickname;
+    private int leaderId;
     private int member;
     private int board;
 

@@ -61,6 +61,9 @@
     <select id="findGroupDetail" resultType="GroupHomeDto">
         SELECT COUNT(DISTINCT M.user_id) AS `member`,
             COUNT(DISTINCT B.index) AS `board`,
+            (SELECT user_id FROM `group_member`
+                WHERE group_id = #{groupId} AND grade = '운영진')
+                AS leaderId,
             (SELECT nickname FROM user
                 WHERE id = (SELECT user_id FROM `group_member`
                 WHERE group_id = #{groupId} AND grade = '운영진')
