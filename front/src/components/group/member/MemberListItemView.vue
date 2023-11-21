@@ -5,18 +5,24 @@
                 <span v-if="member.grade == '운영진'">👑</span>
             </h6>
         </div>
-        <button @click="follow" type="button" class="btn btn-primary">팔로우</button>
+        <button v-if="userId != member.userId" @click="follow" 
+            type="button" class="btn btn-primary">팔로우</button>
+        <button v-else="userId != member.userId" 
+            type="button" class="btn btn-light">나 ^-^</button>
     </div>
 </template>
 
 <script setup>
 import { useUserStore } from '@/stores/user.js';
+import { ref } from 'vue';
 
 const props = defineProps({
     member: Object
 })
 
 const store = useUserStore();
+
+const userId = ref(sessionStorage.getItem('loginUser'));
 
 const follow = function() {
     const result = confirm('해당 멤버를 팔로우하시겠어요?');

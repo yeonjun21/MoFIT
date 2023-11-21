@@ -256,7 +256,7 @@ const router = createRouter({
       ]
     },
     {
-      path: '/my-page/:id',
+      path: '/my-page',
       name: 'MyPage',
       component: MyPageView
     }

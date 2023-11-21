@@ -13,7 +13,7 @@
                 <FollowView @click="followList = !followList"/>
             </div>
         </div>
-        <FollowListView v-if="followList"/>
+        <FollowListView v-if="followList" @unfollow="unfollow"/>
         <div class="col-container">
             <h3>내가 가입한 모임</h3>
             <div class="my-group-list" @click="goMyGroupList">
@@ -58,6 +58,12 @@ const followList = ref(false);
 
 const goMyGroupList = function() {
     router.push({name: 'MyGroup'});
+}
+
+const unfollow = function(id) {
+    userStore.unfollow(sessionStorage.getItem('loginUser'), id);
+    // 강제로 새로고침!
+    window.location.reload();
 }
 
 onMounted(() => {

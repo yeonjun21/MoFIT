@@ -9,8 +9,6 @@ export const useUserStore = defineStore('user', () => {
 
   const router = useRouter();
 
-  const groupStore = useGroupStore();
-
   const user = ref({});
   const loginUser = ref(sessionStorage.getItem("loginUser"));
 
@@ -96,7 +94,7 @@ export const useUserStore = defineStore('user', () => {
       }
     })
       .then(() => {
-        alert('팔로우되었습니다.');
+        alert('팔로우 되었습니다.');
       })
       .catch(() => {
         console.log('follow 에러');
@@ -113,7 +111,7 @@ export const useUserStore = defineStore('user', () => {
       }
     })
       .then(() => {
-        alert('언팔로우되었습니다.');
+        alert('언팔로우 되었습니다.');
       })
       .catch(() => {
         console.log('unfollow 에러');
