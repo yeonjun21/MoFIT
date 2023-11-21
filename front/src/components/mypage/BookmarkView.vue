@@ -1,7 +1,9 @@
 <template>
     <div>
-        <div class="video-player">
-            <videoPlayer v-if="videoPlayer" :videoURL="videoURL"/>
+        <div v-if="videoPlayer" class="video-player">
+            <VideoPlayer :videoURL="videoURL"/>
+            <button @click="deleteBookmark" type="button" 
+                class="btn btn-outline-danger">이 영상을 찜한 영상에서 삭제하기</button>
         </div>
         <img v-for="bookmark in store.bookmarkList" :key="bookmark.videoId"
             :src="bookmark.thumbnails" @click="videoDetail(bookmark.videoId)">
@@ -9,7 +11,7 @@
 </template>
 
 <script setup>
-import { useMypageStore } from '@/stores/mypage.js'
+import { useMypageStore } from '@/stores/mypage.js';
 import { ref, onMounted } from 'vue';
 import VideoPlayer from '@/components/group/video/VideoPlayer.vue';
 
@@ -17,10 +19,16 @@ const store = useMypageStore();
 
 const videoPlayer = ref(false);
 const videoURL = ref('');
+const videoId = ref('');
 
-const videoDetail = function(videoId) {
+const videoDetail = function(v) {
     videoPlayer.value = !videoPlayer.value;
-    videoURL.value = 'https://www.youtube.com/embed/' + videoId;
+    videoURL.value = 'https://www.youtube.com/embed/' + v;
+    videoId.value = v;
+}
+
+const deleteBookmark = function() {
+    store.deleteBookmark(sessionStorage.getItem('loginUser'), videoId.value);
 }
 
 onMounted(() => {
@@ -36,6 +44,10 @@ img {
 
 .video-player {
     width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 </style>

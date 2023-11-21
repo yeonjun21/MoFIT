@@ -10,5 +10,7 @@ public interface BookmarkDao {
 
     List<Bookmark> findBookmark(int userId);
 
+    int deleteBookmark(Bookmark bookmark);
+
 
 }

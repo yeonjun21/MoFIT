@@ -16,4 +16,9 @@
         WHERE user_id = #{userId}
     </select>
 
+    <delete id="deleteBookmark" parameterType="Bookmark">
+        DELETE FROM `bookmark`
+        WHERE user_id = #{userId} AND video_id = #{videoId}
+    </delete>
+
 </mapper>

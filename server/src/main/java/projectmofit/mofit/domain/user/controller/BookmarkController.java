@@ -31,4 +31,13 @@ public class BookmarkController {
     public List<Bookmark> getBookmark(int userId) {
         return bookmarkService.getBookmark(userId);
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteBookmark(@RequestBody Bookmark bookmark) {
+        if (bookmarkService.deleteBookmark(bookmark) > 0) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }

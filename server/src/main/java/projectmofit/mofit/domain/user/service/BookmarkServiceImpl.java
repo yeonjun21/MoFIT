@@ -22,4 +22,9 @@ public class BookmarkServiceImpl implements BookmarkService {
     public List<Bookmark> getBookmark(int userId) {
         return bookmarkDao.findBookmark(userId);
     }
+
+    @Override
+    public int deleteBookmark(Bookmark bookmark) {
+        return bookmarkDao.deleteBookmark(bookmark);
+    }
 }

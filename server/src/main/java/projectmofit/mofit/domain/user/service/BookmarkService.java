@@ -9,4 +9,6 @@ public interface BookmarkService {
     int bookmark(Bookmark bookmark);
 
     List<Bookmark> getBookmark(int userId);
+
+    int deleteBookmark(Bookmark bookmark);
 }

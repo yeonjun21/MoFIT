@@ -44,6 +44,24 @@ export const useMypageStore = defineStore('mypage', () => {
             })
     }
 
+    const deleteBookmark = function(userId, videoId) {
+        axios({
+            url: API_URL + 'bookmark',
+            method: 'DELETE',
+            data: {
+                userId: userId,
+                videoId: videoId,
+            }
+        })
+            .then(() => {
+                alert('해당 영상을 찜한 영상에서 삭제했습니다.');
+                getBookmark(sessionStorage.getItem('loginUser'));
+            })
+            .catch(() => {
+                console.log('deleteBookmark 에러');
+            })
+    }
+
     const getBookmark = function(userId) {
         axios({
             url: API_URL + 'bookmark',
@@ -107,6 +125,6 @@ export const useMypageStore = defineStore('mypage', () => {
 
 
     return { user, bookmarkList, boardList, followingList, followerList,
-            getUser, bookmark, getBookmark, getBoardList,
+            getUser, bookmark, deleteBookmark, getBookmark, getBoardList,
             getFollowingList, getFollowerList }
 })
