@@ -18,11 +18,12 @@ const route = useRoute();
 const isMember = ref(false);
 
 const memberCheck = new Promise((resolve, reject) => {
+    store.clearGroupList();
     store.getMyGroupList(sessionStorage.getItem('loginUser'));
     resolve();
 })
     .then(() => {
-        for (let group of store.groupList) {
+        for (let group of store.myGroupList) {
             if (group.groupId == route.params.groupId) {
                 isMember.value = true;
             }

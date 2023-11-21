@@ -5,7 +5,7 @@
             <h3>내가 가입한 모임입니다 😊</h3>
             <div class="group-container">
                 <GroupListItemView class="group"
-                    v-for="group in groupStore.groupList" :group="group"/>
+                    v-for="group in groupStore.myGroupList" :group="group"/>
             </div>
         </div>
     </div>

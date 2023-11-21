@@ -10,6 +10,7 @@ export const useGroupStore = defineStore('group', () => {
 
     const group = ref({});
     const groupList = ref([]);
+    const myGroupList = ref([]);
 
     const regionList = ref([]);
     const typeList = ref([]);
@@ -58,7 +59,7 @@ export const useGroupStore = defineStore('group', () => {
             method: 'GET',
         })
             .then((res) => {
-                groupList.value = res.data;
+                myGroupList.value = res.data;
             })
             .catch(() => {
                 console.log('getMyGroupList 에러');
@@ -143,7 +144,7 @@ export const useGroupStore = defineStore('group', () => {
     }
 
 
-    return { group, groupList, regionList, typeList, memberList,
+    return { group, groupList, myGroupList,regionList, typeList, memberList,
             getAllRegion, getTypes, getGroupList, getMyGroupList, getGroup,
             addGroup, groupNameDuplicationCheck, clearGroupList, getMemberList, join }
 })

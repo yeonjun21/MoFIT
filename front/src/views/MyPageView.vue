@@ -17,7 +17,7 @@
         <div class="col-container">
             <h3>내가 가입한 모임</h3>
             <div class="my-group-list" @click="goMyGroupList">
-                <MyGroupView v-for="group in groupStore.groupList" :key="group.groupId"
+                <MyGroupView v-for="group in groupStore.myGroupList" :key="group.groupId"
                     :group="group" class="my-group"/>
             </div>
         </div>
