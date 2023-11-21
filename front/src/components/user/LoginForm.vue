@@ -16,7 +16,9 @@
         </div>
         <div class="button-container">
             <button @click="login" class="btn btn-primary">로그인</button>
-            <img src="@/assets/kakao_login.png" class="kakao"/>
+            <a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=8cb92fd45501f3ab00cd12ab3a65ecc7&redirect_uri=http://localhost:8080/kakao/login&response_type=code">
+                <img src="@/assets/kakao_login.png"/>
+            </a>
         </div>
     </div>
 </template>

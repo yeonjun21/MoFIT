@@ -77,7 +77,6 @@ public class MyPageController {
     // 내가 쓴 글 리스트
     @GetMapping("/{userId}/board")
     public List<Board> myBoard(@PathVariable int userId) {
-        System.out.println(userId);
         return boardService.getBoardByUserId(userId);
     }
 

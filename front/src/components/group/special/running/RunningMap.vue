@@ -317,8 +317,10 @@ onMounted(() => {
   
 <style >
 #map {
-    width: 600px;
+    width: 700px;
     height: 450px;
+    box-shadow: 0px 0px 8px rgb(170, 170, 170);
+    /* border: 1px solid blue; */
 }
 
 .outter {

@@ -1,14 +1,12 @@
 <template>
     <div class="outter">
-       
-        
-            <div v-for="(region, i) in groupStore.group.regions" :key="region[i]">
-                <div class="map">
-                    <span class="badge rounded-pill bg-light text-dark" >{{ region }}</span>
-                    <div :id="mapIndex[i]"></div>
-                </div>
+        <div v-for="(region, i) in groupStore.group.regions" :key="region[i]">
+            <div class="map">
+                <span class="badge rounded-pill bg-light text-dark" >{{ region }}</span>
+                <span>근처 축구장 ⚽</span>
+                <div :id="mapIndex[i]"></div>
             </div>
-       
+        </div>
     </div>
 </template>
 
@@ -166,36 +164,39 @@ const displayMarker = function (place, map) {
 
 
 #map1 {
-    width: 600px;
+    width: 700px;
     height: 450px;
-    
+    box-shadow: 0px 0px 8px rgb(170, 170, 170);
 }
 
 #map2 {
-    width: 600px;
+    width: 700px;
     height: 450px;
+    box-shadow: 0px 0px 8px rgb(170, 170, 170);
 }
 
 #map3 {
-    width: 600px;
+    width: 700px;
     height: 450px;
+    box-shadow: 0px 0px 8px rgb(170, 170, 170);
 }
 
 .map{
-    margin-top: 80px;
-    width: 600px;
-    height: 450px;
     text-align: center;
+    margin-bottom: 100px;
 }
 
-.map > span {
+.badge {
     margin-bottom: 20px;
-    font-size: 19px;
+    font-size: 21px;
+    margin-right: 5px;
 }
 
 .outter {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 </style>
   

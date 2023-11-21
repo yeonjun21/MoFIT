@@ -63,7 +63,7 @@ const getItems = function(keyword) {
 }
 
 onMounted(() => {
-    // getItems('등산복');
+    getItems('등산복');
 })
 
 </script>
