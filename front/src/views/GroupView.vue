@@ -17,18 +17,18 @@ const route = useRoute();
 
 const isMember = ref(false);
 
-const memberCheck = new Promise((resolve, reject) => {
-    store.clearGroupList();
-    store.getMyGroupList(sessionStorage.getItem('loginUser'));
-    resolve();
-})
-    .then(() => {
-        for (let group of store.myGroupList) {
-            if (group.groupId == route.params.groupId) {
-                isMember.value = true;
+const memberCheck = function () {
+    store.getMyGroupList(sessionStorage.getItem('loginUser'))
+        .then(()=>{
+            for (let group of store.myGroupList) {
+                if (group.groupId == route.params.groupId) {
+                    isMember.value = true;
+                }
             }
-        }
-    })
+        })
+        .catch(() => {
+        });
+}
 
 const join = function() {
     const result = confirm('모임에 가입하시겠어요?');
@@ -41,6 +41,7 @@ const join = function() {
 
 onMounted(() => {
     store.getGroup(route.params.groupId);
+    memberCheck();
 })
 
 

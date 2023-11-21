@@ -54,16 +54,20 @@ export const useGroupStore = defineStore('group', () => {
     }
 
     const getMyGroupList = function(id) {
-        axios({
-            url: 'http://localhost:8080/user/' + id + '/group',
-            method: 'GET',
+        return new Promise((resolve, reject) => {
+            axios({
+                url: 'http://localhost:8080/user/' + id + '/group',
+                method: 'GET',
+            })
+                .then((res) => {
+                    myGroupList.value = res.data;
+                    resolve();
+                })
+                .catch(() => {
+                    console.log('getMyGroupList 에러');
+                    reject();
+                })
         })
-            .then((res) => {
-                myGroupList.value = res.data;
-            })
-            .catch(() => {
-                console.log('getMyGroupList 에러');
-            })
     }
 
     const getGroup = function(groupId) {
