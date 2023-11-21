@@ -32,4 +32,10 @@
         WHERE F.follower = #{followerId};
     </select>
 
+    <select id="followCheck">
+        SELECT COUNT(*)
+        FROM follow
+        WHERE follower = #{id} AND following = #{other}
+    </select>
+
 </mapper>

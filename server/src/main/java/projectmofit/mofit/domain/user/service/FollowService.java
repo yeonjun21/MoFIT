@@ -14,4 +14,6 @@ public interface FollowService {
 
     List<User> getFollowings(int id);
 
+    boolean followCheck(int id, int other);
+
 }

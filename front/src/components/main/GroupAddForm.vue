@@ -62,10 +62,12 @@
 import { ref, onMounted } from 'vue';
 import { useGroupStore } from '@/stores/group';
 import { useUserStore } from '@/stores/user'
+import { useRouter } from 'vue-router';
 import NeedLoginView from '@/components/common/NeedLoginView.vue';
 
 const store = useGroupStore();
 const userStore = useUserStore();
+const router = useRouter();
 
 const groupName = ref('');
 const type = ref('');
@@ -156,6 +158,7 @@ const addGroup = function() {
                 img: base64Data.value
             }
             store.addGroup(group);
+            router.push({name: 'MyGroup'});
         }
     }).catch(() => {
     })

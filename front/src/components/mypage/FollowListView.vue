@@ -4,7 +4,7 @@
             <div class="col-container">
                 <h5>나를 팔로우하는 회원</h5>
                 <h6 v-for="user in store.followerList" :key="user.id">
-                    {{ user.nickname }} 💛</h6>
+                    {{ user.nickname }}</h6>
             </div>
             <div class="col-container">
                 <h5>내가 팔로우하는 회원</h5>
@@ -19,15 +19,8 @@
 
 <script setup>
 import { useMypageStore } from '@/stores/mypage.js';
-import { useUserStore } from '@/stores/user.js';
 
 const store = useMypageStore();
-const userStore = useUserStore();
-
-// const unfollow = function(id) {
-//     userStore.unfollow(sessionStorage.getItem('loginUser'), id);
-//     router.push({name: 'MyPage'});
-// }
 
 </script>
 
@@ -56,7 +49,7 @@ h6 {
     width: 80%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 5px;
 }
 

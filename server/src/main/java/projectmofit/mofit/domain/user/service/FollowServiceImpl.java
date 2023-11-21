@@ -32,4 +32,9 @@ public class FollowServiceImpl implements FollowService {
     public List<User> getFollowings(int id) {
         return followDao.getFollowings(id);
     }
+
+    @Override
+    public boolean followCheck(int id, int other) {
+        return followDao.followCheck(id, other) > 0;
+    }
 }

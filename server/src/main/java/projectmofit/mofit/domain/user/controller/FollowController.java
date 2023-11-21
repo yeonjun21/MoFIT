@@ -49,4 +49,10 @@ public class FollowController {
     public List<User> followingList(@PathVariable int id) {
         return followService.getFollowings(id);
     }
+
+    // 특정 회원을 팔로우 하는지 여부 확인
+    @GetMapping("/follow-check")
+    public boolean followCheck(@RequestParam int id, @RequestParam int other) {
+        return followService.followCheck(id, other);
+    }
 }

@@ -13,4 +13,6 @@ public interface FollowDao {
     List<User> getFollowers(int id);
 
     List<User> getFollowings(int id);
+
+    int followCheck(int id, int other);
 }
