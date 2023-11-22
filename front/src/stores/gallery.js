@@ -16,20 +16,20 @@ export const useGalleryStore = defineStore('gallery', () => {
    const commentList = ref([]);
    const comment = ref({});
 
-   const getGalleryList = function (groupId) {
-       axios({
-           url: API_URL_GALLERY,
-           method: 'GET',
-           params:{
-            groupId: groupId,
-           }
-       })
-       .then((res) => {
-            galleryList.value = res.data;
-       })
-       .catch(() => {
-           console.log('getGalleryList 에러 발생')
-       })
+    const getGalleryList = function (groupId) {
+        axios({
+            url: API_URL_GALLERY,
+            method: 'GET',
+            params:{
+                groupId: groupId,
+            }
+        })
+            .then((res) => {
+                 galleryList.value = res.data;
+            })
+            .catch(() => {
+                console.log('getGalleryList 에러 발생');
+            })
    };
 
    const getGallery = function (index) {
