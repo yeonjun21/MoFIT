@@ -13,11 +13,5 @@
         WHERE M.user_id = #{id}
     </select>
 
-    <select id="findMyLeaderGroup" resultType="int">
-        SELECT group_id
-        FROM group_member
-        WHERE user_id = #{id} AND grade = '운영진'
-    </select>
-
 </mapper>
 

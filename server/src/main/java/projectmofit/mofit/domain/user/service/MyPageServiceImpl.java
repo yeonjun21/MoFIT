@@ -29,9 +29,4 @@ public class MyPageServiceImpl implements MyPageService {
         }
         return list;
     }
-
-    @Override
-    public List<Integer> getMyLeaderGroups(int id) {
-        return myPageDao.findMyLeaderGroup(id);
-    }
 }

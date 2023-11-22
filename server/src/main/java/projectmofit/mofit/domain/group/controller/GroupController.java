@@ -1,19 +1,14 @@
 package projectmofit.mofit.domain.group.controller;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import projectmofit.mofit.domain.gallery.dto.Gallery;
 import projectmofit.mofit.domain.group.dto.Group;
 import projectmofit.mofit.domain.group.dto.GroupMember;
 import projectmofit.mofit.domain.group.service.GroupService;
-import projectmofit.mofit.domain.user.dto.User;
 
 import java.util.ArrayList;
 import java.util.Base64;
@@ -25,11 +20,6 @@ import java.util.List;
 public class GroupController {
 
     private final GroupService groupService;
-
-//    @GetMapping
-//    public String addGroupForm(@ModelAttribute Group group, Model model) {
-//        return "group/addGroupForm";
-//    }
 
     // 모임 만들기
     @PostMapping
@@ -124,7 +114,7 @@ public class GroupController {
         }
     }
 
-//    @ModelAttribute("regions")
+
     @GetMapping("/regions")
     public List<String> regions() {
         List<String> regions = new ArrayList<>();

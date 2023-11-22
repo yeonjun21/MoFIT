@@ -31,9 +31,6 @@ public class GroupHomeController {
         List<String> regions = groupService.getRegions(groupId);
         group.setRegions(regions);
 
-        // TODO 현재 회원이 모임에 가입했는지 여부 확인
-        // 모임에 가입하지 않은 경우에만 '모임 가입하기' 버튼 띄우기
-
         // byte[] -> base64
         byte[] arr = group.getByteImg();
         if(arr != null && arr.length > 0){
@@ -41,7 +38,6 @@ public class GroupHomeController {
             base64Encode = "data:image/png;base64," + base64Encode;
             group.setImg(base64Encode);
         }
-
         return group;
     }
 

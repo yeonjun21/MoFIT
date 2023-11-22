@@ -7,5 +7,4 @@ public interface MyPageService {
 
     List<Group> getMyGroups(int id);
 
-    List<Integer> getMyLeaderGroups(int id);
 }
