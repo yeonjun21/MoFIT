@@ -59,7 +59,7 @@ const galleryStore = useGalleryStore();
 const route = useRoute();
 
 const groupDetail = ref({});
-const galleryList = galleryStore.galleryList.slice(0,9);
+let galleryList;
 
 const getGroupDetail = function(groupId) {
     axios({
@@ -77,6 +77,10 @@ onMounted(() => {
     getGroupDetail(route.params.groupId);
     galleryStore.clear();
     galleryStore.getGalleryList(route.params.groupId);
+
+    if (galleryStore.galleryList != null) {
+        galleryList.value = galleryStore.galleryList.slice(0,9);
+    }
 })
 
 </script>
