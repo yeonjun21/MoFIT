@@ -1,7 +1,6 @@
 package projectmofit.mofit.domain.user.dao;
 
 import projectmofit.mofit.domain.user.dto.User;
-import projectmofit.mofit.domain.user.dto.UserImg;
 
 public interface UserDao {
 
@@ -15,5 +14,4 @@ public interface UserDao {
 
     int emailCheck(String email);
 
-    // int updateImg(UserImg userImg);
 }

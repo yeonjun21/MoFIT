@@ -10,7 +10,4 @@ public interface MyPageDao {
 
     List<Integer> findMyLeaderGroup(int id);
 
-    // 찜한 영상 가져오기
-//    List<Video> findMyVideo(int id);
-
 }
