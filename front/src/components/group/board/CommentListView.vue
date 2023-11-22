@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div v-if="comment.writer == userId">
-                        <button @click="editComment(comment.commentIdx)" class="btn btn-primary">수정</button>
+                        <button @click="editComment(comment)" class="btn btn-primary">수정</button>
                         <button @click="deleteComment(comment.commentIdx)" class="btn btn-danger">삭제</button>
                 </div>
             </div>
@@ -33,8 +33,9 @@ const router = useRouter();
 
 const userId = ref(sessionStorage.getItem('loginUser'));
 
-const editComment = function(commentIdx){
-    router.push({name:'CommentEdit', params:{commentIdx: commentIdx}});
+const editComment = function(commment){
+    router.push({name:'CommentEdit', params:{commentIdx: commment.commentIdx}});
+    boardStore.comment = commment
 }
 const deleteComment = function(commentIdx){
     boardStore.deleteComment(commentIdx);

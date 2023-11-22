@@ -28,8 +28,14 @@
         </div>
         <div class="sub-container">
             <h3>갤러리</h3>
-            <div class="content">
-                
+            <div class="gallery-container">
+                <div v-for="gallery in galleryStore.galleryList" :key="gallery.index">
+                    <RouterLink :to="{ name: 'GalleryCommentList', params: { index: gallery.index } }">
+                        <div>
+                            <img :src="gallery.img" alt="Gallery Image" />
+                        </div>
+                    </RouterLink>
+                </div>
             </div>
         </div>
         <GroupJoinButton v-if="!isMember" @click="$emit('join')"/>
@@ -38,6 +44,7 @@
 
 <script setup>
 import { useGroupStore } from '@/stores/group.js';
+import { useGalleryStore } from '@/stores/gallery.js';
 import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
@@ -48,6 +55,7 @@ defineProps({
 })
 
 const store = useGroupStore();
+const galleryStore = useGalleryStore();
 const route = useRoute();
 
 const groupDetail = ref({});
@@ -66,6 +74,8 @@ const getGroupDetail = function(groupId) {
 
 onMounted(() => {
     getGroupDetail(route.params.groupId);
+    galleryStore.clear();
+    galleryStore.getGalleryList(route.params.groupId);
 })
 
 </script>
@@ -122,5 +132,27 @@ span {
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.gallery-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 </style>
