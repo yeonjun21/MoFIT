@@ -146,8 +146,25 @@ export const useGroupStore = defineStore('group', () => {
             })
     }
 
+    const withdraw = function(groupId, userId) {
+        axios({
+            url: API_URL + '/' + groupId + '/member/delete',
+            method: 'GET',
+            params: {
+                userId: userId
+            }
+        })
+            .then(() => {
+                alert('모임에서 탈퇴했습니다.');
+            })
+            .catch(() => {
+                console.log('withdraw 에러');
+            })
+    }
+
 
     return { group, groupList, myGroupList,regionList, typeList, memberList,
             getAllRegion, getTypes, getGroupList, getMyGroupList, getGroup,
-            addGroup, groupNameDuplicationCheck, clearGroupList, getMemberList, join }
+            addGroup, groupNameDuplicationCheck, clearGroupList, getMemberList, 
+            join, withdraw }
 })

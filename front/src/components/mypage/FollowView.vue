@@ -19,8 +19,6 @@ import { ref, onMounted } from 'vue';
 
 const store = useMypageStore();
 
-
-
 onMounted(() => {
     store.getFollowingList(sessionStorage.getItem('loginUser'));
     store.getFollowerList(sessionStorage.getItem('loginUser'));

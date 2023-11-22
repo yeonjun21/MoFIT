@@ -29,4 +29,6 @@ public interface GroupDao {
     GroupHomeDto findGroupDetail(int groupId);
 
     List<GroupMember> findGroupMember(int groupId);
+
+    void deleteMember(int groupId, int userId);
 }

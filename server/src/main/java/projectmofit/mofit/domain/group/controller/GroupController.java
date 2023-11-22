@@ -104,14 +104,19 @@ public class GroupController {
     // 모임 가입하기
     @PostMapping("/{groupId}/member")
     public ResponseEntity<Void> join(@PathVariable int groupId, @RequestParam int userId) {
-        System.out.println(groupId);
-        System.out.println(userId);
-
         if (groupService.join(userId, groupId) > 0) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    // 모임 탈퇴
+    @GetMapping("/{groupId}/member/delete")
+    public void withdraw(@PathVariable int groupId, @RequestParam int userId) {
+        System.out.println(groupId);
+        System.out.println(userId);
+        groupService.withdraw(groupId, userId);
     }
 
 

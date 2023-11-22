@@ -1,21 +1,25 @@
 <template>
     <div class="row-container">
         <div class="box" style="margin-bottom: 20px;">
-            <p>✔ 내가 팔로우하는 회원을 클릭하면 그 회원이 찜한 영상을 볼 수 있습니다.</p>
+            <p class="info">✔ 내가 팔로우하는 회원을 클릭하면 그 회원이 찜한 영상을 볼 수 있습니다.</p>
             <div class="row-container">
                 <div class="col-container">
                     <h5>나를 팔로우하는 회원</h5>
                     <div class="list">
-                        <h6 v-for="user in store.followerList" :key="user.id">
-                        {{ user.nickname }}</h6>
+                        <div v-for="user in store.followerList" :key="user.id" class="item">
+                            <p class="user-nickname">{{ user.nickname }}</p>
+                            <button @click="$emit('deleteFollower', user.id)" type="button" 
+                                class="btn btn-outline-warning">삭제</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-container">
                     <h5>내가 팔로우하는 회원</h5>
-                    <div class="list" style="width: 200px;">
+                    <div class="list">
                         <div v-for="user in store.followingList" :key="user.id" class="item">
-                            <h6 @click="followBookmark(user.id, user.nickname)">{{ user.nickname }}</h6>
-                            <button @click="$emit('unfollow', user.id)" type="button" class="btn btn-outline-danger">언팔로우</button>
+                            <p class="user-nickname" @click="followBookmark(user.id, user.nickname)">{{ user.nickname }}</p>
+                            <button @click="$emit('unfollow', user.id)" type="button" 
+                                class="btn btn-outline-danger">언팔</button>
                         </div>
                     </div>
                 </div>
@@ -54,7 +58,7 @@ const followBookmark = function(userId, nickname) {
     padding: 10px;
 }
 
-p {
+.info {
     text-align: center;
     margin-top: 20px;
     font-size: 13px;
@@ -74,7 +78,7 @@ p {
 .list {
     display: flex;
     flex-wrap: wrap;
-    width: 80px;
+    width: 160px;
     justify-content: space-between;
 }
 
@@ -90,6 +94,11 @@ h5 {
 
 h6 {
     margin-bottom: 0;
+}
+
+.user-nickname {
+    margin-bottom: 0;
+    font-size: 15px;
 }
 
 .btn {

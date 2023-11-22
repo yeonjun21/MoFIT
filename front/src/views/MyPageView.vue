@@ -13,7 +13,7 @@
                 <FollowView @click="followList = !followList"/>
             </div>
         </div>
-        <FollowListView v-if="followList" @unfollow="unfollow"/>
+        <FollowListView v-if="followList" @unfollow="unfollow" @deleteFollower="deleteFollower"/>
         <div class="col-container">
             <h3>내가 가입한 모임</h3>
             <div class="my-group-list" @click="goMyGroupList">
@@ -65,6 +65,12 @@ const unfollow = function(id) {
     // 강제로 새로고침!
     window.location.reload();
 }
+
+const deleteFollower = function(id) {
+    userStore.unfollow(id, sessionStorage.getItem('loginUser'));
+    window.location.reload();
+}
+
 
 onMounted(() => {
     mypageStore.getUser(sessionStorage.getItem('loginUser'));

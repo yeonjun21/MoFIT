@@ -53,4 +53,5 @@ public class FollowController {
     public boolean followCheck(@RequestParam int id, @RequestParam int other) {
         return followService.followCheck(id, other);
     }
+    
 }

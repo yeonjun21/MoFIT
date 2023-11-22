@@ -157,6 +157,10 @@ export const useUserStore = defineStore('user', () => {
       })
   }
 
+  const deleteFollwer = function(followerId, followingId) {
+    
+  }
+
   return { user, loginUser, signup, login, logout, 
     emailDuplicationCheck, nicknameDuplicationCheck,
     follow, unfollow, getKakaoAccount }

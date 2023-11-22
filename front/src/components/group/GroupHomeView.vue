@@ -39,6 +39,7 @@
             </div>
         </div>
         <GroupJoinButton v-if="!isMember" @click="$emit('join')"/>
+        <GroupWithdrawButton v-else-if="store.group.leaderId != userId" @click="$emit('withdraw')"/>
     </div>
 </template>
 
@@ -49,6 +50,7 @@ import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import GroupJoinButton from '@/components/group/home/GroupJoinButton.vue';
+import GroupWithdrawButton from './home/GroupWithdrawButton.vue';
 
 defineProps({
     isMember: Boolean
@@ -58,6 +60,7 @@ const store = useGroupStore();
 const galleryStore = useGalleryStore();
 const route = useRoute();
 
+const userId = ref(sessionStorage.getItem('loginUser'));
 const groupDetail = ref({});
 let galleryList;
 
