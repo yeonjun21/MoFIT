@@ -9,7 +9,7 @@
                 <button type="button" class="btn btn-outline-primary"
                     @click="getItems('등산화')">등산화</button>
                 <button type="button" class="btn btn-outline-primary"
-                    @click="getItems('등산가방')">등산양말</button>
+                    @click="getItems('등산양말')">등산양말</button>
                 <button type="button" class="btn btn-outline-primary"
                     @click="getItems('등산가방')">등산가방</button>
                 <button type="button" class="btn btn-outline-primary"
