@@ -14,12 +14,12 @@ var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 �
 var dots = []; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
 
 const initMap = function () {
-    var myCenter = new kakao.maps.LatLng(33.450701, 126.570667); //카카오본사
+    var myCenter = new kakao.maps.LatLng(37.5642135, 127.0016985); //카카오본사
 
     const container = document.getElementById('map');
     const options = {
         center: myCenter,
-        level: 3,
+        level: 7,
     }; // 지도 객체를 등록합니다.
     map = new kakao.maps.Map(container, options);
 

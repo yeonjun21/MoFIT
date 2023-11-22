@@ -23,6 +23,45 @@ export const useUserStore = defineStore('user', () => {
       })
   }
 
+  const getKakaoAccount = function() {
+    window.Kakao.API.request({
+      url: "/v2/user/me",
+      success: (res) => {
+        const kakao_account = res.kakao_account;
+        const nickname = kakao_account.profile.nickname;
+        const email = kakao_account.email;
+        console.log("nickname", nickname);
+        console.log("email", email);
+
+        const userSignup = {
+          email: email,
+          password: "1234qwer",
+          name: nickname,
+          nickname: nickname
+        }
+
+        const userLogin = {
+          email: email,
+          password: "1234qwer",
+        }
+
+        emailDuplicationCheck(email)
+          .then(() => {
+            // 가입
+            signup(userSignup);
+          })
+          .catch(() => {
+            console.log("카카오 이메일 중복 잘들어옴-> 로그인")
+            // 로그인
+            login(userLogin);
+          })
+      },
+      fail: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
   const login = function(user) {
     return new Promise((resolve, reject) => {
       axios.post(API_URL + 'login', user)
@@ -120,5 +159,5 @@ export const useUserStore = defineStore('user', () => {
 
   return { user, loginUser, signup, login, logout, 
     emailDuplicationCheck, nicknameDuplicationCheck,
-    follow, unfollow }
+    follow, unfollow, getKakaoAccount }
 })
