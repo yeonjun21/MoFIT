@@ -16,8 +16,8 @@
         </div>
         <div class="button-container">
             <button @click="login" class="btn btn-primary">로그인</button>
-            <a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=8cb92fd45501f3ab00cd12ab3a65ecc7&redirect_uri=http://localhost:8080/kakao/login&response_type=code">
-                <img src="@/assets/kakao_login.png"/>
+            <a id="custom-login-btn" @click="kakaoLogin()">
+                <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오 로그인 버튼" />
             </a>
         </div>
     </div>
@@ -25,12 +25,10 @@
 
 <script setup>
 import { useUserStore } from '@/stores/user';
-import { useGroupStore } from '@/stores/group';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const store = useUserStore();
-const groupStore = useGroupStore();
 const router = useRouter();
 
 const email = ref('');
@@ -51,6 +49,21 @@ const login = function() {
             loginError.value = true;
         })
 }
+
+const kakaoLogin = function () {
+  window.Kakao.Auth.login({
+    scope: "profile_nickname, account_email",
+    success: () => {
+      store.getKakaoAccount();
+    },
+    fail: function(err) {
+      console.log(err);
+    }
+  });
+
+  router.push('/');
+}
+
 
 </script>
 

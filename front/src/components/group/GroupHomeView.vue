@@ -29,7 +29,7 @@
         <div class="sub-container">
             <h3>갤러리</h3>
             <div class="gallery-container">
-                <div v-for="gallery in galleryStore.galleryList" :key="gallery.index">
+                <div v-for="gallery in galleryList" :key="gallery.index">
                     <RouterLink :to="{ name: 'GalleryCommentList', params: { index: gallery.index } }">
                         <div>
                             <img :src="gallery.img" alt="Gallery Image" />
@@ -59,6 +59,7 @@ const galleryStore = useGalleryStore();
 const route = useRoute();
 
 const groupDetail = ref({});
+const galleryList = galleryStore.galleryList.slice(0,10);
 
 const getGroupDetail = function(groupId) {
     axios({
