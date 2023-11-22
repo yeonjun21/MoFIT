@@ -3,7 +3,7 @@
         <div class="row-container">
             <div class="col-container">
                 <h5>나를 팔로우하는 회원</h5>
-                <h6 v-for="user in store.followerList" :key="user.id">
+                <h6 v-for="user in store.followerList" :key="user.id" style="margin-bottom: 10px;">
                     {{ user.nickname }}</h6>
             </div>
             <div class="col-container">

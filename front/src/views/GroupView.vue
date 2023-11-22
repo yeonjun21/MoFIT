@@ -59,6 +59,7 @@ h2 {
 }
 
 .view {
-    margin: 70px 40px;
+    margin: 70px auto;
+    width: 90%;
 }
 </style>

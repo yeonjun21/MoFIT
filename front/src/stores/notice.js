@@ -26,7 +26,6 @@ export const useNoticeStore = defineStore('notice', () => {
        })
        .then((res) => {
             noticeList.value = res.data;
-            console.log('getNoticeList 성공')
        })
        .catch(() => {
            console.log('getNoticeList 에러 발생')
@@ -40,7 +39,6 @@ export const useNoticeStore = defineStore('notice', () => {
        })
        .then((res) => {
             notice.value = res.data;
-            console.log('getNotice 성공!')
        })
        .catch(() => {
             console.log('getNotice error 발생')
@@ -59,8 +57,7 @@ export const useNoticeStore = defineStore('notice', () => {
             }
         })
         .then((res)=>{
-            alert("게시글 등록완료!")
-            console.log('registNotice 성공!')
+            alert("게시글이 등록되었습니다.")
             router.push({name: 'NoticeList'})
         })
         .catch((err)=>{
@@ -75,8 +72,7 @@ export const useNoticeStore = defineStore('notice', () => {
             data: notice
         })
         .then((res)=>{
-            alert('게시글 수정완료!')
-            console.log('edit 성공!')
+            alert('게시글이 수정되었습니다')
             router.push({name:'NoticeCommentList', params:{index: notice.index}})
         })
         .catch((err)=>{
@@ -93,8 +89,7 @@ export const useNoticeStore = defineStore('notice', () => {
             }
         })
         .then((res)=>{
-            alert('게시글 삭제완료!')  
-            console.log('deleteNotice 성공!')
+            alert('게시글이 삭제되었습니다.')  
             router.push({name: 'NoticeList'})
         })
         .catch((err)=>{
@@ -113,8 +108,6 @@ export const useNoticeStore = defineStore('notice', () => {
         })
         .then((res) => {
             commentList.value = res.data;
-            console.log('getCommentList 성공')
-            console.log(commentList.value)
         })
         .catch(() => {
             console.log('getCommentList 에러 발생')
@@ -132,8 +125,7 @@ export const useNoticeStore = defineStore('notice', () => {
             }
         })
         .then((res)=>{
-            alert("댓글 등록완료!")
-            console.log('regist-cmt 성공!')
+            alert("댓글이 등록되었습니다.")
             router.push({name:'NoticeCommentList'})
         })
         .catch((err)=>{
@@ -148,8 +140,7 @@ export const useNoticeStore = defineStore('notice', () => {
             data: commentNotice
         })
         .then((res)=>{
-            alert('댓글 수정완료!')
-            console.log('edit-cmt 성공!')
+            alert('댓글이 수정되었습니다.')
             router.push({name: 'NoticeCommentList'})
         })
         .catch((err)=>{
@@ -167,8 +158,7 @@ export const useNoticeStore = defineStore('notice', () => {
             }
         })
         .then((res)=>{
-            alert('댓글 삭제완료!')  
-            console.log('delete-cmt 성공!')
+            alert('댓글이 삭제되었습니다.')  
             window.location.reload();
         })
         .catch((err)=>{

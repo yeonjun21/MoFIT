@@ -27,7 +27,6 @@ export const useBoardStore = defineStore('board', () => {
        })
        .then((res) => {
             boardList.value = res.data;
-            console.log('getBoardList 성공')
        })
        .catch(() => {
            console.log('getBoardList 에러 발생')
@@ -41,7 +40,6 @@ export const useBoardStore = defineStore('board', () => {
        })
        .then((res) => {
             board.value = res.data;
-            console.log('getBoard 성공!')
        })
        .catch(() => {
             console.log('getBoard error 발생')
@@ -59,8 +57,7 @@ export const useBoardStore = defineStore('board', () => {
             }
         })
         .then((res)=>{
-            alert("게시글 등록완료!")
-            console.log('registBoard 성공!')
+            alert("게시글이 등록되었습니다.");
             router.push({name: 'BoardList'})
         })
         .catch((err)=>{
@@ -75,8 +72,7 @@ export const useBoardStore = defineStore('board', () => {
             data: board
         })
         .then((res)=>{
-            alert('게시글 수정완료!')
-            console.log('edit 성공!')
+            alert('게시글이 수정되었습니다.');
             router.push({name:'CommentList', params:{index: board.index}})
         })
         .catch((err)=>{
@@ -93,8 +89,7 @@ export const useBoardStore = defineStore('board', () => {
             }
         })
         .then((res)=>{
-            alert('게시글 삭제완료!')  
-            console.log('deleteBoard 성공!')
+            alert('게시글이 삭제되었습니다.');
             router.push({name: 'BoardList'})
         })
         .catch((err)=>{
@@ -113,8 +108,6 @@ export const useBoardStore = defineStore('board', () => {
         })
         .then((res) => {
             commentList.value = res.data;
-            console.log('getCommentList 성공')
-            console.log(commentList.value)
         })
         .catch(() => {
             console.log('getCommentList 에러 발생')
@@ -132,8 +125,7 @@ export const useBoardStore = defineStore('board', () => {
             }
         })
         .then((res)=>{
-            alert("댓글 등록완료!")
-            console.log('regist-cmt 성공!')
+            alert("댓글이 등록되었습니다.")
             router.push({name:'CommentList'})
         })
         .catch((err)=>{
@@ -148,8 +140,7 @@ export const useBoardStore = defineStore('board', () => {
             data: commentBoard
         })
         .then((res)=>{
-            alert('댓글 수정완료!')
-            console.log('edit-cmt 성공!')
+            alert('댓글이 수정되었습니다.')
             router.push({name: 'CommentList'})
         })
         .catch((err)=>{
@@ -167,8 +158,7 @@ export const useBoardStore = defineStore('board', () => {
             }
         })
         .then((res)=>{
-            alert('댓글 삭제완료!')  
-            console.log('delete-cmt 성공!')
+            alert('댓글이 삭제되었습니다.')  
             window.location.reload();
         })
         .catch((err)=>{

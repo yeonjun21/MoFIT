@@ -42,7 +42,7 @@ onMounted(() => {
 }
 
 .video {
-  margin-right: 20px;
-  margin-bottom: 20px;
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 </style>

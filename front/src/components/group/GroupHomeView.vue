@@ -82,7 +82,7 @@ onMounted(() => {
 
 <style scoped>
 .sub-container {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
 .group-image {
     width: 300px;
@@ -123,6 +123,10 @@ onMounted(() => {
     font-size: 18px;
 }
 
+h3 {
+    margin-bottom: 30px;
+}
+
 span {
     font-weight: 600;
 }
@@ -140,19 +144,21 @@ a {
 }
 
 img {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     background-position: center;
     background-size: cover;
     object-fit: cover;
-    margin: 10px;
+    margin: 8px;
 }
 
 .gallery-container {
-    width: 100%;
+    width: 650px;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    margin-top: 30px;
+    margin-top: 80px;
+    margin: 0 auto;
 }
 </style>
