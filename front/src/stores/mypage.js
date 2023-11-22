@@ -14,6 +14,7 @@ export const useMypageStore = defineStore('mypage', () => {
     const board = ref({});
     const video = ref({});
     const bookmarkList = ref([]);
+    const followBookmarkList = ref([]);
     const boardList = ref([]);
 
     const getUser = function(id) {
@@ -77,6 +78,22 @@ export const useMypageStore = defineStore('mypage', () => {
                 console.log('getBookmark 에러');
             })
     }
+
+    const getFollowBookmark = function(userId) {
+        axios({
+            url: API_URL + 'bookmark',
+            method: 'POST',
+            params: {
+                userId: userId
+            }
+        })
+            .then((res) => {
+                followBookmarkList.value = res.data;
+            })
+            .catch(() => {
+                console.log('getFollowBookmark 에러');
+            })
+    }
     
     const getBoardList = function(userId) {
         axios({
@@ -124,7 +141,7 @@ export const useMypageStore = defineStore('mypage', () => {
     }
 
 
-    return { user, bookmarkList, boardList, followingList, followerList,
-            getUser, bookmark, deleteBookmark, getBookmark, getBoardList,
+    return { user, bookmarkList, followBookmarkList, boardList, followingList, followerList,
+            getUser, bookmark, deleteBookmark, getBookmark, getFollowBookmark, getBoardList,
             getFollowingList, getFollowerList }
 })
