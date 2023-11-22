@@ -35,7 +35,7 @@ const initMap1 = function () {
         return;
     }
     
-    let myCenter = new kakao.maps.LatLng(33.450701, 126.570667); //카카오본사
+    let myCenter = new kakao.maps.LatLng(37.5642135, 127.0016985); //카카오본사
     const container1= document.getElementById('map1');
     const options1 = {
         center: myCenter,
@@ -64,7 +64,7 @@ const initMap2 = function () {
         return;
     }
 
-    let myCenter = new kakao.maps.LatLng(33.450701, 126.570667); //카카오본사
+    let myCenter = new kakao.maps.LatLng(37.5642135, 127.0016985); //카카오본사
     const container2= document.getElementById('map2');
     const options2 = {
         center: myCenter,
@@ -94,7 +94,7 @@ const initMap3 = function () {
         return;
     }
 
-    let myCenter = new kakao.maps.LatLng(33.450701, 126.570667); //카카오본사
+    let myCenter = new kakao.maps.LatLng(37.5642135, 127.0016985); //카카오본사
     const container3= document.getElementById('map3');
     const options3 = {
         center: myCenter,
