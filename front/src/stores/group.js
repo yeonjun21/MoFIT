@@ -81,16 +81,15 @@ export const useGroupStore = defineStore('group', () => {
     }
 
     const addGroup = function(group) {
-        axios.post(API_URL, group)
+         axios.post(API_URL, group)
             .then((res) => {
                 alert('운동 모임이 성공적으로 만들어졌습니다!');
-                getMyGroupList();
+                getMyGroupList(sessionStorage.getItem('loginUser'));
             })
-            .catch((err) => {
-                console.log(err.data);
-                console.log('addGroup 에러')
+            .catch(() => {
+                console.log('addGroup 에러');
+                 reject();
             })
-
     }
 
     const groupNameDuplicationCheck = function(groupName) {

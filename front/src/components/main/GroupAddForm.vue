@@ -157,7 +157,7 @@ const addGroup = function() {
                 leaderId: leaderId,
                 img: base64Data.value
             }
-            store.addGroup(group);
+            store.addGroup(group)
             router.push({name: 'MyGroup'});
         }
     }).catch(() => {
