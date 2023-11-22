@@ -73,4 +73,9 @@ public class GroupServiceImpl implements GroupService {
     public List<GroupMember> getGroupMember(int groupId) {
         return groupDao.findGroupMember(groupId);
     }
+
+    @Override
+    public void withdraw(int groupId, int userId) {
+        groupDao.deleteMember(groupId, userId);
+    }
 }

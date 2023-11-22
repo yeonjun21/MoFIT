@@ -23,9 +23,11 @@
     </select>
 
     <select id="findGroupById" resultType="Group">
-        SELECT group_id AS groupId, group_name AS groupName, type, info, img as byteImg
-        FROM `group`
-        WHERE group_id = #{groupId}
+        SELECT G.group_id AS groupId, group_name AS groupName, type, info, img as byteImg, M.user_id AS leaderId
+        FROM `group` G
+        INNER JOIN `group_member` M
+        ON G.group_id = M.group_id
+        WHERE G.group_id = #{groupId} AND M.grade = '운영진'
     </select>
 
     <select id="findGroupByGroupName" parameterType="string" resultType="Group">
@@ -83,6 +85,11 @@
         ON G.user_id = U.id
         WHERE G.group_id = #{groupId};
     </select>
+
+    <delete id="deleteMember">
+        DELETE FROM `group_member`
+        WHERE group_id = #{groupId} AND user_id = #{userId}
+    </delete>
 
 </mapper>
 

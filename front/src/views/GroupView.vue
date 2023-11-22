@@ -2,7 +2,7 @@
     <div class="container">
         <h2>{{ store.group.groupName }}</h2>
         <GroupMenuNav/>
-        <RouterView class="view" :isMember="isMember" @join="join"/>
+        <RouterView class="view" :isMember="isMember" @join="join" @withdraw="withdraw"/>
     </div>
 </template>
 
@@ -35,7 +35,16 @@ const join = function() {
     
     if (result) {
         store.join(store.group.groupId, sessionStorage.getItem('loginUser'));
-        isMember.value = true;
+        window.location.reload();
+    }
+}
+
+const withdraw = function() {
+    const result = confirm('정말 모임에서 탈퇴하시겠어요?');
+
+    if (result) {
+        store.withdraw(store.group.groupId, sessionStorage.getItem('loginUser'));
+        window.location.reload();
     }
 }
 

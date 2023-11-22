@@ -27,4 +27,6 @@ public interface GroupService {
     GroupHomeDto getGroupDetail(int groupId);
 
     List<GroupMember> getGroupMember(int groupId);
+
+    void withdraw(int groupId, int userId);
 }
