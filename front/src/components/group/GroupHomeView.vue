@@ -30,11 +30,7 @@
             <h3>갤러리</h3>
             <div class="gallery-container">
                 <div v-for="gallery in galleryList" :key="gallery.index">
-                    <RouterLink :to="{ name: 'GalleryCommentList', params: { index: gallery.index } }">
-                        <div>
-                            <img :src="gallery.img" alt="Gallery Image" />
-                        </div>
-                    </RouterLink>
+                    <img :src="gallery.img" alt="Gallery Image" />
                 </div>
             </div>
         </div>
@@ -62,7 +58,7 @@ const route = useRoute();
 
 const userId = ref(sessionStorage.getItem('loginUser'));
 const groupDetail = ref({});
-let galleryList;
+const galleryList = ref({});
 
 const getGroupDetail = function(groupId) {
     axios({
@@ -78,11 +74,10 @@ const getGroupDetail = function(groupId) {
 
 onMounted(() => {
     getGroupDetail(route.params.groupId);
-    galleryStore.clear();
     galleryStore.getGalleryList(route.params.groupId);
 
-    if (galleryStore.galleryList != null) {
-        galleryList.value = galleryStore.galleryList.slice(0,9);
+    if (galleryStore.galleryList) {
+        galleryList.value = galleryStore.galleryList.slice(0, 9);
     }
 })
 
