@@ -10,6 +10,7 @@
             <div class="mb-3"> 
                 <label for="content">댓글 내용</label>
                 <textarea class="form-control" id="content" rows="3" v-model="content"></textarea>
+                <p v-if="contentError" class="input-error">내용을 입력해 주세요.</p>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end"> 
                 <button class="btn btn-primary me-md-2" @click="editComment">수정</button>
@@ -24,20 +25,36 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 const boardStore = useBoardStore();
-const content = ref();
+const content = ref(boardStore.comment.content);
 const route = useRoute();
 const nickname = ref(sessionStorage.getItem('userNickname'));
+const contentError = ref(false)
+
+const contentCheck = function() {
+    if (!content.value) {
+        contentError.value = true;
+        return false;
+    } else {
+        contentError.value = false;
+        return true;
+    }
+}
 
 const editComment = function(){
+    if(contentCheck()){
     const commentBoard = { 
-        content: content.value,
-        commentIdx: route.params.commentIdx
+    content: content.value,
+    commentIdx: route.params.commentIdx
     }
     boardStore.editComment(commentBoard);
+    }
 }
 
 </script>
 
 <style scoped>
-
+.input-error {
+    font-size: 13px;
+    color: red;
+}
 </style>

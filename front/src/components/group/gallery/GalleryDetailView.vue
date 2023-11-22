@@ -6,7 +6,7 @@
             </div>
             <p>{{ galleryStore.gallery.content }}</p>
             <div class="second-container">
-                <p>{{ galleryStore.gallery.writer }}</p>
+                <p>{{ galleryStore.gallery.nickname }}</p>
                 <p class="blank"> | </p>
                 <p>{{ galleryStore.gallery.date }}</p>
             </div>
