@@ -58,7 +58,7 @@ const route = useRoute();
 
 const userId = ref(sessionStorage.getItem('loginUser'));
 const groupDetail = ref({});
-const galleryList = ref({});
+const galleryList = ref([]);
 
 const getGroupDetail = function(groupId) {
     axios({
@@ -74,11 +74,15 @@ const getGroupDetail = function(groupId) {
 
 onMounted(() => {
     getGroupDetail(route.params.groupId);
-    galleryStore.getGalleryList(route.params.groupId);
-
-    if (galleryStore.galleryList) {
-        galleryList.value = galleryStore.galleryList.slice(0, 9);
-    }
+    galleryStore.clear();
+    galleryStore.getGalleryList(route.params.groupId)
+        .then(() => {
+            if (galleryStore.galleryList) {
+                galleryList.value = galleryStore.galleryList.slice(0, 9);
+            }
+        })
+        .catch(() => {
+        })
 })
 
 </script>

@@ -23,10 +23,12 @@ public class GalleryController {
     @GetMapping
     public ResponseEntity<?> list(@RequestParam int groupId){
         List<Gallery> list = galleryService.getGallery(groupId);
-        if(list.size() == 0){
+
+        if (list.size() == 0) {
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
-        for(Gallery gallery : list){
+
+        for (Gallery gallery : list) {
             byte[] arr = gallery.getByteImg();
             if(arr != null && arr.length > 0){
                 String base64Encode = byteToBase64(arr);
