@@ -2,7 +2,7 @@
   <div style="font-family: 'Noto Sans KR', 'sans-serif'">
     <HeaderNav/>
     <div @click="goMain" class="main">
-      MoFIT
+      <img src="@/assets/logo3.png">
     </div>
     <Router-view/>
   </div>
@@ -24,8 +24,12 @@ const goMain = function() {
 .main {
   font-size: 72px;
   font-weight: 700;
-  color: rgb(0, 54, 202);
+  color: rgb(0, 50, 210);
   text-align: center;
-  padding: 150px 0 50px;
+  padding: 120px 0 70px;
+}
+
+img {
+  width: 450px;
 }
 </style>

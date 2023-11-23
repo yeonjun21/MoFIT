@@ -1,6 +1,8 @@
 <template>
     <div class="item-container">
-        <a :href="item.link" target="_blank"><img :src="item.image"></a>
+        <div>
+            <a :href="item.link" target="_blank"><img :src="item.image"></a>
+        </div>
         <div class="info">
             <p class="title"><span v-html="item.title"></span></p>
             <p class="price badge text-bg-light">최저가<span v-html="'₩ ' + item.lprice"></span></p>
@@ -17,6 +19,7 @@ defineProps({
 <style scoped>
 .item-container {
     width: 180px;
+    /* height: 280px; */
     box-shadow: 0px 0px 3px rgb(180, 180, 180);
     padding: 10px;
     border-radius: 10px;
@@ -34,6 +37,10 @@ img {
 
 .info {
     width: 150px;
+    /* height: 100px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .title {
