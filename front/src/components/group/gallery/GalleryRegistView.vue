@@ -9,6 +9,7 @@
             <div class="mb-3">
                 <input type="file" @change="handleFileChange" class="form-control"/>
             </div>
+            <p style="font-size: 13px;"> 확장자가 jpeg, jpg인 파일만 업로드 가능합니다.</p>
             <p v-if="imgError" class="input-error">이미지를 첨부해 주세요.</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-primary me-md-2" @click="registGallery">등록</button>
